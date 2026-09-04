@@ -353,18 +353,74 @@ Secara fisis, kondisi $DS^\mu/D\tau=0$ menyatakan bahwa spin tidak mengalami rot
 
 
 % ============================================================
-\subsection{Metrik Schwarzschild}
+\subsection{Metrik Schwarzschild: Solusi Vakum Statis dan Sferis}
 \label{subsec:metrik-schwarzschild}
 
-Solusi Schwarzschild mendeskripsikan ruang-waktu di sekitar massa statis tak berotasi. Dalam koordinat bola $(t, r, \theta, \phi)$, elemen garisnya diberikan oleh \parencite{Schwarzschild1916Field}:
+Solusi Schwarzschild merupakan solusi eksak persamaan medan Einstein vakum untuk ruang-waktu di luar sumber bermassa yang statis dan bersimetri sferis \parencite{Schwarzschild1916Field,Schutz2009FirstCourse,Carroll2004SpacetimeGeometry}. Karena daerah di luar sumber memenuhi
 \begin{equation}
-    ds^2 = -\left(1 - \frac{r_s}{r}\right) c^2\,dt^2
-         + \left(1 - \frac{r_s}{r}\right)^{-1} dr^2
-         + r^2\, d\theta^2
-         + r^2 \sin^2\!\theta\, d\phi^2,
+    R_{\mu\nu}=0,
+\end{equation}
+masalah matematisnya adalah menentukan bentuk tensor metrik $g_{\mu\nu}$ yang memenuhi persamaan tersebut dengan simetri yang sesuai.
+
+Untuk geometri yang statis dan bersimetri sferis, elemen garis dapat diawali dengan ansatz
+\begin{equation}
+    ds^2
+    =-e^{2\Phi(r)}c^2dt^2
+    +e^{2\Lambda(r)}dr^2
+    +r^2d\theta^2
+    +r^2\sin^2\!\theta\,d\phi^2,
+    \label{eq:schwarzschild-ansatz}
+\end{equation}
+di mana $\Phi(r)$ dan $\Lambda(r)$ merupakan dua fungsi radial yang belum diketahui. Sifat statis menyebabkan komponen metrik tidak bergantung pada $t$, sedangkan simetri sferis menghilangkan ketergantungan terhadap arah sudut tertentu. Dengan demikian, persamaan medan vakum mereduksi masalah menjadi penentuan dua fungsi radial tersebut.
+
+Substitusi ansatz Persamaan~\eqref{eq:schwarzschild-ansatz} ke dalam $R_{\mu\nu}=0$ menghasilkan \parencite{Schutz2009FirstCourse,Carroll2004SpacetimeGeometry}
+\begin{equation}
+    e^{2\Phi(r)}
+    =1-\frac{2GM}{c^2r},
+    \qquad
+    e^{2\Lambda(r)}
+    =\left(1-\frac{2GM}{c^2r}\right)^{-1}.
+\end{equation}
+Dengan mendefinisikan radius Schwarzschild
+\begin{equation}
+    r_s\equiv\frac{2GM}{c^2},
+    \label{eq:schwarzschild-radius}
+\end{equation}
+diperoleh metrik Schwarzschild dalam konvensi tanda $(-,+,+,+)$,
+\begin{equation}
+    ds^2
+    =-\left(1-\frac{r_s}{r}\right)c^2dt^2
+    +\left(1-\frac{r_s}{r}\right)^{-1}dr^2
+    +r^2d\theta^2
+    +r^2\sin^2\!\theta\,d\phi^2.
     \label{eq:schwarzschild}
 \end{equation}
-dengan $r_s = 2GM/c^2$ adalah radius Schwarzschild. Metrik ini bersifat diagonal dan menghasilkan efek presesi geodesik, namun tidak mengandung efek \textit{frame-dragging} karena tidak adanya suku campuran $dt\,d\phi$.
+Tensor metriknya bersifat diagonal,
+\begin{equation}
+    g_{\mu\nu}^{\mathrm{Schw}}
+    =\operatorname{diag}\!\left(
+        -\left(1-\frac{r_s}{r}\right),
+        \left(1-\frac{r_s}{r}\right)^{-1},
+        r^2,
+        r^2\sin^2\!\theta
+    \right),
+    \label{eq:schwarzschild-matrix}
+\end{equation}
+dengan konvensi koordinat $x^\mu=(ct,r,\theta,\phi)$.
+
+Walaupun metrik Schwarzschild diagonal, komponen-komponennya tetap bergantung pada $r$. Oleh karena itu,
+\begin{equation}
+    \partial_r g_{\mu\nu}\neq0
+    \quad\Longrightarrow\quad
+    \Gamma^\rho_{\mu\nu}\neq0,
+\end{equation}
+sehingga persamaan geodesik dan transportasi paralel spin tetap nontrivial. Konsekuensinya, ruang-waktu Schwarzschild dapat menghasilkan presesi geodesik meskipun sumber tidak berotasi.
+
+Pada solusi Schwarzschild momentum sudut sumber dianggap nol, $J=0$. Karena itu tidak terdapat komponen campuran waktu--azimut,
+\begin{equation}
+    g_{t\phi}=0,
+\end{equation}
+atau secara ekuivalen tidak terdapat suku $dt\,d\phi$ pada elemen garis. Sifat ini membedakan Schwarzschild dari metrik Kerr untuk sumber berotasi. Secara fisis, Schwarzschild menjadi baseline untuk memisahkan efek yang berasal dari massa sumber dari efek tambahan akibat rotasi sumber. Dalam limit parameter rotasi Kerr $a\to0$, metrik Kerr harus kembali ke metrik Schwarzschild; sifat limit ini menjadi salah satu pemeriksaan konsistensi pada pembahasan berikutnya.
 
 
 \subsection{Metrik Kerr}
