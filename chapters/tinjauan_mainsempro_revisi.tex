@@ -515,13 +515,19 @@ kemudian muncul sebagai presesi geodesik dan presesi Lense--Thirring.
 \subsection{Metrik Schwarzschild: Solusi Vakum Statis dan Sferis}
 \label{subsec:metrik-schwarzschild}
 
-Solusi Schwarzschild merupakan solusi eksak persamaan medan Einstein vakum untuk ruang-waktu di luar sumber bermassa yang statis dan bersimetri sferis \parencite{Schwarzschild1916Field,Schutz2009FirstCourse,Carroll2004SpacetimeGeometry}. Karena daerah di luar sumber memenuhi
+Persamaan medan vakum pada Persamaan~\eqref{eq:vacuum-efe} telah memberikan
+syarat
 \begin{equation}
-    R_{\mu\nu}=0,
+    R_{\mu\nu}=0.
 \end{equation}
-masalah matematisnya adalah menentukan bentuk tensor metrik $g_{\mu\nu}$ yang memenuhi persamaan tersebut dengan simetri yang sesuai.
-
-Untuk geometri yang statis dan bersimetri sferis, elemen garis dapat diawali dengan ansatz
+Untuk memperoleh solusi Schwarzschild, syarat ini tidak langsung diselesaikan
+untuk seluruh bentuk metrik yang mungkin, tetapi terlebih dahulu dibatasi oleh
+simetri sumber. Untuk sumber bermassa yang tidak berotasi, geometri di luar
+sumber diasumsikan statis dan bersimetri sferis
+\parencite{Schwarzschild1916Field,Schutz2009FirstCourse,Carroll2004SpacetimeGeometry}.
+Kedua asumsi tersebut menghilangkan ketergantungan terhadap $t$, serta
+menyisakan hanya ketergantungan radial pada komponen waktu dan radial.
+Elemen garis paling umum yang diperlukan dapat ditulis sebagai
 \begin{equation}
     ds^2
     =-e^{2\Phi(r)}c^2dt^2
@@ -530,31 +536,87 @@ Untuk geometri yang statis dan bersimetri sferis, elemen garis dapat diawali den
     +r^2\sin^2\!\theta\,d\phi^2,
     \label{eq:schwarzschild-ansatz}
 \end{equation}
-di mana $\Phi(r)$ dan $\Lambda(r)$ merupakan dua fungsi radial yang belum diketahui. Sifat statis menyebabkan komponen metrik tidak bergantung pada $t$, sedangkan simetri sferis menghilangkan ketergantungan terhadap arah sudut tertentu. Dengan demikian, persamaan medan vakum mereduksi masalah menjadi penentuan dua fungsi radial tersebut.
+di mana $\Phi(r)$ dan $\Lambda(r)$ merupakan dua fungsi yang belum diketahui.
+Dengan demikian, masalah tensorial $R_{\mu\nu}=0$ direduksi menjadi masalah
+menentukan dua fungsi radial tersebut.
 
-Substitusi ansatz Persamaan~\eqref{eq:schwarzschild-ansatz} ke dalam $R_{\mu\nu}=0$ menghasilkan \parencite{Schutz2009FirstCourse,Carroll2004SpacetimeGeometry}
+Substitusi ansatz Persamaan~\eqref{eq:schwarzschild-ansatz} ke simbol
+Christoffel, kemudian ke tensor Ricci, menghasilkan beberapa persamaan
+radial yang saling berkaitan. Salah satu kombinasi persamaan vakumnya dapat
+dituliskan sebagai
+\begin{equation}
+    e^{-2\Lambda}
+    \left(
+        \frac{2\Lambda'}{r}-\frac{1}{r^2}
+    \right)
+    +\frac{1}{r^2}=0,
+    \label{eq:schwarzschild-lambda-ode}
+\end{equation}
+dengan tanda prima menyatakan turunan terhadap $r$. Persamaan ini dapat
+disusun ulang menjadi
+\begin{equation}
+    \frac{d}{dr}
+    \left[r\left(1-e^{-2\Lambda}\right)\right]=0.
+    \label{eq:schwarzschild-lambda-total-derivative}
+\end{equation}
+Integrasi langsung memberikan
+\begin{equation}
+    e^{-2\Lambda(r)}=1-\frac{C}{r},
+    \label{eq:schwarzschild-lambda-solution}
+\end{equation}
+dengan $C$ konstanta integrasi.
+
+Persamaan vakum radial yang lain memberikan
+\begin{equation}
+    e^{-2\Lambda}
+    \left(
+        \frac{2\Phi'}{r}+\frac{1}{r^2}
+    \right)
+    -\frac{1}{r^2}=0.
+    \label{eq:schwarzschild-phi-ode}
+\end{equation}
+Setelah Persamaan~\eqref{eq:schwarzschild-lambda-solution} disubstitusikan,
+diperoleh
+\begin{equation}
+    \Phi'(r)
+    =\frac{C}{2r(r-C)}.
+\end{equation}
+Integrasinya menghasilkan
 \begin{equation}
     e^{2\Phi(r)}
-    =1-\frac{2GM}{c^2r},
-    \qquad
-    e^{2\Lambda(r)}
-    =\left(1-\frac{2GM}{c^2r}\right)^{-1}.
+    =C_0\left(1-\frac{C}{r}\right).
+    \label{eq:schwarzschild-phi-solution}
 \end{equation}
-Dengan mendefinisikan radius Schwarzschild
+Syarat asimtotik datar menuntut $g_{tt}\rightarrow-1$ ketika
+$r\rightarrow\infty$, sehingga $C_0=1$. Konstanta $C$ kemudian ditentukan
+dengan mencocokkan limit medan lemah,
 \begin{equation}
-    r_s\equiv\frac{2GM}{c^2},
+    g_{tt}
+    \simeq
+    -\left(1+\frac{2\Phi_N}{c^2}\right),
+    \qquad
+    \Phi_N=-\frac{GM}{r}.
+\end{equation}
+Perbandingan dengan
+$g_{tt}=-(1-C/r)$ memberikan
+\begin{equation}
+    C=\frac{2GM}{c^2}
+    \equiv r_s,
     \label{eq:schwarzschild-radius}
 \end{equation}
-diperoleh metrik Schwarzschild dalam konvensi tanda $(-,+,+,+)$,
+yaitu radius Schwarzschild.
+
+Dengan memasukkan hasil tersebut kembali ke ansatz, diperoleh
 \begin{equation}
     ds^2
     =-\left(1-\frac{r_s}{r}\right)c^2dt^2
     +\left(1-\frac{r_s}{r}\right)^{-1}dr^2
     +r^2d\theta^2
-    +r^2\sin^2\!\theta\,d\phi^2.
+    +r^2\sin^2\!\theta\,d\phi^2,
     \label{eq:schwarzschild}
 \end{equation}
-Tensor metriknya bersifat diagonal,
+yang merupakan metrik Schwarzschild dalam konvensi tanda $(-,+,+,+)$.
+Dengan koordinat $x^\mu=(ct,r,\theta,\phi)$, tensor metriknya adalah
 \begin{equation}
     g_{\mu\nu}^{\mathrm{Schw}}
     =\operatorname{diag}\!\left(
@@ -562,24 +624,47 @@ Tensor metriknya bersifat diagonal,
         \left(1-\frac{r_s}{r}\right)^{-1},
         r^2,
         r^2\sin^2\!\theta
-    \right),
+    \right).
     \label{eq:schwarzschild-matrix}
 \end{equation}
-dengan konvensi koordinat $x^\mu=(ct,r,\theta,\phi)$.
+Rantai matematis pembentukannya dapat diringkas sebagai
+\begin{equation}
+    R_{\mu\nu}=0
+    \longrightarrow
+    \text{ansatz statis-sferis}
+    \longrightarrow
+    \Phi(r),\Lambda(r)
+    \longrightarrow
+    r_s=\frac{2GM}{c^2}
+    \longrightarrow
+    g_{\mu\nu}^{\mathrm{Schw}}.
+    \label{eq:schwarzschild-chain}
+\end{equation}
 
-Walaupun metrik Schwarzschild diagonal, komponen-komponennya tetap bergantung pada $r$. Oleh karena itu,
+Walaupun tensor metrik Schwarzschild bersifat diagonal, komponennya tetap
+bergantung pada $r$. Oleh karena itu,
 \begin{equation}
     \partial_r g_{\mu\nu}\neq0
     \quad\Longrightarrow\quad
     \Gamma^\rho_{\mu\nu}\neq0,
 \end{equation}
-sehingga persamaan geodesik dan transportasi paralel spin tetap nontrivial. Konsekuensinya, ruang-waktu Schwarzschild dapat menghasilkan presesi geodesik meskipun sumber tidak berotasi.
+sehingga geodesik dan transportasi paralel spin tetap nontrivial. Secara
+fisis, massa sumber tetap menghasilkan kelengkungan ruang-waktu dan presesi
+geodesik meskipun sumber tidak berotasi.
 
-Pada solusi Schwarzschild momentum sudut sumber dianggap nol, $J=0$. Karena itu tidak terdapat komponen campuran waktu--azimut,
+Karena solusi Schwarzschild mengasumsikan momentum sudut sumber nol,
 \begin{equation}
-    g_{t\phi}=0,
+    J=0,
 \end{equation}
-atau secara ekuivalen tidak terdapat suku $dt\,d\phi$ pada elemen garis. Sifat ini membedakan Schwarzschild dari metrik Kerr untuk sumber berotasi. Secara fisis, Schwarzschild menjadi baseline untuk memisahkan efek yang berasal dari massa sumber dari efek tambahan akibat rotasi sumber. Dalam limit parameter rotasi Kerr $a\to0$, metrik Kerr harus kembali ke metrik Schwarzschild; sifat limit ini menjadi salah satu pemeriksaan konsistensi pada pembahasan berikutnya.
+tidak terdapat komponen campuran waktu--azimut,
+\begin{equation}
+    g_{t\phi}=0.
+\end{equation}
+Dengan demikian tidak ada suku $dt\,d\phi$ pada elemen garis. Struktur ini
+menjadi baseline matematis untuk membedakan efek yang berasal dari massa
+dengan efek tambahan akibat rotasi sumber. Pada pembahasan Kerr berikutnya,
+limit parameter rotasi $a\rightarrow0$ harus menghilangkan komponen campuran
+tersebut dan mengembalikan metrik Kerr ke bentuk Schwarzschild.
 
 
 \subsection{Metrik Kerr}
