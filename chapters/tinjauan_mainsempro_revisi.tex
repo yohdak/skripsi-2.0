@@ -177,10 +177,10 @@ dinyatakan melalui tensor Riemann, yang dibahas pada bagian berikutnya
 
 Solusi Schwarzschild mendeskripsikan ruang-waktu di sekitar massa statis tak berotasi. Dalam koordinat bola $(t, r, \theta, \phi)$, elemen garisnya diberikan oleh \parencite{Schwarzschild1916Field}:
 \begin{equation}
-    ds^2 = \left(1 - \frac{r_s}{r}\right) c^2\,dt^2
-         - \left(1 - \frac{r_s}{r}\right)^{-1} dr^2
-         - r^2\, d\theta^2
-         - r^2 \sin^2\!\theta\, d\phi^2,
+    ds^2 = -\left(1 - \frac{r_s}{r}\right) c^2\,dt^2
+         + \left(1 - \frac{r_s}{r}\right)^{-1} dr^2
+         + r^2\, d\theta^2
+         + r^2 \sin^2\!\theta\, d\phi^2,
     \label{eq:schwarzschild}
 \end{equation}
 dengan $r_s = 2GM/c^2$ adalah radius Schwarzschild. Metrik ini bersifat diagonal dan menghasilkan efek presesi geodesik, namun tidak mengandung efek \textit{frame-dragging} karena tidak adanya suku campuran $dt\,d\phi$.
@@ -192,11 +192,11 @@ dengan $r_s = 2GM/c^2$ adalah radius Schwarzschild. Metrik ini bersifat diagonal
 Metrik Kerr merupakan solusi eksak persamaan medan Einstein untuk massa berotasi tanpa muatan listrik, ditemukan oleh \textcite{Kerr1963KerrMetric}. Dalam koordinat Boyer-Lindquist $(t, r, \theta, \phi)$, elemen garisnya dapat dituliskan sebagai:
 \begin{equation}
 \begin{split}
-    ds^2 &= \left(1 - \frac{r_s r}{\Sigma}\right) c^2\,dt^2
-          + \frac{2\,r_s\, r\, a \sin^2\!\theta}{\Sigma}\; c\,dt\,d\phi
-          - \frac{\Sigma}{\Delta}\, dr^2
-          - \Sigma\, d\theta^2 \\
-         &\quad - \left(r^2 + a^2 + \frac{r_s\, r\, a^2 \sin^2\!\theta}{\Sigma}\right)
+    ds^2 &= -\left(1 - \frac{r_s r}{\Sigma}\right) c^2\,dt^2
+          - \frac{2\,r_s\, r\, a \sin^2\!\theta}{\Sigma}\; c\,dt\,d\phi
+          + \frac{\Sigma}{\Delta}\, dr^2
+          + \Sigma\, d\theta^2 \\
+         &\quad + \left(r^2 + a^2 + \frac{r_s\, r\, a^2 \sin^2\!\theta}{\Sigma}\right)
            \sin^2\!\theta\, d\phi^2,
 \end{split}
     \label{eq:kerr-line}
@@ -213,18 +213,18 @@ Dengan menggunakan konvensi koordinat $x^\mu = (x^0, x^1, x^2, x^3) = (ct, r, \t
 \begin{equation}
     g_{\mu\nu} =
     \begin{pmatrix}
-        1 - \dfrac{r_s r}{\Sigma} & 0 & 0 & \dfrac{r_s\, r\, a \sin^2\!\theta}{\Sigma} \\[12pt]
-        0 & -\dfrac{\Sigma}{\Delta} & 0 & 0 \\[12pt]
-        0 & 0 & -\Sigma & 0 \\[12pt]
-        \dfrac{r_s\, r\, a \sin^2\!\theta}{\Sigma} & 0 & 0
-        & -\!\left(r^2 + a^2 + \dfrac{r_s\, r\, a^2 \sin^2\!\theta}{\Sigma}\right)\sin^2\!\theta
+        -\left(1 - \dfrac{r_s r}{\Sigma}\right) & 0 & 0 & -\dfrac{r_s\, r\, a \sin^2\!\theta}{\Sigma} \\[12pt]
+        0 & \dfrac{\Sigma}{\Delta} & 0 & 0 \\[12pt]
+        0 & 0 & \Sigma & 0 \\[12pt]
+        -\dfrac{r_s\, r\, a \sin^2\!\theta}{\Sigma} & 0 & 0
+        & \left(r^2 + a^2 + \dfrac{r_s\, r\, a^2 \sin^2\!\theta}{\Sigma}\right)\sin^2\!\theta
     \end{pmatrix}.
     \label{eq:kerr-matrix}
 \end{equation}
 
 Beberapa sifat penting dari matriks metrik ini:
 \begin{enumerate}[label=(\roman*)]
-    \item Komponen $g_{t\phi} = g_{\phi t} = r_s\, r\, a \sin^2\!\theta\,/\,\Sigma$ tidak bernilai nol jika $a \neq 0$. Suku campuran inilah yang bertanggung jawab atas efek \textit{frame-dragging}.
+    \item Komponen $g_{t\phi} = g_{\phi t} = -r_s\, r\, a \sin^2\!\theta\,/\,\Sigma$ tidak bernilai nol jika $a \neq 0$. Suku campuran inilah yang bertanggung jawab atas efek \textit{frame-dragging}.
     \item Pada limit $a \to 0$, matriks di atas tereduksi menjadi metrik Schwarzschild diagonal (Persamaan~\ref{eq:schwarzschild}).
     \item Komponen $g_{rr}$ memiliki singularitas koordinat pada $\Delta = 0$, yang terjadi pada horizon peristiwa.
 \end{enumerate}
@@ -232,11 +232,11 @@ Beberapa sifat penting dari matriks metrik ini:
 Metrik invers $g^{\mu\nu}$ diperlukan untuk menghitung simbol Christoffel. Dengan memanfaatkan struktur blok-diagonal ($2 \times 2$ pada sub-ruang $t$-$\phi$ dan diagonal pada $r$-$\theta$), komponen-komponen metrik invers diperoleh sebagai:
 \begin{equation}
 \begin{aligned}
-    g^{tt} &= \frac{1}{\Delta}\left(r^2 + a^2 + \frac{r_s\, r\, a^2 \sin^2\!\theta}{\Sigma}\right), &\qquad
-    g^{t\phi} &= \frac{r_s\, r\, a}{\Sigma\,\Delta}, \\[6pt]
-    g^{rr} &= -\frac{\Delta}{\Sigma}, &\qquad
-    g^{\theta\theta} &= -\frac{1}{\Sigma}, \\[6pt]
-    g^{\phi\phi} &= -\frac{1}{\Delta\sin^2\!\theta}\left(1 - \frac{r_s\, r}{\Sigma}\right), &\qquad
+    g^{tt} &= -\frac{1}{\Delta}\left(r^2 + a^2 + \frac{r_s\, r\, a^2 \sin^2\!\theta}{\Sigma}\right), &\qquad
+    g^{t\phi} &= -\frac{r_s\, r\, a}{\Sigma\,\Delta}, \\[6pt]
+    g^{rr} &= \frac{\Delta}{\Sigma}, &\qquad
+    g^{\theta\theta} &= \frac{1}{\Sigma}, \\[6pt]
+    g^{\phi\phi} &= \frac{1}{\Delta\sin^2\!\theta}\left(1 - \frac{r_s\, r}{\Sigma}\right), &\qquad
     & \text{komponen lain} = 0.
 \end{aligned}
     \label{eq:kerr-inverse}
@@ -263,9 +263,8 @@ Karena metrik tidak bergantung pada $t$ (stasioner), suku $\partial_t g_{\sigma 
 Turunan parsial $\partial_r g_{tt}$ dan $\partial_r g_{t\phi}$ dapat dihitung dari Persamaan~\eqref{eq:kerr-matrix}. Sebagai contoh:
 \begin{equation}
     \frac{\partial g_{tt}}{\partial r}
-    = \frac{\partial}{\partial r}\left(1 - \frac{r_s\, r}{\Sigma}\right)
-    = -r_s\,\frac{\Sigma - r(2r)}{\Sigma^2}
-    = \frac{r_s(r^2 - a^2\cos^2\!\theta)}{\Sigma^2},
+    = \frac{\partial}{\partial r}\left[-\left(1 - \frac{r_s\, r}{\Sigma}\right)\right]
+    = -\frac{r_s(r^2 - a^2\cos^2\!\theta)}{\Sigma^2},
     \label{eq:dgtt-dr}
 \end{equation}
 mengingat $\partial_r \Sigma = 2r$. Substitusi ke Persamaan~\eqref{eq:christoffel-ttr} bersama dengan ekspresi $g^{tt}$ dan $g^{t\phi}$ dari Persamaan~\eqref{eq:kerr-inverse} menghasilkan:
@@ -305,8 +304,8 @@ Turunan $\partial_\theta g_{t\phi}$ memerlukan:
 \begin{equation}
     \frac{\partial g_{t\phi}}{\partial\theta}
     = \frac{\partial}{\partial\theta}
-    \!\left(\frac{r_s\, r\, a\sin^2\!\theta}{\Sigma}\right)
-    = \frac{r_s\, r\, a}{\Sigma^2}
+    \!\left(-\frac{r_s\, r\, a\sin^2\!\theta}{\Sigma}\right)
+    = -\frac{r_s\, r\, a}{\Sigma^2}
     \left(2\Sigma\sin\theta\cos\theta + 2a^2\sin^3\!\theta\cos\theta\right),
 \end{equation}
 yang menunjukkan ketergantungan eksplisit pada sudut polar $\theta$. Komponen ini juga lenyap pada limit $a \to 0$.
@@ -341,7 +340,7 @@ Untuk metrik yang memiliki simetri, terdapat konstanta gerak yang menyederhanaka
 \end{equation}
 di mana $E$ adalah energi spesifik dan $L_z$ adalah komponen momentum sudut terhadap sumbu rotasi. Selain itu, normalisasi empat-kecepatan memberikan constraint:
 \begin{equation}
-    g_{\mu\nu}\,\dot{x}^\mu\,\dot{x}^\nu = c^2,
+    g_{\mu\nu}\,\dot{x}^\mu\,\dot{x}^\nu = -c^2,
     \label{eq:normalisasi}
 \end{equation}
 untuk partikel bermassa (\textit{timelike geodesic}) \parencite{Carroll2004SpacetimeGeometry, Schutz2009FirstCourse}.
