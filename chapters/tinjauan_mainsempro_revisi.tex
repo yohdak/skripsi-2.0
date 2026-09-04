@@ -172,6 +172,187 @@ dinyatakan melalui tensor Riemann, yang dibahas pada bagian berikutnya
 
 
 % ============================================================
+\section{Kelengkungan Ruang-Waktu dan Persamaan Medan Einstein}
+\label{sec:kelengkungan-efe}
+
+Kelengkungan intrinsik ruang-waktu dinyatakan oleh tensor Riemann. Salah satu cara untuk memperkenalkan tensor ini adalah melalui komutator dua turunan kovarian yang bekerja pada vektor $V^\rho$ \parencite{Schutz2009FirstCourse,Carroll2004SpacetimeGeometry}:
+\begin{equation}
+    \left(\nabla_\mu\nabla_\nu-\nabla_\nu\nabla_\mu\right)V^\rho
+    =R^\rho_{\ \sigma\mu\nu}V^\sigma.
+    \label{eq:riemann-commutator}
+\end{equation}
+Dengan konvensi indeks yang digunakan dalam penelitian ini, tensor Riemann dituliskan sebagai
+\begin{equation}
+    R^\rho_{\ \sigma\mu\nu}
+    =\partial_\mu\Gamma^\rho_{\nu\sigma}
+    -\partial_\nu\Gamma^\rho_{\mu\sigma}
+    +\Gamma^\rho_{\mu\lambda}\Gamma^\lambda_{\nu\sigma}
+    -\Gamma^\rho_{\nu\lambda}\Gamma^\lambda_{\mu\sigma}.
+    \label{eq:riemann}
+\end{equation}
+Karena simbol Christoffel dibangun dari turunan pertama tensor metrik, struktur tensor Riemann secara skematis dapat dinyatakan sebagai
+\begin{equation}
+    R^\rho_{\ \sigma\mu\nu}
+    \sim \partial\Gamma+\Gamma\Gamma
+    \sim \partial^2 g+(\partial g)^2.
+\end{equation}
+Dengan demikian, tensor Riemann memuat informasi mengenai perubahan koneksi dari satu titik ke titik lain dan tidak hanya nilai koneksi pada satu sistem koordinat tertentu.
+
+Tensor Ricci diperoleh melalui kontraksi tensor Riemann,
+\begin{equation}
+    R_{\mu\nu}=R^\rho_{\ \mu\rho\nu},
+    \label{eq:ricci}
+\end{equation}
+sedangkan skalar kelengkungan diperoleh melalui kontraksi lebih lanjut menggunakan metrik invers,
+\begin{equation}
+    R=g^{\mu\nu}R_{\mu\nu}.
+    \label{eq:ricci-scalar}
+\end{equation}
+Dari kedua besaran tersebut dibentuk tensor Einstein,
+\begin{equation}
+    G_{\mu\nu}=R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}.
+    \label{eq:einstein-tensor}
+\end{equation}
+Tensor Einstein memenuhi identitas Bianchi terkontraksi,
+\begin{equation}
+    \nabla_\mu G^{\mu\nu}=0,
+    \label{eq:contracted-bianchi}
+\end{equation}
+yang konsisten dengan konservasi lokal tensor energi-momentum,
+\begin{equation}
+    \nabla_\mu T^{\mu\nu}=0.
+    \label{eq:stress-energy-conservation}
+\end{equation}
+
+Hubungan antara geometri ruang-waktu dan distribusi massa-energi dinyatakan oleh persamaan medan Einstein \parencite{Einstein1916GR}:
+\begin{equation}
+    G_{\mu\nu}
+    =\frac{8\pi G}{c^4}T_{\mu\nu},
+    \label{eq:efe}
+\end{equation}
+atau secara eksplisit,
+\begin{equation}
+    R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}
+    =\frac{8\pi G}{c^4}T_{\mu\nu}.
+\end{equation}
+Karena $R_{\mu\nu}$ dan $R$ dibangun dari $g_{\mu\nu}$ beserta turunannya, persamaan medan Einstein merupakan sistem persamaan diferensial nonlinier untuk tensor metrik,
+\begin{equation}
+    G_{\mu\nu}=G_{\mu\nu}\!\left(g,\partial g,\partial^2 g\right).
+\end{equation}
+
+Pada daerah vakum berlaku $T_{\mu\nu}=0$, sehingga
+\begin{equation}
+    G_{\mu\nu}=0.
+\end{equation}
+Mengambil trace terhadap persamaan tersebut memberikan
+\begin{equation}
+    g^{\mu\nu}G_{\mu\nu}
+    =R-\frac{1}{2}R\,g^{\mu\nu}g_{\mu\nu}=0.
+\end{equation}
+Dalam empat dimensi $g^{\mu\nu}g_{\mu\nu}=4$, sehingga
+\begin{equation}
+    R-2R=0
+    \quad\Longrightarrow\quad
+    R=0.
+\end{equation}
+Substitusi kembali ke $G_{\mu\nu}=0$ menghasilkan persamaan medan vakum
+\begin{equation}
+    R_{\mu\nu}=0.
+    \label{eq:vacuum-efe}
+\end{equation}
+Persamaan~\eqref{eq:vacuum-efe} menjadi titik awal untuk mencari metrik ruang-waktu di luar sumber materi. Dengan asumsi statis dan simetri sferis diperoleh solusi Schwarzschild, sedangkan asumsi stasioner dan simetri aksial untuk sumber berotasi menghasilkan solusi Kerr \parencite{Schwarzschild1916Field,Kerr1963KerrMetric}. Walaupun $R_{\mu\nu}=0$ pada daerah vakum, tensor Riemann secara umum tetap dapat tidak nol, sehingga ruang-waktu vakum tidak harus datar.
+
+
+% ============================================================
+\section{Geodesik dan Transportasi Paralel Spin}
+\label{sec:geodesik-spin}
+
+Lintasan partikel uji bermassa dalam ruang-waktu melengkung dinyatakan oleh worldline $x^\mu(\tau)$ dengan empat-kecepatan
+\begin{equation}
+    u^\mu\equiv\frac{dx^\mu}{d\tau},
+    \label{eq:four-velocity}
+\end{equation}
+di mana $\tau$ adalah waktu proper. Untuk gerak bebas tanpa gaya nongravitasi, lintasan tersebut memenuhi persamaan geodesik \parencite{Schutz2009FirstCourse,Carroll2004SpacetimeGeometry}:
+\begin{equation}
+    \frac{d^2x^\mu}{d\tau^2}
+    +\Gamma^\mu_{\alpha\beta}
+    \frac{dx^\alpha}{d\tau}
+    \frac{dx^\beta}{d\tau}=0.
+    \label{eq:geodesic}
+\end{equation}
+Dengan menggunakan empat-kecepatan, persamaan yang sama dapat ditulis sebagai
+\begin{equation}
+    \frac{du^\mu}{d\tau}
+    +\Gamma^\mu_{\alpha\beta}u^\alpha u^\beta=0,
+\end{equation}
+atau secara kovarian,
+\begin{equation}
+    u^\nu\nabla_\nu u^\mu=0.
+    \label{eq:geodesic-covariant}
+\end{equation}
+Untuk partikel bermassa dan konvensi tanda $(-,+,+,+)$, hubungan $ds^2=-c^2d\tau^2$ memberikan normalisasi
+\begin{equation}
+    g_{\mu\nu}u^\mu u^\nu=-c^2.
+    \label{eq:normalisasi}
+\end{equation}
+
+Persamaan geodesik juga dapat diperoleh dari Lagrangian
+\begin{equation}
+    \mathcal{L}=\frac{1}{2}g_{\mu\nu}\dot{x}^\mu\dot{x}^\nu,
+    \label{eq:lagrangian}
+\end{equation}
+dengan $\dot{x}^\mu\equiv dx^\mu/d\tau$, melalui persamaan Euler--Lagrange
+\begin{equation}
+    \frac{d}{d\tau}\left(\frac{\partial\mathcal{L}}{\partial\dot{x}^\mu}\right)
+    -\frac{\partial\mathcal{L}}{\partial x^\mu}=0.
+    \label{eq:euler-lagrange}
+\end{equation}
+Bentuk Lagrangian ini berguna pada metrik yang memiliki koordinat siklik karena momentum konjugat yang bersesuaian menjadi konstanta gerak.
+
+Orientasi giroskop ideal yang jatuh bebas dinyatakan oleh vektor spin $S^\mu$. Sepanjang worldline geodesik, vektor spin diangkut secara paralel sehingga \parencite{Misner1973Gravitation,Carroll2004SpacetimeGeometry}
+\begin{equation}
+    \frac{DS^\mu}{D\tau}=0.
+    \label{eq:spin-parallel}
+\end{equation}
+Ekspansi turunan kovarian sepanjang worldline menghasilkan
+\begin{equation}
+    \frac{DS^\mu}{D\tau}
+    =\frac{dS^\mu}{d\tau}
+    +\Gamma^\mu_{\nu\rho}S^\nu u^\rho=0,
+    \label{eq:spin-transport}
+\end{equation}
+sehingga evolusi komponen spin dapat dituliskan sebagai sistem ODE orde satu,
+\begin{equation}
+    \frac{dS^\mu}{d\tau}
+    =-\Gamma^\mu_{\nu\rho}S^\nu u^\rho.
+    \label{eq:spin-ode}
+\end{equation}
+Persamaan~\eqref{eq:spin-ode} menunjukkan bahwa penyelesaian evolusi spin memerlukan empat-kecepatan $u^\rho(\tau)$ yang terlebih dahulu diperoleh dari penyelesaian geodesik.
+
+Untuk spin giroskop berlaku kondisi ortogonalitas terhadap empat-kecepatan,
+\begin{equation}
+    g_{\mu\nu}S^\mu u^\nu=0,
+    \label{eq:spin-constraint}
+\end{equation}
+dan norma spin dipertahankan sepanjang transportasi paralel,
+\begin{equation}
+    g_{\mu\nu}S^\mu S^\nu=\text{konstan}.
+    \label{eq:spin-norm}
+\end{equation}
+Kedua hubungan tersebut dapat digunakan sebagai pemeriksaan konsistensi dalam integrasi numerik. Secara matematis, rantai ketergantungan yang digunakan dalam penelitian ini dapat diringkas sebagai
+\begin{equation}
+    g_{\mu\nu}
+    \longrightarrow
+    \Gamma^\mu_{\alpha\beta}
+    \longrightarrow
+    x^\mu(\tau),u^\mu(\tau)
+    \longrightarrow
+    S^\mu(\tau).
+\end{equation}
+Secara fisis, kondisi $DS^\mu/D\tau=0$ menyatakan bahwa spin tidak mengalami rotasi intrinsik terhadap transportasi paralel. Namun, orientasi spin tetap dapat berubah relatif terhadap kerangka acuan luar; perubahan relatif inilah yang kemudian diamati sebagai presesi geodesik dan presesi Lense--Thirring.
+
+
+% ============================================================
 \subsection{Metrik Schwarzschild}
 \label{subsec:metrik-schwarzschild}
 
@@ -207,7 +388,7 @@ dengan fungsi-fungsi bantu:
     \Delta \equiv r^2 - r_s\, r + a^2,
     \label{eq:sigma-delta}
 \end{equation}
-di mana $r_s = 2GM/c^2$ dan $a = J/(Mc)$ adalah parameter rotasi spesifik, dengan $J$ menyatakan momentum sudut total massa pusat \parencite{Kerr1963KerrMetric, Carroll2004SpacetimeGeometry}.
+di mana $r_s = 2GM/c^2$ dan $a = J/(Mc)$ adalah parameter rotasi spesifik, dengan $J$ menyatakan momentum sudut total massa pusat \parencite{Kerr1963KerrMetric,Carroll2004SpacetimeGeometry}.
 
 Dengan menggunakan konvensi koordinat $x^\mu = (x^0, x^1, x^2, x^3) = (ct, r, \theta, \phi)$, tensor metrik Kerr $g_{\mu\nu}$ dapat dituliskan dalam bentuk matriks $4 \times 4$ sebagai:
 \begin{equation}
@@ -275,7 +456,7 @@ mengingat $\partial_r \Sigma = 2r$. Substitusi ke Persamaan~\eqref{eq:christoffe
 \end{equation}
 
 \paragraph{Contoh 2: $\Gamma^\phi_{tr}$.}
-Komponen ini menggambarkan kopling langsung antara gerak radial dan gerak azimut akibat rotasi sumber:
+Komponen ini menggambarkan hubungan antara gerak radial dan gerak azimut akibat rotasi sumber:
 \begin{equation}
     \Gamma^\phi_{tr} = \frac{1}{2}\,g^{\phi\sigma}
     \left(\partial_r g_{\sigma t} + \partial_t g_{\sigma r} - \partial_\sigma g_{tr}\right).
@@ -286,103 +467,29 @@ Dengan $\partial_t = 0$ dan kontribusi dari $\sigma = t$ serta $\sigma = \phi$:
                      + \frac{1}{2}\,g^{\phi\phi}\,\partial_r g_{\phi t}.
     \label{eq:christoffel-phitr}
 \end{equation}
-Perhatikan bahwa $g^{\phi t} = g^{t\phi}$. Substitusi komponen metrik invers (Persamaan~\ref{eq:kerr-inverse}) dan turunan yang sesuai memberikan ekspresi dalam $r$, $\theta$, $\Sigma$, dan $\Delta$. Komponen ini bernilai nol pada limit $a \to 0$ (metrik Schwarzschild), yang menegaskan bahwa kopling $r$-$\phi$ murni berasal dari rotasi massa.
+Perhatikan bahwa $g^{\phi t} = g^{t\phi}$. Substitusi komponen metrik invers dan turunan yang sesuai memberikan ekspresi dalam $r$, $\theta$, $\Sigma$, dan $\Delta$. Komponen ini bernilai nol pada limit $a \to 0$, yang menegaskan bahwa hubungan $r$--$\phi$ tersebut berasal dari rotasi massa.
 
 \paragraph{Contoh 3: $\Gamma^t_{\theta\phi}$.}
-Komponen ini menunjukkan kopling antara gerak polar dan azimut melalui koordinat waktu:
+Komponen ini menunjukkan hubungan antara gerak polar dan azimut melalui koordinat waktu:
 \begin{equation}
     \Gamma^t_{\theta\phi} = \frac{1}{2}\,g^{t\sigma}
     \left(\partial_\phi g_{\sigma\theta} + \partial_\theta g_{\sigma\phi} - \partial_\sigma g_{\theta\phi}\right).
 \end{equation}
-Karena metrik tidak bergantung pada $\phi$ (simetri aksial) dan $g_{r\theta} = g_{r\phi} = 0$, maka:
+Karena metrik tidak bergantung pada $\phi$ dan $g_{r\theta} = g_{r\phi} = 0$, maka
 \begin{equation}
     \Gamma^t_{\theta\phi} = \frac{1}{2}\,g^{tt}\,\partial_\theta g_{t\phi}
                           + \frac{1}{2}\,g^{t\phi}\,\partial_\theta g_{\phi\phi}.
     \label{eq:christoffel-tthetaphi}
 \end{equation}
-Turunan $\partial_\theta g_{t\phi}$ memerlukan:
+Turunan $\partial_\theta g_{t\phi}$ diberikan oleh
 \begin{equation}
     \frac{\partial g_{t\phi}}{\partial\theta}
-    = \frac{\partial}{\partial\theta}
-    \!\left(-\frac{r_s\, r\, a\sin^2\!\theta}{\Sigma}\right)
     = -\frac{r_s\, r\, a}{\Sigma^2}
     \left(2\Sigma\sin\theta\cos\theta + 2a^2\sin^3\!\theta\cos\theta\right),
 \end{equation}
 yang menunjukkan ketergantungan eksplisit pada sudut polar $\theta$. Komponen ini juga lenyap pada limit $a \to 0$.
 
 Perhitungan lengkap seluruh komponen Christoffel metrik Kerr menghasilkan puluhan suku yang kompleks. Dalam praktik, perhitungan ini dapat diverifikasi dan dilakukan secara efisien menggunakan pustaka komputasi simbolik seperti \texttt{EinsteinPy} \parencite{Bapat2020EinsteinPy}.
-
-
-% ============================================================
-\section{Persamaan Geodesik}
-\label{sec:persamaan-geodesik}
-
-Lintasan partikel uji bermassa dalam ruang-waktu melengkung dapat diturunkan dari prinsip aksi minimal. Lagrangian untuk partikel pada metrik $g_{\mu\nu}$ diberikan oleh:
-\begin{equation}
-    \mathcal{L} = \frac{1}{2}\, g_{\mu\nu}\, \dot{x}^\mu\, \dot{x}^\nu,
-    \label{eq:lagrangian}
-\end{equation}
-dengan $\dot{x}^\mu \equiv dx^\mu/d\tau$. Penerapan persamaan Euler-Lagrange,
-\begin{equation}
-    \frac{d}{d\tau}\frac{\partial\mathcal{L}}{\partial\dot{x}^\mu}
-    - \frac{\partial\mathcal{L}}{\partial x^\mu} = 0,
-\end{equation}
-menghasilkan persamaan geodesik (Persamaan~\ref{eq:geodesic}). Derivasi lengkap dengan substitusi eksplisit metrik Kerr disajikan pada Bab~\ref{chap:metode}.
-
-Untuk metrik yang memiliki simetri, terdapat konstanta gerak yang menyederhanakan persamaan geodesik. Metrik Kerr tidak bergantung pada $t$ dan $\phi$, sehingga momentum konjugat yang bersesuaian merupakan konstanta gerak:
-\begin{equation}
-    p_t = \frac{\partial\mathcal{L}}{\partial\dot{t}} = g_{tt}\,\dot{t} + g_{t\phi}\,\dot{\phi} \equiv \frac{E}{c},
-    \label{eq:const-E}
-\end{equation}
-\begin{equation}
-    p_\phi = \frac{\partial\mathcal{L}}{\partial\dot{\phi}} = g_{\phi t}\,\dot{t} + g_{\phi\phi}\,\dot{\phi} \equiv -L_z,
-    \label{eq:const-Lz}
-\end{equation}
-di mana $E$ adalah energi spesifik dan $L_z$ adalah komponen momentum sudut terhadap sumbu rotasi. Selain itu, normalisasi empat-kecepatan memberikan constraint:
-\begin{equation}
-    g_{\mu\nu}\,\dot{x}^\mu\,\dot{x}^\nu = -c^2,
-    \label{eq:normalisasi}
-\end{equation}
-untuk partikel bermassa (\textit{timelike geodesic}) \parencite{Carroll2004SpacetimeGeometry, Schutz2009FirstCourse}.
-
-
-% ============================================================
-\section{Transportasi Paralel Tensor Spin}
-\label{sec:transportasi-paralel}
-
-Orientasi giroskop yang bergerak bebas dalam ruang-waktu melengkung berubah menurut hukum transportasi paralel. Vektor spin $S^\mu$ yang diangkut secara paralel sepanjang worldline $x^\mu(\tau)$ memenuhi:
-\begin{equation}
-    \frac{DS^\mu}{D\tau} = \frac{dS^\mu}{d\tau}
-    + \Gamma^\mu_{\nu\rho}\, S^\nu\, \frac{dx^\rho}{d\tau} = 0.
-    \label{eq:spin-transport}
-\end{equation}
-Persamaan ini menyatakan bahwa vektor spin ``konstan'' terhadap koneksi ruang-waktu, namun dapat berubah orientasinya relatif terhadap sistem koordinat luar akibat kelengkungan \parencite{Misner1973Gravitation}.
-
-Persamaan~\eqref{eq:spin-transport} dapat ditulis ulang dalam bentuk eksplisit sebagai sistem persamaan diferensial biasa (ODE) orde satu:
-\begin{equation}
-    \frac{dS^\mu}{d\tau} = -\Gamma^\mu_{\nu\rho}\, S^\nu\, u^\rho,
-    \label{eq:spin-ode}
-\end{equation}
-dengan $u^\rho = dx^\rho/d\tau$ adalah empat-kecepatan yang diperoleh dari penyelesaian geodesik. Dalam notasi matriks, sistem ini menjadi:
-\begin{equation}
-    \frac{d}{d\tau}
-    \begin{pmatrix} S^t \\ S^r \\ S^\theta \\ S^\phi \end{pmatrix}
-    = -\mathbf{A}(\tau)
-    \begin{pmatrix} S^t \\ S^r \\ S^\theta \\ S^\phi \end{pmatrix},
-    \label{eq:spin-matrix}
-\end{equation}
-di mana elemen matriks $\mathbf{A}$ adalah:
-\begin{equation}
-    A^\mu_{\ \nu}(\tau) = \Gamma^\mu_{\nu\rho}\, u^\rho(\tau).
-    \label{eq:matrix-A}
-\end{equation}
-
-Selain itu, vektor spin harus memenuhi constraint ortogonalitas terhadap empat-kecepatan:
-\begin{equation}
-    g_{\mu\nu}\, S^\mu\, u^\nu = 0,
-    \label{eq:spin-constraint}
-\end{equation}
-yang menjamin bahwa spin bersifat ``ruang murni'' (\textit{spacelike}) dalam kerangka acuan partikel. Constraint ini terpenuhi secara otomatis jika kondisi awal $S^\mu(0)$ dipilih ortogonal terhadap $u^\mu(0)$, karena transportasi paralel melestarikan produk dalam $g_{\mu\nu} S^\mu u^\nu$ sepanjang geodesik \parencite{Carroll2004SpacetimeGeometry}.
 
 
 % ============================================================
@@ -467,7 +574,7 @@ di mana 1~mas (milliarcsecond) $= 4{,}848 \times 10^{-9}$~rad. Kedua hasil ini k
     \label{eq:konversi-masyr}
 \end{equation}
 
-Selain GP-B, efek Lense-Thirring juga dikonfirmasi oleh analisis orbit satelit LAGEOS dengan ketidakpastian sekitar 10\% \parencite{CiufoliniPavlis2004_LAGEOS}. Berbagai pendekatan alternatif, termasuk model gravitasi vektor \parencite{BeheraBarik2020} dan teori modifikasi paritas \parencite{Mao2006, Nakamura2018}, telah diajukan namun belum menunjukkan deviasi signifikan dari GR pada tingkat presisi eksperimen saat ini.
+Selain GP-B, efek Lense-Thirring juga dikonfirmasi oleh analisis orbit satelit LAGEOS dengan ketidakpastian sekitar 10\% \parencite{CiufoliniPavlis2004_LAGEOS}. Berbagai pendekatan alternatif, termasuk model gravitasi vektor \parencite{BeheraBarik2020} dan teori modifikasi paritas \parencite{Mao2006,Nakamura2018}, telah diajukan namun belum menunjukkan deviasi signifikan dari GR pada tingkat presisi eksperimen saat ini.
 
 
 % ============================================================
