@@ -1,0 +1,161 @@
+% !TEX root = ../mainsempro.tex
+
+% ==================================================
+% BAB III - METODOLOGI PENELITIAN (Format Sempro UNS)
+% ==================================================
+
+\chapter{Metodologi Penelitian}
+\label{chap:metode}
+
+% ============================================================
+\section{Tempat dan Waktu}
+\label{sec:tempat-waktu}
+
+Pelaksanaan penelitian ini berada di Lingkungan Program Studi Fisika, Fakultas Matematika dan Ilmu Pengetahuan Alam, Universitas Sebelas Maret Surakarta. Penelitian ini diajukan dan akan dilaksanakan pada bulan Agustus 2025 hingga bulan Desember 2025.
+
+% ============================================================
+\section{Alat dan Bahan}
+\label{sec:alat-bahan}
+
+Penelitian ini merupakan penelitian kajian analitik dan komputasi numerik yang berfokus pada derivasi matematis dan penyelesaian numerik persamaan geodesik serta transportasi paralel tensor spin pada metrik Kerr. Oleh karena itu, alat dan bahan yang digunakan dalam penelitian ini tidak berupa peralatan eksperimen laboratorium, melainkan berupa perangkat komputasi serta komponen teoretis yang mendukung proses perumusan model, penyelesaian persamaan, dan analisis hasil. Uraian mengenai alat dan bahan yang digunakan dalam penelitian ini disajikan secara sistematis pada subbab berikut:
+
+\subsection{Alat}
+\label{subsec:alat}
+
+Peralatan utama yang digunakan dalam penelitian ini adalah perangkat komputer berupa laptop yang berfungsi sebagai sarana komputasi dan pengolahan data. Laptop yang digunakan memiliki spesifikasi prosesor Intel® Core™ i5 (quad-core) dengan kapasitas memori sebesar 16 GB serta penyimpanan 512 GB SSD.
+
+Perangkat lunak komputasi yang digunakan dalam penelitian ini adalah Python 3.12, yang dimanfaatkan untuk melakukan perhitungan numerik, pemrosesan data, serta visualisasi hasil perhitungan. Pustaka Python utama yang digunakan meliputi EinsteinPy untuk komputasi tensorial Relativitas Umum, SciPy untuk penyelesaian sistem persamaan diferensial biasa menggunakan metode Runge-Kutta, serta Matplotlib untuk visualisasi data dan hasil simulasi. Selain itu, pustaka KerrGeoPy dan FANTASY digunakan sebagai alternatif solver geodesik pada metrik Kerr.
+
+\subsection{Bahan}
+\label{subsec:bahan}
+
+Bahan kajian utama dalam penelitian ini adalah model ruang-waktu Kerr yang mendeskripsikan geometri ruang-waktu di sekitar massa berotasi. Geometri ruang-waktu dinyatakan melalui metrik statis dan aksial-simetris dalam koordinat Boyer-Lindquist yang melibatkan parameter massa $M$ dan parameter rotasi $a = J/(Mc)$. Pemilihan parameter orbit disesuaikan dengan konfigurasi eksperimen \textit{Gravity Probe B}, yaitu orbit polar sirkular pada ketinggian $\sim$642 km di atas permukaan Bumi.
+
+Model fisis yang digunakan dalam penelitian ini adalah dinamika giroskop yang dideskripsikan oleh vektor spin $S^\mu$ yang mengalami transportasi paralel sepanjang lintasan geodesik. Persamaan geodesik diturunkan dari Lagrangian metrik Kerr melalui metode Euler-Lagrange, sedangkan persamaan transportasi paralel diformulasikan dalam bentuk sistem matriks $4 \times 4$.
+
+Selain model geometri dan persamaan gerak, bahan penelitian ini juga mencakup formulasi laju presesi dalam aproksimasi medan lemah, yaitu presesi geodesik (de Sitter) dan presesi Lense-Thirring (\textit{frame-dragging}), sebagai kuantitas fisis yang dianalisis. Seluruh model dan formulasi yang digunakan dalam penelitian ini disusun berdasarkan kerangka teoritis dan referensi ilmiah yang relevan dengan kajian metrik Kerr, efek relativistik, dan penyelesaian numerik persamaan diferensial.
+
+% ============================================================
+\section{Prosedur Penelitian}
+\label{sec:prosedur}
+
+Prosedur penelitian dalam skripsi ini disusun secara sistematis untuk menggambarkan alur kerja penelitian yang mencakup tahapan analisis teoretis dan komputasi numerik. Secara umum, penelitian ini dibagi ke dalam tiga tahap utama, yaitu tahap derivasi analitik persamaan gerak, tahap implementasi dan penyelesaian numerik, serta tahap validasi hasil terhadap data eksperimen. Setiap tahap dirancang untuk menunjukkan keterkaitan yang jelas antara perumusan model fisik, penerapan metode matematis, serta perolehan hasil numerik yang dianalisis secara fisis.
+
+Pada Tahap 1 dilakukan analisis teoretis yang mencakup penulisan eksplisit metrik Kerr, derivasi persamaan geodesik dari Lagrangian, dan formulasi persamaan transportasi paralel tensor spin dalam bentuk matriks. Tahap 2 merupakan tahapan implementasi numerik yang mencakup reduksi sistem persamaan ke orde satu dan penyelesaian menggunakan metode Runge-Kutta. Tahap 3 merupakan tahapan validasi dan analisis hasil terhadap data eksperimen \textit{Gravity Probe B}.
+
+\subsection{Tahap 1: Derivasi Analitik Persamaan Gerak pada Metrik Kerr}
+\label{subsec:tahap1}
+
+Tahapan ini dilakukan melalui beberapa prosedur penelitian yang saling berkaitan. Penjelasan rinci mengenai setiap prosedur disajikan pada uraian berikut.
+
+\begin{enumerate}[label=\arabic*)]
+    \item Metrik Kerr dalam koordinat Boyer-Lindquist
+
+    Menetapkan geometri Kerr sebagai latar ruang-waktu sistem fisis, dengan elemen garis yang memuat parameter massa $M$ dan parameter rotasi $a = J/(Mc)$.
+
+    \item Lagrangian metrik Kerr
+
+    Menyusun Lagrangian partikel bermassa $\mathcal{L} = \tfrac{1}{2}\,g_{\mu\nu}\,\dot{x}^\mu\,\dot{x}^\nu$ secara eksplisit dari komponen-komponen metrik Kerr.
+
+    \item Konstanta gerak
+
+    Mengidentifikasi koordinat siklik ($t$ dan $\phi$) dan menurunkan dua konstanta gerak: energi spesifik $E$ dan momentum sudut $L_z$.
+
+    \item Persamaan geodesik
+
+    Menerapkan persamaan Euler-Lagrange untuk koordinat $r$ dan $\theta$ guna memperoleh persamaan gerak orde dua.
+
+    \item Transportasi paralel tensor spin
+
+    Memformulasikan persamaan transportasi paralel $dS^\mu/d\tau = -\Gamma^\mu_{\nu\rho}\, S^\nu\, u^\rho$ dalam bentuk sistem matriks $4 \times 4$.
+
+    \item Reduksi medan lemah
+
+    Melakukan ekspansi metrik Kerr pada limit $r_s/r \ll 1$ dan $a/r \ll 1$ untuk memperoleh metrik terlinearisasi dan ekspresi analitik laju presesi.
+
+    \item Ekspresi laju presesi
+
+    Memperoleh ekspresi presesi geodesik $\bm{\Omega}_{\text{geodetik}} = \frac{3}{2}\frac{GM}{c^2 r^3}\,\mathbf{r}\times\mathbf{v}$ dan presesi Lense-Thirring $\bm{\Omega}_{\text{LT}} = \frac{G}{c^2 r^3}[3\hat{\mathbf{r}}(\hat{\mathbf{r}}\cdot\mathbf{J}) - \mathbf{J}]$.
+
+    \item Analisis
+
+    Memverifikasi konsistensi dimensi dan limit khusus ($a \to 0$ mereduksi ke Schwarzschild).
+\end{enumerate}
+
+\subsection{Tahap 2: Implementasi dan Penyelesaian Numerik}
+\label{subsec:tahap2}
+
+Tahapan ini dilakukan melalui beberapa prosedur penelitian yang saling berkaitan. Penjelasan rinci mengenai setiap prosedur disajikan pada uraian berikut.
+
+\begin{enumerate}[label=\arabic*)]
+    \item Reduksi ke sistem ODE orde satu
+
+    Mendefinisikan variabel bantu $u^\mu \equiv \dot{x}^\mu$ untuk mengubah persamaan geodesik orde dua menjadi sistem orde satu, menghasilkan total 12 ODE (4 posisi + 4 kecepatan + 4 spin).
+
+    \item Penetapan kondisi awal
+
+    Menetapkan kondisi awal orbit sirkular polar pada radius $r_0 = R_\oplus + 642$ km dengan kecepatan Keplerian $v_0 = \sqrt{GM/r_0}$, serta vektor spin awal yang ortogonal terhadap empat-kecepatan.
+
+    \item Perhitungan simbol Christoffel
+
+    Menghitung seluruh komponen simbol Christoffel $\Gamma^\mu_{\nu\rho}$ dari metrik Kerr pada setiap langkah integrasi, menggunakan pustaka EinsteinPy.
+
+    \item Integrasi numerik
+
+    Menyelesaikan sistem 12 ODE secara simultan menggunakan metode Runge-Kutta orde empat (RK4) atau metode adaptif RK45 melalui \texttt{scipy.integrate.solve\_ivp}.
+
+    \item Monitoring kestabilan
+
+    Memantau tiga besaran konservatif pada setiap langkah: normalisasi empat-kecepatan ($g_{\mu\nu}u^\mu u^\nu = c^2$), ortogonalitas spin-kecepatan ($g_{\mu\nu}S^\mu u^\nu = 0$), dan norma spin ($g_{\mu\nu}S^\mu S^\nu = \text{konstan}$).
+
+    \item Penyimpanan data
+
+    Menyimpan hasil integrasi dalam format numerik (\texttt{.csv}) yang memuat waktu proper $\tau$, posisi $x^\mu$, kecepatan $u^\mu$, dan komponen spin $S^\mu$.
+\end{enumerate}
+
+\subsection{Tahap 3: Validasi dan Analisis Hasil}
+\label{subsec:tahap3}
+
+Tahapan ini dilakukan melalui beberapa prosedur penelitian yang saling berkaitan. Penjelasan rinci mengenai setiap prosedur disajikan pada uraian berikut.
+
+\begin{enumerate}[label=\arabic*)]
+    \item Ekstraksi laju presesi
+
+    Mengekstraksi sudut presesi total dari evolusi komponen spin $S^\mu(\tau)$ dengan membandingkan orientasi akhir giroskop terhadap orientasi awalnya.
+
+    \item Pemisahan efek presesi
+
+    Menjalankan simulasi pertama dengan metrik Schwarzschild ($a = 0$) untuk memperoleh presesi geodesik, dan simulasi kedua dengan metrik Kerr ($a \neq 0$) untuk memperoleh presesi total. Efek \textit{frame-dragging} dihitung dari selisih keduanya.
+
+    \item Konversi satuan
+
+    Mengkonversi laju presesi dari rad/s ke milliarcsecond per year (mas/yr) menggunakan faktor konversi $1~\text{rad/s} \approx 6{,}51 \times 10^{15}~\text{mas/yr}$.
+
+    \item Perbandingan dengan data GP-B
+
+    Membandingkan hasil simulasi dengan nilai eksperimen: $\Omega_{\text{geodetik}} = 6602 \pm 18$ mas/yr dan $\Omega_{\text{LT}} = 37{,}2 \pm 7{,}2$ mas/yr \parencite{Everitt2011GravityProbeB}.
+
+    \item Perhitungan deviasi
+
+    Menghitung tingkat kesalahan relatif $\delta = |\Omega_{\text{simulasi}} - \Omega_{\text{teori}}|/\Omega_{\text{teori}} \times 100\%$.
+
+    \item Analisis sensitivitas
+
+    Mengkaji pengaruh variasi parameter rotasi $a$, langkah waktu $\Delta\tau$, dan radius orbit $r$ terhadap hasil simulasi.
+
+    \item Analisis limit khusus
+
+    Memverifikasi bahwa pada limit $a \to 0$, hasil simulasi mereduksi ke prediksi metrik Schwarzschild, sebagai langkah validasi konsistensi model.
+\end{enumerate}
+
+% ============================================================
+\section{Teknik Analisis Data}
+\label{sec:teknik-analisis}
+
+Secara umum, teknik analisis data dalam penelitian ini dilakukan secara deskriptif dan analitis untuk menginterpretasikan hasil perhitungan laju presesi geodesik dan \textit{frame-dragging} dari dinamika giroskop dalam latar ruang-waktu Kerr. Hasil analisis disajikan dalam bentuk nilai numerik, tabel, dan grafik, yang kemudian diinterpretasikan untuk menjelaskan pengaruh parameter geometri dan rotasi massa terhadap presesi giroskop.
+
+Analisis presesi giroskop dilakukan berdasarkan evolusi temporal vektor spin $S^\mu(\tau)$ yang diperoleh dari penyelesaian numerik persamaan transportasi paralel. Laju presesi dihitung dari perubahan orientasi spin per satuan waktu dan dikonversi ke satuan mas/yr. Pemisahan kontribusi geodesik dan Lense-Thirring dilakukan melalui perbandingan hasil simulasi pada metrik Schwarzschild ($a = 0$) dan metrik Kerr ($a \neq 0$). Pengaruh variasi parameter orbit dan parameter rotasi Bumi terhadap karakteristik presesi dianalisis secara kuantitatif melalui tren numerik yang diperoleh.
+
+Selanjutnya, analisis kestabilan numerik dilakukan dengan memantau tiga besaran konservatif sepanjang integrasi: normalisasi empat-kecepatan, ortogonalitas spin terhadap kecepatan, dan norma spin. Deviasi besaran-besaran tersebut dari nilai teoritisnya digunakan sebagai indikator akurasi dan kestabilan metode integrasi yang diterapkan. Analisis konvergensi juga dilakukan dengan memvariasikan langkah waktu $\Delta\tau$ untuk memastikan bahwa hasil simulasi tidak sensitif terhadap pilihan ukuran langkah.
+
+Sebagai langkah validasi, dilakukan perbandingan langsung antara hasil simulasi numerik dengan prediksi analitik medan lemah serta data eksperimen \textit{Gravity Probe B}. Analisis limit khusus, seperti limit tanpa rotasi ($a \to 0$), juga dilakukan dengan membandingkan hasil yang diperoleh terhadap prediksi metrik Schwarzschild. Analisis ini bertujuan untuk memastikan konsistensi dan keabsahan fisis dari hasil penelitian.

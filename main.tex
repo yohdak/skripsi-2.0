@@ -1,0 +1,38 @@
+% !TEX program = xelatex
+% !TEX root = main.tex
+
+\input{preamble.tex}
+
+% --- Informasi skripsi ---
+\title{\textbf{Kajian Analitik dan Penyelesaian Numerik Efek Lense-Thirring pada Metrik Kerr: Studi Kasus Gravity Probe B}}
+\author{Pramudya Jesril Pratama}
+\date{\today}
+
+\begin{document}
+
+% ---------- Judul (titlepage) ----------
+\maketitle
+
+% ---------- Penomoran HALAMAN MUKA: Roman kecil ----------
+\pagenumbering{roman}
+
+\input{chapters/abstrak.tex}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+% ---------- Isi utama: penomoran Arab ----------
+\cleardoublepage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{chapters/pendahuluan.tex}
+\input{chapters/tinjauan.tex}
+\input{chapters/metode.tex}
+\input{chapters/hasil.tex}
+\input{chapters/kesimpulan.tex}
+
+\printbibliography
+
+\end{document}

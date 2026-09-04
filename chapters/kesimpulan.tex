@@ -1,0 +1,91 @@
+% !TEX root = ../main.tex
+
+\chapter{Kesimpulan dan Saran}
+\label{chap:kesimpulan}
+
+
+\section{Kesimpulan}
+\label{sec:kesimpulan}
+
+Berdasarkan kajian analitik dan penyelesaian numerik yang telah dilakukan,
+diperoleh kesimpulan sebagai berikut:
+
+\begin{enumerate}
+    \item Persamaan geodesik pada metrik Kerr berhasil diturunkan
+          secara eksplisit dari Lagrangian
+          $\mathcal{L} = \frac{1}{2}\,g_{\mu\nu}\,\dot{x}^\mu\,\dot{x}^\nu$
+          melalui metode Euler-Lagrange.
+          Dua konstanta gerak (energi spesifik $E$ dan momentum sudut $L_z$)
+          diperoleh dari simetri stasioner dan aksial metrik Kerr.
+          Persamaan transportasi paralel tensor spin
+          $dS^\mu/d\tau = -\Gamma^\mu_{\nu\rho}\, S^\nu\, u^\rho$
+          diformulasikan dalam bentuk sistem matriks $4 \times 4$
+          yang dapat diintegrasikan secara numerik bersama dengan
+          persamaan geodesik sebagai sistem 12 ODE orde satu.
+
+    \item Metrik Kerr berhasil direduksi ke aproksimasi medan lemah
+          melalui ekspansi Taylor terhadap parameter
+          $\epsilon_1 = r_s/r \approx 10^{-9}$ dan $\epsilon_2 = a/r \approx 10^{-7}$.
+          Komponen campuran $g_{t\phi} = 2GJ\sin^2\!\theta/(c^3 r)$
+          diidentifikasi sebagai sumber tunggal efek \textit{frame-dragging}.
+          Melalui formulasi gravitomagnetik, ekspresi analitik
+          laju presesi Lense-Thirring diperoleh sebagai
+          $\Omega_{\text{LT}} = GJ/(2c^2 r^3)$
+          untuk orbit polar.
+          Substitusi parameter Bumi menghasilkan
+          $\Omega_{\text{LT}} \approx 41$~mas/yr
+          dan $\Omega_{\text{geodetik}} \approx 6600$~mas/yr,
+          yang berada dalam orde yang sama dengan data eksperimen GP-B.
+
+    \item Sistem persamaan diferensial yang dihasilkan
+          berhasil diselesaikan secara numerik menggunakan
+          metode Runge-Kutta orde 4/5 (RK45).
+          Hasil simulasi menunjukkan laju presesi geodesik $\sim 6600$~mas/yr
+          dan \textit{frame-dragging} $\sim 37$--$41$~mas/yr,
+          konsisten dengan data eksperimen \textit{Gravity Probe B}
+          ($6602 \pm 18$~mas/yr dan $37{,}2 \pm 7{,}2$~mas/yr).
+          Analisis sensitivitas mengonfirmasi relasi linier
+          $\Omega_{\text{LT}} \propto a$
+          dan lenyapnya efek pada limit $a = 0$ (Schwarzschild).
+          Ketiga besaran diagnostik (normalisasi empat-kecepatan,
+          ortogonalitas spin-kecepatan, dan kekekalan norma spin)
+          menunjukkan kestabilan numerik yang baik sepanjang integrasi.
+\end{enumerate}
+
+Secara keseluruhan, konsistensi antara derivasi analitik,
+hasil numerik, dan data eksperimen \textit{Gravity Probe B}
+mengonfirmasi validitas penurunan dari metrik Kerr
+hingga ekspresi presesi Lense-Thirring
+yang dikembangkan dalam penelitian ini.
+
+
+\section{Saran}
+\label{sec:saran}
+
+Berdasarkan hasil penelitian ini, beberapa saran
+untuk pengembangan lebih lanjut adalah sebagai berikut:
+
+\begin{enumerate}
+    \item Perluasan model orbit dari orbit sirkular ideal
+          ke orbit dengan eksentrisitas non-nol
+          untuk mengevaluasi pengaruh eksentrisitas
+          terhadap laju presesi.
+
+    \item Penggunaan metrik Kerr-Newman
+          (massa berotasi dan bermuatan listrik)
+          untuk mengkaji efek muatan listrik
+          terhadap struktur ruang-waktu dan presesi.
+
+    \item Implementasi integrator simplektik
+          (misalnya Störmer-Verlet atau metode dari pustaka FANTASY)
+          untuk meningkatkan kestabilan integrasi jangka panjang
+          dan melestarikan struktur Hamiltonian sistem.
+
+    \item Validasi terhadap data eksperimen satelit geodesik lain
+          seperti LAGEOS, LARES, dan misi masa depan LARES-2
+          untuk memperluas rentang verifikasi.
+
+    \item Pengembangan analisis orde tinggi
+          (koreksi post-Newtonian orde dua dan efek kuadrupol gravitasi Bumi)
+          untuk meningkatkan presisi prediksi teoretik.
+\end{enumerate}

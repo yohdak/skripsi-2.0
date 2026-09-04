@@ -1,0 +1,66 @@
+% !TEX root = ../main.tex
+
+\chapter{Pendahuluan}
+\label{chap:pendahuluan}
+
+% ============================================================
+\section{Latar Belakang}
+\label{sec:latar-belakang}
+
+Teori Relativitas Umum (\textit{General Relativity}, GR) yang dirumuskan oleh Einstein pada tahun 1915 merupakan teori gravitasi yang mendeskripsikan interaksi gravitasi sebagai manifestasi kelengkungan ruang-waktu empat dimensi. Dalam kerangka ini, distribusi massa dan energi menentukan geometri ruang-waktu melalui persamaan medan Einstein $G_{\mu\nu} = \frac{8\pi G}{c^4}\, T_{\mu\nu}$, di mana $G_{\mu\nu}$ adalah tensor Einstein dan $T_{\mu\nu}$ adalah tensor energi-momentum \parencite{Einstein1916GR, Misner1973Gravitation}. Gerak benda uji dalam ruang-waktu melengkung ditentukan oleh persamaan geodesik yang bergantung pada simbol Christoffel $\Gamma^\mu_{\nu\rho}$, yang diturunkan dari tensor metrik $g_{\mu\nu}$ \parencite{Carroll2004SpacetimeGeometry}.
+
+Salah satu konsekuensi penting dari GR adalah prediksi bahwa massa berotasi tidak hanya melengkungkan ruang-waktu, tetapi juga menyeret kerangka acuan inersia lokal di sekitarnya. Efek ini dikenal sebagai \textit{frame-dragging} atau efek Lense-Thirring, yang pertama kali diprediksi secara teoretis oleh \textcite{Lense1918LenseThirring}. Secara matematis, efek ini muncul dari suku campuran $g_{t\phi}$ pada metrik Kerr yang mendeskripsikan ruang-waktu di sekitar massa berotasi \parencite{Kerr1963KerrMetric}. Selain efek Lense-Thirring, GR juga memprediksi adanya presesi geodesik (\textit{geodetic precession} atau efek de Sitter), yaitu perubahan orientasi giroskop akibat geraknya melalui ruang-waktu yang melengkung oleh massa statis \parencite{Carroll2004SpacetimeGeometry, Will2014Confrontation}.
+
+Kedua efek ini telah diverifikasi secara eksperimental melalui misi \textit{Gravity Probe B} (GP-B) yang diluncurkan oleh NASA pada tahun 2004. Misi ini menggunakan empat giroskop kuarsa berpresisi tinggi dalam orbit polar di sekitar Bumi pada ketinggian $\sim$642~km. Hasil pengukuran GP-B menunjukkan laju presesi geodesik sebesar $6602 \pm 18$ milliarcsecond per tahun (mas/yr) dan laju presesi \textit{frame-dragging} sebesar $37{,}2 \pm 7{,}2$~mas/yr, keduanya konsisten dengan prediksi GR \parencite{Everitt2011GravityProbeB}.
+
+Meskipun hasil eksperimen GP-B telah dikonfirmasi, kajian analitik terhadap proses derivasi matematis yang mendasari prediksi tersebut tetap memiliki nilai penting. Prediksi laju presesi Lense-Thirring memerlukan serangkaian langkah derivasi yang meliputi: (i)~penulisan eksplisit tensor metrik Kerr dalam koordinat Boyer-Lindquist, (ii)~perhitungan simbol Christoffel dari komponen-komponen metrik, (iii)~penurunan persamaan geodesik melalui metode Lagrangian, (iv)~formulasi persamaan transportasi paralel tensor spin, dan (v)~reduksi ke aproksimasi medan lemah untuk memperoleh ekspresi analitik laju presesi. Setiap langkah tersebut melibatkan operasi kalkulus tensor yang tidak trivial dan jarang disajikan secara lengkap dalam satu kajian terpadu \parencite{Carroll2004SpacetimeGeometry, Schutz2009FirstCourse}.
+
+Di sisi lain, persamaan diferensial yang dihasilkan dari derivasi tersebut bersifat sangat nonlinier, sehingga penyelesaian analitik eksak hanya dimungkinkan pada kasus-kasus tertentu dengan simetri tinggi. Untuk konfigurasi orbit yang realistis, diperlukan penyelesaian numerik menggunakan metode seperti Runge-Kutta orde empat atau integrator simplektik \parencite{Butcher2016NumericalMethods, Hairer2006GeometricIntegration}. Implementasi numerik ini dapat dilakukan dengan bantuan pustaka komputasi Python seperti \texttt{EinsteinPy} dan \texttt{SciPy} \parencite{Bapat2020EinsteinPy, SciPy2020}.
+
+Berdasarkan latar belakang tersebut, penelitian ini menyajikan kajian analitik terhadap persamaan geodesik dan transportasi paralel tensor spin pada metrik Kerr, serta penyelesaian numerik sistem persamaan diferensial yang dihasilkan untuk konfigurasi orbit Bumi. Hasil komputasi numerik kemudian dibandingkan dengan data eksperimen GP-B sebagai validasi konsistensi antara derivasi analitik dan pengamatan eksperimental.
+
+% ============================================================
+\section{Batasan Masalah}
+\label{sec:batasan-masalah}
+
+Penelitian ini dibatasi pada hal-hal berikut:
+\begin{enumerate}[label=\arabic*)]
+    \item Kajian dilakukan dalam kerangka Relativitas Umum dengan menggunakan metrik Kerr sebagai representasi ruang-waktu di sekitar Bumi yang berotasi. Metrik Schwarzschild digunakan sebagai kasus batas non-rotasi ($a = 0$) untuk keperluan analisis sensitivitas.
+    \item Model ruang-waktu dibatasi pada orbit di sekitar Bumi dengan mengabaikan pengaruh benda langit lain.
+    \item Analisis difokuskan pada dua efek relativistik utama: presesi geodesik dan efek Lense-Thirring (\textit{frame-dragging}).
+    \item Derivasi analitik dilakukan dalam kerangka kalkulus tensor. Penyelesaian numerik menggunakan metode Runge-Kutta yang diimplementasikan dalam Python.
+    \item Penelitian bersifat kajian analitik-numerik, tanpa melibatkan pengamatan eksperimental langsung.
+\end{enumerate}
+
+% ============================================================
+\section{Rumusan Masalah}
+\label{sec:rumusan-masalah}
+
+Berdasarkan latar belakang dan batasan masalah yang telah diuraikan, rumusan masalah dalam penelitian ini adalah sebagai berikut:
+\begin{enumerate}[label=\arabic*)]
+    \item Bagaimana menurunkan persamaan geodesik dan persamaan transportasi paralel tensor spin dari metrik Kerr melalui metode Lagrangian dan kalkulus tensor?
+    \item Bagaimana mereduksi metrik Kerr ke dalam aproksimasi medan lemah untuk memperoleh ekspresi analitik laju presesi Lense-Thirring pada kasus Bumi?
+    \item Bagaimana menyelesaikan sistem persamaan diferensial geodesik dan transportasi paralel spin secara numerik, serta memvalidasi hasilnya terhadap data eksperimen \textit{Gravity Probe B}?
+\end{enumerate}
+
+% ============================================================
+\section{Tujuan Penelitian}
+\label{sec:tujuan-penelitian}
+
+Tujuan dari penelitian ini adalah sebagai berikut:
+\begin{enumerate}[label=\arabic*)]
+    \item Menurunkan persamaan geodesik dari Lagrangian metrik Kerr melalui persamaan Euler-Lagrange, serta merumuskan persamaan transportasi paralel tensor spin dalam bentuk matriks.
+    \item Melakukan reduksi metrik Kerr ke aproksimasi medan lemah dan menurunkan ekspresi analitik laju presesi Lense-Thirring $\Omega_{\text{LT}} \approx 2GJ/(c^2 r^3)$ untuk konfigurasi Bumi.
+    \item Menyelesaikan sistem persamaan diferensial yang diperoleh secara numerik menggunakan metode Runge-Kutta, dan membandingkan hasil komputasi dengan data pengukuran \textit{Gravity Probe B}.
+\end{enumerate}
+
+% ============================================================
+\section{Manfaat Penelitian}
+\label{sec:manfaat-penelitian}
+
+Manfaat dari penelitian ini adalah sebagai berikut:
+\begin{enumerate}[label=\arabic*)]
+    \item Bagi ilmu pengetahuan: menyediakan kajian terpadu yang menjabarkan derivasi analitik efek Lense-Thirring dari metrik Kerr secara langkah demi langkah, mulai dari tensor metrik hingga ekspresi laju presesi, disertai verifikasi numerik.
+    \item Bagi penulis: mengembangkan pemahaman mendalam di bidang kalkulus tensor, Relativitas Umum, dan metode penyelesaian numerik persamaan diferensial.
+    \item Bagi akademis: menghasilkan dokumen referensi yang dapat digunakan sebagai bahan pembelajaran mengenai derivasi efek relativistik pada metrik Kerr dan implementasi komputasinya.
+\end{enumerate}

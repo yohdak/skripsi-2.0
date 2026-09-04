@@ -1,0 +1,626 @@
+% !TEX root = ../main.tex
+
+\chapter{Tinjauan Pustaka}
+\label{chap:tinjauan}
+
+% ============================================================
+\section{Relativitas Umum Einstein dan Persamaan Medan}
+\label{sec:relativitas-umum}
+
+Teori Relativitas Umum (\textit{General Relativity}, GR) yang dirumuskan oleh Albert Einstein pada tahun 1915 mentransformasikan pemahaman gravitasi dari gaya tarik-menarik konvensional ala Newton menjadi manifestasi geometris dari kelengkungan ruang-waktu empat dimensi (\textit{four-dimensional spacetime curvature}) \parencite{Einstein1916GR}. Prinsip ekuivalensi Einstein menyatakan bahwa pengaruh gravitasi secara lokal tidak dapat dibedakan dari percepatan kerangka acuan. Oleh karena itu, medan gravitasi bukan merupakan gaya sejati yang bekerja melintasi ruang, melainkan kelengkungan ruang-waktu itu sendiri yang memandu pergerakan materi dan energi.
+
+\subsection{Formulasi Matematis Persamaan Medan Einstein}
+\label{subsec:efe-formulasi}
+
+Hubungan mendasar antara geometri ruang-waktu dan distribusi materi-energi di dalamnya dinyatakan secara eksak oleh Persamaan Medan Einstein (\textit{Einstein Field Equations}, EFE) \parencite{Einstein1916GR}:
+\begin{equation}
+    G_{\mu\nu} \equiv R_{\mu\nu} - \frac{1}{2}\, R\, g_{\mu\nu} = \frac{8\pi G}{c^4}\, T_{\mu\nu},
+    \label{eq:efe}
+\end{equation}
+di mana indeks Yunani $\mu, \nu \in \{0, 1, 2, 3\}$ merepresentasikan koordinat ruang-waktu ($x^0 = ct, x^1, x^2, x^3$). Persamaan~\eqref{eq:efe} merupakan sistem 10 persamaan diferensial parsial non-linier terkopel orde kedua untuk komponen-komponen tensor metrik $g_{\mu\nu}$.
+
+Dengan melakukan kontraksi terhadap metrik ($g^{\mu\nu}$), diperoleh relasi jejak (\textit{trace}):
+\begin{equation}
+    g^{\mu\nu} G_{\mu\nu} = R - \frac{1}{2} R (4) = -R = \frac{8\pi G}{c^4}\, T,
+    \label{eq:efe-trace}
+\end{equation}
+dengan $T \equiv g^{\mu\nu}T_{\mu\nu}$ adalah jejak (\textit{trace}) dari tensor energi-momentum. Substitusi Persamaan~\eqref{eq:efe-trace} kembali ke Persamaan~\eqref{eq:efe} menghasilkan bentuk persamaan medan bebas-jejak (\textit{trace-reversed form}):
+\begin{equation}
+    R_{\mu\nu} = \frac{8\pi G}{c^4}\left( T_{\mu\nu} - \frac{1}{2}\, T\, g_{\mu\nu} \right).
+    \label{eq:efe-trace-reversed}
+\end{equation}
+
+\subsection{Makna Fisis Besaran-Besaran dalam Persamaan Medan Einstein}
+\label{subsec:makna-fisis-efe}
+
+Secara filosofis dan fisik, esensi dari Persamaan~\eqref{eq:efe} dirangkum dengan elegan oleh John Archibald Wheeler: \textit{``Spacetime tells matter how to move; matter tells spacetime how to curve''} \parencite{Misner1973Gravitation}. Ruas kiri persamaan medan memuat informasi geometri murni ruang-waktu, sedangkan ruas kanan mendeskripsikan sumber materi dan energi. Makna fisis dari setiap komponen pembangunnya diuraikan sebagai berikut:
+
+\begin{enumerate}[label=(\alph*), wide=0pt, leftmargin=*]
+    \item \textbf{Tensor Metrik ($g_{\mu\nu}$): Potensial Gravitasi Relativistik}\\
+    Tensor metrik $g_{\mu\nu}$ merupakan tensor simetrik rank-2 fundamental yang menentukan geometri lokal manifold ruang-waktu. Melalui elemen garis diferensial:
+    \begin{equation}
+        ds^2 = g_{\mu\nu}\, dx^\mu dx^\nu,
+        \label{eq:line-element-def}
+    \end{equation}
+    tensor metrik mengatur pengukuran jarak spasial sejati, selang waktu proper ($d\tau = \sqrt{-ds^2}/c$ untuk lintasan mirip-waktu), serta kausalitas ruang-waktu (lintasan mirip-waktu \textit{timelike} $ds^2 < 0$, mirip-cahaya \textit{null} $ds^2 = 0$, dan mirip-ruang \textit{spacelike} $ds^2 > 0$ menurut konvensi tanda $-+++$). Dalam batas non-relativistik, komponen $g_{00} \approx -(1 + 2\Phi/c^2)$, sehingga $g_{\mu\nu}$ berperan langsung sebagai generalisasi relativistik dari potensial gravitasi skalar Newton $\Phi$.
+
+    \item \textbf{Tensor Kelengkungan Riemann ($R^\rho_{\ \sigma\mu\nu}$): Gaya Pasang-Surut}\\
+    Tensor Riemann mendeskripsikan kelengkungan intrinsik ruang-waktu secara penuh tanpa aproksimasi dan didefinisikan melalui turunan simbol Christoffel:
+    \begin{equation}
+        R^\rho_{\ \sigma\mu\nu} = \partial_\mu \Gamma^\rho_{\nu\sigma}
+        - \partial_\nu \Gamma^\rho_{\mu\sigma}
+        + \Gamma^\rho_{\mu\lambda}\Gamma^\lambda_{\nu\sigma}
+        - \Gamma^\rho_{\nu\lambda}\Gamma^\lambda_{\mu\sigma}.
+        \label{eq:riemann}
+    \end{equation}
+    Makna fisis utama dari tensor Riemann terwujud dalam persamaan deviasi geodesik (\textit{geodesic deviation equation}):
+    \begin{equation}
+        \frac{D^2 \xi^\mu}{d\tau^2} = R^\mu_{\ \nu\alpha\beta}\, u^\nu u^\alpha \xi^\beta,
+        \label{eq:geodesic-deviation}
+    \end{equation}
+    di mana $\xi^\mu$ adalah vektor pemisah antara dua partikel uji jatuh bebas yang bertetangga, dan $u^\mu = dx^\mu/d\tau$ adalah empat-kecepatannya. Persamaan ini membuktikan bahwa kelengkungan Riemann secara fisik dirasakan sebagai percepatan relatif atau gaya pasang-surut gravitasi (\textit{tidal forces}), yang meregangkan dan menekan benda bermassa ketika bergerak dalam medan gravitasi.
+
+    \item \textbf{Tensor Ricci ($R_{\mu\nu}$): Kontraksi Volume Bola Geodesik}\\
+    Tensor Ricci $R_{\mu\nu}$ diperoleh melalui kontraksi indeks pertama dan ketiga dari tensor Riemann ($R_{\mu\nu} \equiv R^\lambda_{\ \mu\lambda\nu}$). Secara fisis, tensor Ricci merepresentasikan \textbf{laju perubahan fraksional volume bola geodesik} (\textit{rate of volume contraction/distortion}) dari sekumpulan partikel uji bebas (\textit{cloud of test particles}) yang mula-mula diam relatif satu sama lain.
+    
+    Berdasarkan persamaan Raychaudhuri untuk kongruensi geodesik murni tanpa pusaran (\textit{vorticity-free}), laju percepatan volume bola geodesik $V(\tau)$ pada saat awal memenuhi relasi:
+    \begin{equation}
+        \left. \frac{1}{V} \frac{d^2 V}{d\tau^2} \right|_{\tau=0} = - R_{\mu\nu}\, u^\mu u^\nu.
+        \label{eq:raychaudhuri-ricci}
+    \end{equation}
+    Melalui persamaan medan bentuk Persamaan~\eqref{eq:efe-trace-reversed}, besaran ini terhubung langsung dengan materi lokal:
+    \begin{equation}
+        \left. \frac{1}{V} \frac{d^2 V}{d\tau^2} \right|_{\tau=0} = -\frac{8\pi G}{c^4}\left( T_{\mu\nu} - \frac{1}{2}\, T\, g_{\mu\nu} \right) u^\mu u^\nu.
+        \label{eq:ricci-matter-volume}
+    \end{equation}
+    Artinya, jika terdapat materi atau kerapatan energi positif pada suatu titik ($T_{\mu\nu} \neq 0$), kumpulan partikel uji akan mengalami penyusutan volume ($\ddot{V} < 0$), yang secara gamblang mencerminkan sifat gravitasi yang selalu bersifat atraktif (menarik).
+
+    \item \textbf{Skalar Kelengkungan ($R$): Rata-rata Kelengkungan Intrinsik}\\
+    Skalar kelengkungan Ricci $R = g^{\mu\nu} R_{\mu\nu}$ merupakan kuantitas skalar invarian yang menggambarkan rata-rata kelengkungan ruang-waktu pada satu titik, tanpa bergantung pada sistem koordinat yang dipilih.
+
+    \item \textbf{Tensor Einstein ($G_{\mu\nu}$) dan Kekekalan Energi-Momentum}\\
+    Tensor Einstein $G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2} R g_{\mu\nu}$ dirancang secara khusus oleh Einstein agar memenuhi identitas Bianchi diferensial kedua yang terkontraksi secara geometris:
+    \begin{equation}
+        \nabla^\mu G_{\mu\nu} = 0.
+        \label{eq:bianchi-contracted}
+    \end{equation}
+    Sifat divergensi kovarian nol ini sangat esensial secara fisis, karena secara otomatis menjamin berlakunya hukum kekekalan lokal energi-momentum bagi materi di ruas kanan:
+    \begin{equation}
+        \nabla^\mu T_{\mu\nu} = 0.
+        \label{eq:energy-momentum-conservation}
+    \end{equation}
+    Tanpa suku $-\frac{1}{2} R g_{\mu\nu}$, divergensi kovarian dari tensor Ricci $\nabla^\mu R_{\mu\nu} = \frac{1}{2}\nabla_\nu R \neq 0$ secara umum, sehingga tidak akan kompatibel dengan hukum kekekalan fisika dasar.
+
+    \item \textbf{Tensor Energi-Momentum ($T_{\mu\nu}$): Sumber Dinamika Gravitasi}\\
+    Tensor $T_{\mu\nu}$ merangkum seluruh bentuk keberadaan massa, energi, momentum, dan tegangan mekanis dalam medium:
+    \begin{itemize}[leftmargin=*]
+        \item $T_{00}$: Rapat massa-energi total $\rho c^2$ (energi diam, energi kinetik, dan termal).
+        \item $T_{0i} = T_{i0}$: Rapat fluks energi sepanjang arah sumbu spasial $x^i$ (ekuivalen dengan rapat momentum linier $c\, p_i$).
+        \item $T_{ii}$ (diagonal spasial): Tekanan isotropik $P$ (\textit{isotropic pressure}) atau tegangan normal mekanis (\textit{normal stresses}).
+        \item $T_{ij}$ ($i \neq j$, non-diagonal spasial): Tegangan geser anisotropik (\textit{shear stresses}) dan transpor momentum.
+    \end{itemize}
+    Adanya suku tekanan dan fluks momentum membuktikan bahwa dalam Relativitas Umum, tekanan dan aliran massa berotasi (momentum sudut) juga berperan aktif sebagai sumber medan gravitasi tambahan, suatu fenomena yang tidak pernah ada dalam gravitasi Newton.
+
+    \item \textbf{Konstanta Kopling Einstein ($\kappa = 8\pi G / c^4$)}\\
+    Konstanta kesebandingan $\kappa = \frac{8\pi G}{c^4}$ menghubungkan kelengkungan ruang-waktu dengan rapat energi-momentum. Nilai ini diturunkan dengan menuntut agar persamaan medan Einstein mereduksi secara konsisten ke Persamaan Poisson gravitasi Newton $\nabla^2 \Phi = 4\pi G \rho$ pada limit medan lemah ($g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}, |h_{\mu\nu}| \ll 1$) dan kecepatan partikel yang jauh lebih lambat dari kelajuan cahaya ($v \ll c$). Keberadaan faktor $c^4$ yang sangat besar pada penyebut ($\approx 8{,}1 \times 10^{33}\text{ N}$) menunjukkan betapa kakunya (\textit{stiff}) ruang-waktu, sehingga dibutuhkan konsentrasi massa atau energi astronomis untuk menghasilkan kelengkungan yang terukur secara eksperimen.
+
+    \item \textbf{Kondisi Vakum ($T_{\mu\nu} = 0$) dan Kelengkungan Weyl}\\
+    Di luar wilayah sumber massa (seperti di ruang hampa sekitar Bumi atau lubang hitam di mana $T_{\mu\nu} = 0$), persamaan medan Einstein tereduksi menjadi:
+    \begin{equation}
+        R_{\mu\nu} = 0.
+        \label{eq:efe-vacuum}
+    \end{equation}
+    Ruang-waktu yang memenuhi $R_{\mu\nu} = 0$ disebut ruang-waktu \textit{Ricci-flat}. Kondisi ini bukan berarti ruang-waktu tersebut datar ($R^\rho_{\ \sigma\mu\nu} = 0$), melainkan hanya laju kontraksi volume bolanya yang lenyap. Kelengkungan gravitasi di luar massa sumber tetap eksis melalui komponen bebas-jejak dari tensor Riemann, yang dikenal sebagai \textbf{Tensor Weyl} ($C^\rho_{\ \sigma\mu\nu}$), yang bertanggung jawab atas gaya pasang-surut eksternal dan perambatan gelombang gravitasi. Persamaan medan vakum inilah yang menghasilkan solusi fundamental seperti metrik Schwarzschild dan metrik Kerr.
+\end{enumerate}
+
+\subsection{Persamaan Gerak Geodesik}
+\label{subsec:geodesik-gerak}
+
+Dalam ruang-waktu melengkung bebas dari gaya non-gravitasi (seperti medan elektromagnetik), partikel uji bermassa maupun foton bergerak mengikuti lintasan ekstremum yang disebut kurva geodesik. Persamaan diferensial gerak geodesik diberikan oleh \parencite{Carroll2004SpacetimeGeometry, Schutz2009FirstCourse}:
+\begin{equation}
+    \frac{d^2 x^\mu}{d\tau^2}
+    + \Gamma^\mu_{\nu\rho}\,\frac{dx^\nu}{d\tau}\,\frac{dx^\rho}{d\tau} = 0,
+    \label{eq:geodesic}
+\end{equation}
+di mana $\tau$ adalah parameter afina (waktu proper untuk partikel bermassa) dan $\Gamma^\mu_{\nu\rho}$ adalah simbol Christoffel jenis kedua yang merepresentasikan koneksi geometri ruang-waktu. Suku kedua pada Persamaan~\eqref{eq:geodesic} menggantikan konsep percepatan gravitasi Newtonian, di mana gerak melengkung partikel dipahami murni sebagai akibat dari pergerakan lurus pada ruang-waktu yang melengkung.
+
+
+% ============================================================
+\section{Tensor Metrik dan Simbol Christoffel}
+\label{sec:metrik-christoffel}
+
+\subsection{Simbol Christoffel: Koneksi Geometri dan Makna Fisisnya}
+\label{subsec:christoffel-umum}
+
+Simbol Christoffel jenis kedua $\Gamma^\mu_{\nu\rho}$ menggambarkan koneksi Levi-Civita pada manifold pseudo-Riemannian dan didefinisikan sebagai:
+\begin{equation}
+    \Gamma^\mu_{\nu\rho} = \frac{1}{2}\, g^{\mu\sigma}
+    \left(
+        \frac{\partial g_{\sigma\nu}}{\partial x^\rho}
+      + \frac{\partial g_{\sigma\rho}}{\partial x^\nu}
+      - \frac{\partial g_{\nu\rho}}{\partial x^\sigma}
+    \right).
+    \label{eq:christoffel-def}
+\end{equation}
+Simbol ini bersifat simetris terhadap dua indeks bawah, $\Gamma^\mu_{\nu\rho} = \Gamma^\mu_{\rho\nu}$, dan berjumlah paling banyak 40 komponen independen dalam ruang-waktu empat dimensi. Untuk metrik diagonal, banyak komponen bernilai nol, namun metrik Kerr memiliki suku campuran $g_{t\phi} \neq 0$ yang menghasilkan komponen Christoffel tambahan yang tidak trivial \parencite{Carroll2004SpacetimeGeometry}.
+
+Secara fisis, simbol Christoffel memiliki beberapa interpretasi penting yang saling melengkapi:
+
+\begin{enumerate}[label=(\alph*), wide=0pt, leftmargin=*]
+    \item \textbf{Generalisasi Percepatan Gravitasi Newton}\\
+    Dalam persamaan geodesik (Persamaan~\ref{eq:geodesic}), suku $\Gamma^\mu_{\nu\rho}\,\dot{x}^\nu\,\dot{x}^\rho$ berperan secara langsung sebagai generalisasi relativistik dari percepatan gravitasi Newtonian. Pada limit medan lemah ($g_{\mu\nu} \approx \eta_{\mu\nu} + h_{\mu\nu}$ dengan $|h_{\mu\nu}| \ll 1$) dan kecepatan rendah ($v \ll c$), komponen spasial persamaan geodesik mereduksi ke:
+    \begin{equation}
+        \frac{d^2 x^i}{dt^2} \approx -\Gamma^i_{00}\, c^2 = -\frac{c^2}{2}\, \partial_i g_{00} \approx \partial_i \Phi,
+        \label{eq:christoffel-newton-limit}
+    \end{equation}
+    yang identik dengan hukum gerak Newton $\ddot{\mathbf{r}} = -\nabla\Phi$ di bawah percepatan gravitasi $\mathbf{g} = -\nabla\Phi$. Dengan demikian, komponen $\Gamma^i_{00}$ secara langsung mengkodekan medan gravitasi klasik.
+
+    \item \textbf{Gaya Inersia Semu (\textit{Fictitious Forces}) dalam Koordinat Melengkung}\\
+    Dalam kerangka acuan yang dipercepat atau dalam koordinat melengkung (misalnya koordinat bola), partikel yang bergerak lurus secara fisik tampak mengalami percepatan bila dilihat dalam koordinat tersebut. Simbol Christoffel mengkuantifikasi ``percepatan semu'' ini. Sebagai contoh sederhana pada ruang datar dalam koordinat kutub $(r, \phi)$:
+    \begin{equation}
+        \Gamma^r_{\phi\phi} = -r, \qquad \Gamma^\phi_{r\phi} = \frac{1}{r},
+    \end{equation}
+    yang masing-masing berkaitan dengan gaya sentrifugal semu ($-r\dot{\phi}^2$) dan gaya Coriolis semu ($2\dot{r}\dot{\phi}/r$). Dalam konteks Relativitas Umum, kedua jenis kontribusi---gravitasi sejati (dari kelengkungan intrinsik) dan gaya semu (dari pilihan koordinat)---tergabung secara tak terpisahkan di dalam simbol Christoffel.
+
+    \item \textbf{Laju Transpor Basis Lokal}\\
+    Simbol Christoffel juga mendeskripsikan bagaimana vektor-vektor basis lokal berubah dari titik ke titik pada manifold melengkung. Secara formal, $\Gamma^\mu_{\nu\rho}$ memberikan koefisien ekspansi turunan kovarian dari vektor basis:
+    \begin{equation}
+        \nabla_\rho\, \mathbf{e}_\nu = \Gamma^\mu_{\nu\rho}\, \mathbf{e}_\mu,
+        \label{eq:christoffel-basis-transport}
+    \end{equation}
+    sehingga menentukan bagaimana ``penggaris dan jam'' lokal berubah orientasi ketika dipindahkan secara infinitesimal di sepanjang arah $x^\rho$. Sifat inilah yang menjadikan simbol Christoffel esensial dalam operasi transportasi paralel (Bagian~\ref{sec:transportasi-paralel}), di mana perubahan orientasi vektor spin giroskop sepenuhnya ditentukan oleh komponen-komponen $\Gamma^\mu_{\nu\rho}$ sepanjang lintasan orbit.
+\end{enumerate}
+
+Penting untuk ditekankan bahwa simbol Christoffel \textbf{bukan} merupakan tensor---nilainya dapat dibuat nol pada satu titik sembarang melalui pemilihan koordinat lokal yang sesuai (kerangka jatuh-bebas, sesuai prinsip ekuivalensi). Namun, kombinasi turunan dari simbol Christoffel yang membentuk tensor Riemann (Persamaan~\ref{eq:riemann}) tidak dapat dilenyapkan melalui transformasi koordinat, karena tensor Riemann mengukur kelengkungan intrinsik yang merupakan sifat geometri sejati ruang-waktu \parencite{Misner1973Gravitation, Carroll2004SpacetimeGeometry}.
+
+
+\subsection{Metrik Schwarzschild: Solusi Vakum Sferis}
+\label{subsec:metrik-schwarzschild}
+
+Solusi Schwarzschild merupakan solusi eksak pertama dan paling sederhana dari persamaan medan Einstein vakum ($R_{\mu\nu} = 0$), yang mendeskripsikan geometri ruang-waktu di luar massa statis, tak berotasi, dan bersimetri bola sempurna. Dalam koordinat bola $(t, r, \theta, \phi)$, elemen garisnya diberikan oleh \parencite{Schwarzschild1916Field}:
+\begin{equation}
+    ds^2 = \left(1 - \frac{r_s}{r}\right) c^2\,dt^2
+         - \left(1 - \frac{r_s}{r}\right)^{-1} dr^2
+         - r^2\, d\theta^2
+         - r^2 \sin^2\!\theta\, d\phi^2,
+    \label{eq:schwarzschild}
+\end{equation}
+dengan $r_s = 2GM/c^2$ adalah radius Schwarzschild, yang menandai batas horizon peristiwa lubang hitam Schwarzschild.
+
+Dengan menggunakan konvensi koordinat $x^\mu = (x^0, x^1, x^2, x^3) = (ct, r, \theta, \phi)$, tensor metrik Schwarzschild $g_{\mu\nu}$ dapat dituliskan secara eksplisit dalam bentuk matriks $4 \times 4$ sebagai:
+\begin{equation}
+    g_{\mu\nu} =
+    \begin{pmatrix}
+        1 - \dfrac{r_s}{r} & 0 & 0 & 0 \\[10pt]
+        0 & -\left(1 - \dfrac{r_s}{r}\right)^{-1} & 0 & 0 \\[10pt]
+        0 & 0 & -r^2 & 0 \\[10pt]
+        0 & 0 & 0 & -r^2 \sin^2\!\theta
+    \end{pmatrix}.
+    \label{eq:schwarzschild-matrix}
+\end{equation}
+Karena matriks metrik di atas bersifat diagonal murni ($g_{\mu\nu} = 0$ untuk $\mu \neq \nu$), tensor metrik invers $g^{\mu\nu}$ diperoleh secara langsung melalui inversi elemen-elemen diagonalnya:
+\begin{equation}
+    g^{\mu\nu} =
+    \begin{pmatrix}
+        \left(1 - \dfrac{r_s}{r}\right)^{-1} & 0 & 0 & 0 \\[10pt]
+        0 & -\left(1 - \dfrac{r_s}{r}\right) & 0 & 0 \\[10pt]
+        0 & 0 & -\dfrac{1}{r^2} & 0 \\[10pt]
+        0 & 0 & 0 & -\dfrac{1}{r^2 \sin^2\!\theta}
+    \end{pmatrix}.
+    \label{eq:schwarzschild-inverse-matrix}
+\end{equation}
+
+Makna fisis dari setiap komponen metrik dapat diuraikan sebagai berikut:
+
+\begin{enumerate}[label=(\alph*), wide=0pt, leftmargin=*]
+    \item \textbf{Komponen temporal $g_{tt} = (1 - r_s/r)$}: Faktor ini menentukan laju aliran waktu proper ($d\tau$) relatif terhadap waktu koordinat ($dt$) pada posisi radial $r$. Untuk pengamat statis pada jarak $r$, hubungannya diberikan oleh $d\tau = \sqrt{g_{tt}}\,dt = \sqrt{1 - r_s/r}\, dt$. Semakin dekat ke massa sumber ($r \to r_s$), semakin lambat waktu berjalan relatif terhadap pengamat jauh---fenomena \textit{gravitational time dilation}. Pada permukaan Bumi, efek ini menghasilkan perlambatan waktu sekitar $\Delta t/t \sim r_s/(2R_\oplus) \approx 7 \times 10^{-10}$.
+
+    \item \textbf{Komponen radial $g_{rr} = -(1 - r_s/r)^{-1}$}: Faktor ini memodifikasi pengukuran jarak radial sejati ($dl_r = \sqrt{|g_{rr}|}\,dr$), sehingga jarak proper antara dua posisi radial lebih besar dari selisih koordinat $dr$. Semakin dekat ke sumber massa, semakin ``teregang'' jarak radial dibandingkan ruang datar---manifestasi langsung dari kelengkungan spasial.
+
+    \item \textbf{Komponen sudut $g_{\theta\theta} = -r^2$, $g_{\phi\phi} = -r^2\sin^2\theta$}: Komponen-komponen ini mempertahankan bentuk bola standar, yang menunjukkan bahwa permukaan pada $r = \text{konstan}$ tetap berbentuk bola-2 dengan luas $4\pi r^2$. Simetri bola terpreservasi secara sempurna.
+
+    \item \textbf{Tidak adanya suku campuran ($g_{\mu\nu} = 0$ untuk $\mu \neq \nu$)}: Sifat diagonal matriks pada Persamaan~\eqref{eq:schwarzschild-matrix} menegaskan bahwa \textbf{tidak ada kopling antara koordinat waktu dan koordinat spasial apa pun}, khususnya $g_{t\phi} = 0$. Secara fisis, ini membuktikan tidak adanya penyeretan kerangka inersial (\textit{frame-dragging}). Pengamat yang diam pada posisi tetap $(r, \theta, \phi)$ tidak mengalami rotasi inersia apa pun, dan giroskop yang diam mempertahankan orientasinya tanpa gangguan terkait rotasi sumber. Efek presesi yang muncul pada metrik Schwarzschild---presesi geodesik (de Sitter)---murni berasal dari kelengkungan ruang-waktu radial, bukan rotasi massa.
+\end{enumerate}
+
+Berkat teorema Birkhoff (\textit{Birkhoff's theorem}), metrik Schwarzschild merupakan satu-satunya solusi vakum bersimetri bola, menjadikannya model standar bagi medan gravitasi eksternal benda bermassa tak berotasi. Namun, karena absennya efek \textit{frame-dragging}, metrik ini tidak mampu mendeskripsikan efek Lense-Thirring yang menjadi fokus penelitian ini \parencite{Carroll2004SpacetimeGeometry, Hartle2003Gravity}.
+
+
+\subsection{Metrik Kerr: Ruang-Waktu Massa Berotasi}
+\label{subsec:metrik-kerr}
+
+Metrik Kerr merupakan solusi eksak persamaan medan Einstein vakum untuk benda bermassa berotasi aksial-simetris tanpa muatan listrik, ditemukan oleh \textcite{Kerr1963KerrMetric}. Dalam koordinat Boyer-Lindquist $(t, r, \theta, \phi)$, elemen garisnya dapat dituliskan sebagai:
+\begin{equation}
+\begin{split}
+    ds^2 &= \left(1 - \frac{r_s r}{\Sigma}\right) c^2\,dt^2
+          + \frac{2\,r_s\, r\, a \sin^2\!\theta}{\Sigma}\; c\,dt\,d\phi
+          - \frac{\Sigma}{\Delta}\, dr^2
+          - \Sigma\, d\theta^2 \\
+         &\quad - \left(r^2 + a^2 + \frac{r_s\, r\, a^2 \sin^2\!\theta}{\Sigma}\right)
+           \sin^2\!\theta\, d\phi^2,
+\end{split}
+    \label{eq:kerr-line}
+\end{equation}
+dengan fungsi-fungsi bantu:
+\begin{equation}
+    \Sigma \equiv r^2 + a^2 \cos^2\!\theta, \qquad
+    \Delta \equiv r^2 - r_s\, r + a^2,
+    \label{eq:sigma-delta}
+\end{equation}
+di mana $r_s = 2GM/c^2$ dan $a = J/(Mc)$ adalah parameter rotasi spesifik (berdimensi panjang), dengan $J$ menyatakan momentum sudut total massa pusat \parencite{Kerr1963KerrMetric, Carroll2004SpacetimeGeometry}.
+
+Dengan menggunakan konvensi koordinat $x^\mu = (x^0, x^1, x^2, x^3) = (ct, r, \theta, \phi)$, tensor metrik Kerr $g_{\mu\nu}$ dapat dituliskan dalam bentuk matriks $4 \times 4$ sebagai:
+\begin{equation}
+    g_{\mu\nu} =
+    \begin{pmatrix}
+        1 - \dfrac{r_s r}{\Sigma} & 0 & 0 & \dfrac{r_s\, r\, a \sin^2\!\theta}{\Sigma} \\[12pt]
+        0 & -\dfrac{\Sigma}{\Delta} & 0 & 0 \\[12pt]
+        0 & 0 & -\Sigma & 0 \\[12pt]
+        \dfrac{r_s\, r\, a \sin^2\!\theta}{\Sigma} & 0 & 0
+        & -\!\left(r^2 + a^2 + \dfrac{r_s\, r\, a^2 \sin^2\!\theta}{\Sigma}\right)\sin^2\!\theta
+    \end{pmatrix}.
+    \label{eq:kerr-matrix}
+\end{equation}
+
+Beberapa sifat penting dari matriks metrik Kerr beserta interpretasi fisisnya:
+
+\begin{enumerate}[label=(\alph*), wide=0pt, leftmargin=*]
+    \item \textbf{Suku campuran $g_{t\phi}$ dan asal-usul \textit{frame-dragging}}\\
+    Komponen $g_{t\phi} = g_{\phi t} = r_s\, r\, a \sin^2\!\theta\,/\,\Sigma$ bernilai tidak nol jika $a \neq 0$, dan merupakan fitur pembeda paling fundamental antara metrik Kerr dan Schwarzschild. Secara fisis, suku campuran ini menyatakan bahwa \textbf{koordinat waktu dan koordinat azimut tidak lagi independen}---perjalanan waktu di sekitar massa berotasi secara intrinsik terkait dengan pergerakan sudut. Konsekuensinya, pengamat yang diam dalam koordinat $(r, \theta) = \text{konstan}$ tidak dapat benar-benar diam secara fisis: ruang-waktu itu sendiri ``menyeret'' kerangka acuan lokal untuk ikut berotasi searah dengan rotasi massa pusat. Fenomena inilah yang disebut penyeretan kerangka inersial atau \textit{frame-dragging}. Kecepatan sudut seret (\textit{angular velocity of frame-dragging}) pada posisi $(r, \theta)$ diberikan oleh:
+    \begin{equation}
+        \omega_{\text{drag}} = -\frac{g_{t\phi}}{g_{\phi\phi}} = \frac{r_s\, r\, a}{\left(r^2 + a^2\right)\Sigma + r_s\, r\, a^2 \sin^2\!\theta},
+        \label{eq:omega-drag}
+    \end{equation}
+    yang meluruh secara asimtotik sebagai $\omega_{\text{drag}} \sim 2GJ/(c^2 r^3)$ pada jarak jauh ($r \gg r_s$), konsisten dengan ekspresi Lense-Thirring (Persamaan~\ref{eq:omega-lt-approx}).
+
+    \item \textbf{Limit non-rotasi ($a \to 0$)}\\
+    Pada limit $a \to 0$, fungsi $\Sigma \to r^2$, $\Delta \to r^2 - r_s r$, dan $g_{t\phi} \to 0$. Metrik Kerr tereduksi menjadi metrik Schwarzschild diagonal (Persamaan~\ref{eq:schwarzschild}), membuktikan konsistensi internal kedua solusi sebagai kasus umum dan kasus khusus dari persamaan medan vakum.
+
+    \item \textbf{Horizon peristiwa dan ergosfir}\\
+    Singularitas koordinat terjadi ketika $\Delta = r^2 - r_s r + a^2 = 0$, yang memberikan dua horizon:
+    \begin{equation}
+        r_\pm = \frac{r_s}{2} \pm \sqrt{\left(\frac{r_s}{2}\right)^2 - a^2} = \frac{GM}{c^2} \pm \sqrt{\left(\frac{GM}{c^2}\right)^2 - a^2},
+        \label{eq:kerr-horizons}
+    \end{equation}
+    dengan $r_+$ adalah horizon peristiwa luar dan $r_-$ adalah horizon Cauchy dalam. Selain itu, permukaan \textit{ergosfir} (di mana $g_{tt} = 0$, yaitu $r_{\text{ergo}} = r_s/2 + \sqrt{(r_s/2)^2 - a^2\cos^2\theta}$) mendefinisikan wilayah di mana pengamat statis tidak lagi mungkin: setiap benda di dalam ergosfir \textit{harus} ikut berotasi bersama ruang-waktu. Untuk Bumi, radius ergosfir hanya berada pada skala $r_s \approx 8{,}87 \times 10^{-3}$~m jauh di dalam inti Bumi, sehingga tidak berpengaruh pada orbit satelit GP-B. Namun, efek penyeretan asimtotik $\omega_{\text{drag}}$ tetap terukur pada jarak orbit GP-B.
+
+    \item \textbf{Ketergantungan sudut polar $\theta$}\\
+    Berbeda dari metrik Schwarzschild yang hanya bergantung pada $r$, metrik Kerr memiliki ketergantungan pada $\theta$ melalui fungsi $\Sigma = r^2 + a^2\cos^2\theta$. Secara fisis, ini mencerminkan fakta bahwa medan gravitasi massa berotasi \textbf{tidak bersimetri bola, melainkan bersimetri aksial}: efek gravitasi dan penyeretan bervariasi menurut sudut lintang terhadap sumbu rotasi. Efek \textit{frame-dragging} maksimal terjadi pada bidang ekuator ($\theta = \pi/2$, di mana $\sin^2\theta = 1$) dan lenyap pada sumbu rotasi ($\theta = 0$ atau $\pi$).
+\end{enumerate}
+
+Metrik invers $g^{\mu\nu}$ diperlukan untuk menghitung simbol Christoffel. Dengan memanfaatkan struktur blok-diagonal ($2 \times 2$ pada sub-ruang $t$-$\phi$ dan diagonal pada $r$-$\theta$), komponen-komponen metrik invers diperoleh sebagai:
+\begin{equation}
+\begin{aligned}
+    g^{tt} &= \frac{1}{\Delta}\left(r^2 + a^2 + \frac{r_s\, r\, a^2 \sin^2\!\theta}{\Sigma}\right), &\qquad
+    g^{t\phi} &= \frac{r_s\, r\, a}{\Sigma\,\Delta}, \\[6pt]
+    g^{rr} &= -\frac{\Delta}{\Sigma}, &\qquad
+    g^{\theta\theta} &= -\frac{1}{\Sigma}, \\[6pt]
+    g^{\phi\phi} &= -\frac{1}{\Delta\sin^2\!\theta}\left(1 - \frac{r_s\, r}{\Sigma}\right), &\qquad
+    & \text{komponen lain} = 0.
+\end{aligned}
+    \label{eq:kerr-inverse}
+\end{equation}
+Keberadaan komponen non-diagonal $g^{t\phi} \neq 0$ pada metrik invers secara langsung memengaruhi perhitungan simbol Christoffel: setiap komponen $\Gamma^\mu_{\nu\rho}$ dengan $\mu = t$ atau $\mu = \phi$ akan menerima kontribusi silang dari suku $g^{t\phi}$, yang secara fisis merepresentasikan kopling tak terhindarkan antara evolusi temporal dan rotasi azimut akibat penyeretan kerangka (\textit{frame-dragging}).
+
+
+\subsection{Contoh Perhitungan Simbol Christoffel Metrik Kerr}
+\label{subsec:christoffel-kerr-contoh}
+
+Perhitungan simbol Christoffel untuk metrik Kerr menghasilkan sejumlah besar komponen yang tidak bernilai nol. Pada bagian ini disajikan derivasi eksplisit untuk tiga komponen representatif yang relevan dengan efek \textit{frame-dragging}, disertai interpretasi fisis masing-masing.
+
+\paragraph{Contoh 1: $\Gamma^t_{tr}$---Dilatasi Waktu Gravitasi Dinamis.}
+Komponen ini mengatur bagaimana laju aliran waktu proper berubah ketika partikel bergerak dalam arah radial. Secara fisis, $\Gamma^t_{tr}$ merepresentasikan \textit{gradien dilatasi waktu gravitasi}: ketika partikel jatuh radial menuju massa pusat, komponen ini mengakibatkan peningkatan laju koordinat waktu $\dot{t}$ (waktu proper partikel melambat relatif terhadap pengamat jauh).
+
+Menggunakan Persamaan~\eqref{eq:christoffel-def} dengan $\mu = t$, $\nu = t$, $\rho = r$:
+\begin{equation}
+    \Gamma^t_{tr} = \frac{1}{2}\,g^{t\sigma}
+    \left(\partial_r g_{\sigma t} + \partial_t g_{\sigma r} - \partial_\sigma g_{tr}\right).
+\end{equation}
+Karena metrik tidak bergantung pada $t$ (stasioner), suku $\partial_t g_{\sigma r} = 0$. Kontribusi non-nol berasal dari $\sigma = t$ dan $\sigma = \phi$:
+\begin{equation}
+    \Gamma^t_{tr} = \frac{1}{2}\,g^{tt}\,\partial_r g_{tt}
+                  + \frac{1}{2}\,g^{t\phi}\,\partial_r g_{\phi t}.
+    \label{eq:christoffel-ttr}
+\end{equation}
+Suku pertama ($\propto g^{tt}\,\partial_r g_{tt}$) terdapat juga pada metrik Schwarzschild dan berkaitan dengan dilatasi waktu gravitasi standar. Suku kedua ($\propto g^{t\phi}\,\partial_r g_{t\phi}$) murni merupakan koreksi \textit{frame-dragging} yang lenyap ketika $a = 0$.
+
+Turunan parsial $\partial_r g_{tt}$ dihitung dari Persamaan~\eqref{eq:kerr-matrix}:
+\begin{equation}
+    \frac{\partial g_{tt}}{\partial r}
+    = \frac{\partial}{\partial r}\left(1 - \frac{r_s\, r}{\Sigma}\right)
+    = -r_s\,\frac{\Sigma - r(2r)}{\Sigma^2}
+    = \frac{r_s(r^2 - a^2\cos^2\!\theta)}{\Sigma^2},
+    \label{eq:dgtt-dr}
+\end{equation}
+mengingat $\partial_r \Sigma = 2r$. Substitusi ke Persamaan~\eqref{eq:christoffel-ttr} bersama dengan ekspresi $g^{tt}$ dan $g^{t\phi}$ dari Persamaan~\eqref{eq:kerr-inverse} menghasilkan:
+\begin{equation}
+    \Gamma^t_{tr} = \frac{r_s(r^2 - a^2\cos^2\!\theta)(r^2 + a^2)}{2\,\Sigma^2\,\Delta}
+    + \frac{r_s^2\, r\, a^2\sin^2\!\theta\,(r^2 - a^2\cos^2\!\theta)}{2\,\Sigma^3\,\Delta}.
+    \label{eq:gamma-ttr-result}
+\end{equation}
+
+\paragraph{Contoh 2: $\Gamma^\phi_{tr}$---Kopling Radial-Azimut oleh Rotasi Sumber.}
+Komponen ini merupakan manifestasi paling langsung dari \textit{frame-dragging} pada level simbol Christoffel. Secara fisis, $\Gamma^\phi_{tr}$ menyatakan bahwa \textbf{gerakan radial partikel secara otomatis membangkitkan percepatan azimut} (rotasi terinduksi). Artinya, partikel yang jatuh radial murni ($\dot{\phi} = 0$ pada awalnya) akan mulai berotasi ($\ddot{\phi} \neq 0$) karena ruang-waktu itu sendiri ``menyeret'' partikel untuk ikut berputar searah dengan rotasi massa sumber.
+
+\begin{equation}
+    \Gamma^\phi_{tr} = \frac{1}{2}\,g^{\phi\sigma}
+    \left(\partial_r g_{\sigma t} + \partial_t g_{\sigma r} - \partial_\sigma g_{tr}\right).
+\end{equation}
+Dengan $\partial_t = 0$ dan kontribusi dari $\sigma = t$ serta $\sigma = \phi$:
+\begin{equation}
+    \Gamma^\phi_{tr} = \frac{1}{2}\,g^{\phi t}\,\partial_r g_{tt}
+                     + \frac{1}{2}\,g^{\phi\phi}\,\partial_r g_{\phi t}.
+    \label{eq:christoffel-phitr}
+\end{equation}
+Perhatikan bahwa $g^{\phi t} = g^{t\phi}$. Substitusi komponen metrik invers (Persamaan~\ref{eq:kerr-inverse}) dan turunan yang sesuai memberikan ekspresi dalam $r$, $\theta$, $\Sigma$, dan $\Delta$. Komponen ini bernilai nol pada limit $a \to 0$ (metrik Schwarzschild), yang menegaskan bahwa kopling $r$-$\phi$ murni berasal dari rotasi massa. Dalam konteks orbit GP-B, komponen ini berkontribusi langsung pada presesi Lense-Thirring vektor spin giroskop.
+
+\paragraph{Contoh 3: $\Gamma^t_{\theta\phi}$---Kopling Polar-Azimut Melalui Waktu.}
+Komponen ini menunjukkan bahwa pada ruang-waktu Kerr, pergerakan simultan dalam arah kutub ($\theta$) dan azimut ($\phi$) memengaruhi laju aliran waktu koordinat. Secara fisis, ini berarti bahwa giroskop pada orbit polar (seperti GP-B) yang melintas dari kutub ke ekuator mengalami modifikasi laju waktu yang bergantung pada posisi lintangnya terhadap sumbu rotasi Bumi.
+
+\begin{equation}
+    \Gamma^t_{\theta\phi} = \frac{1}{2}\,g^{t\sigma}
+    \left(\partial_\phi g_{\sigma\theta} + \partial_\theta g_{\sigma\phi} - \partial_\sigma g_{\theta\phi}\right).
+\end{equation}
+Karena metrik tidak bergantung pada $\phi$ (simetri aksial) dan $g_{r\theta} = g_{r\phi} = 0$, maka:
+\begin{equation}
+    \Gamma^t_{\theta\phi} = \frac{1}{2}\,g^{tt}\,\partial_\theta g_{t\phi}
+                          + \frac{1}{2}\,g^{t\phi}\,\partial_\theta g_{\phi\phi}.
+    \label{eq:christoffel-tthetaphi}
+\end{equation}
+Turunan $\partial_\theta g_{t\phi}$ memerlukan:
+\begin{equation}
+    \frac{\partial g_{t\phi}}{\partial\theta}
+    = \frac{\partial}{\partial\theta}
+    \!\left(\frac{r_s\, r\, a\sin^2\!\theta}{\Sigma}\right)
+    = \frac{r_s\, r\, a}{\Sigma^2}
+    \left(2\Sigma\sin\theta\cos\theta + 2a^2\sin^3\!\theta\cos\theta\right),
+\end{equation}
+yang menunjukkan ketergantungan eksplisit pada sudut polar $\theta$. Komponen ini juga lenyap pada limit $a \to 0$, mengonfirmasi bahwa kopling $\theta$-$\phi$-$t$ murni berasal dari rotasi.
+
+Perhitungan lengkap seluruh komponen Christoffel metrik Kerr menghasilkan puluhan suku yang kompleks. Dalam praktik, perhitungan ini dapat diverifikasi dan dilakukan secara efisien menggunakan pustaka komputasi simbolik seperti \texttt{EinsteinPy} \parencite{Bapat2020EinsteinPy}.
+
+
+% ============================================================
+\section{Persamaan Geodesik dan Konstanta Gerak}
+\label{sec:persamaan-geodesik}
+
+\subsection{Prinsip Variasional dan Persamaan Euler-Lagrange}
+\label{subsec:variasional-geodesik}
+
+Lintasan partikel uji bermassa dalam ruang-waktu melengkung dapat diturunkan dari prinsip aksi minimal (\textit{principle of least action}). Lagrangian untuk partikel bermassa pada metrik $g_{\mu\nu}$ diberikan oleh:
+\begin{equation}
+    \mathcal{L} = \frac{1}{2}\, g_{\mu\nu}\, \dot{x}^\mu\, \dot{x}^\nu,
+    \label{eq:lagrangian}
+\end{equation}
+dengan $\dot{x}^\mu \equiv dx^\mu/d\tau$. Secara fisis, Lagrangian ini proporsional terhadap kuadrat panjang empat-kecepatan, yang untuk partikel bermassa bernilai tetap (Persamaan~\ref{eq:normalisasi}). Prinsip variasional menuntut bahwa lintasan fisik $x^\mu(\tau)$ mengekstremumkan fungsional aksi $S = \int \mathcal{L}\, d\tau$, yang menghasilkan persamaan Euler-Lagrange:
+\begin{equation}
+    \frac{d}{d\tau}\frac{\partial\mathcal{L}}{\partial\dot{x}^\mu}
+    - \frac{\partial\mathcal{L}}{\partial x^\mu} = 0.
+    \label{eq:euler-lagrange}
+\end{equation}
+Substitusi eksplisit Lagrangian ke Persamaan~\eqref{eq:euler-lagrange} dan identifikasi suku-suku turunan metrik menghasilkan persamaan geodesik (Persamaan~\ref{eq:geodesic}). Derivasi lengkap dengan substitusi eksplisit metrik Kerr disajikan pada Bab~\ref{chap:metode}.
+
+\subsection{Simetri, Vektor Killing, dan Konstanta Gerak}
+\label{subsec:killing-konstanta}
+
+Keberadaan simetri kontinu pada metrik memberikan manfaat besar dalam menyederhanakan persamaan geodesik melalui teorema Noether. Secara formal, setiap simetri kontinu pada metrik diwujudkan oleh \textbf{vektor Killing} $\xi^\mu$ yang memenuhi persamaan Killing $\nabla_\mu \xi_\nu + \nabla_\nu \xi_\mu = 0$. Untuk setiap vektor Killing, terdapat kuantitas konservatif sepanjang geodesik yang diberikan oleh \parencite{Carroll2004SpacetimeGeometry}:
+\begin{equation}
+    Q = g_{\mu\nu}\, \xi^\mu\, \dot{x}^\nu = \text{konstan sepanjang geodesik}.
+    \label{eq:killing-conserved}
+\end{equation}
+Dalam formulasi Lagrangian, ini setara dengan menyatakan bahwa jika metrik tidak bergantung secara eksplisit pada koordinat $x^\alpha$ tertentu (yaitu $\partial_\alpha g_{\mu\nu} = 0$, yang berarti $x^\alpha$ adalah koordinat \textit{siklis}), maka momentum konjugat $p_\alpha = \partial\mathcal{L}/\partial\dot{x}^\alpha$ terkonservasi.
+
+Metrik Kerr memiliki dua simetri kontinu fundamental dan satu vektor Killing terkait masing-masing:
+
+\begin{enumerate}[label=(\roman*)]
+    \item \textbf{Stasioneritas} ($\partial_t g_{\mu\nu} = 0$): Metrik tidak bergantung pada waktu koordinat $t$, yang mencerminkan fakta bahwa medan gravitasi massa berotasi stasioner tidak berubah seiring waktu. Vektor Killing temporal $\xi^\mu_{(t)} = (1, 0, 0, 0)$ menghasilkan konstanta gerak berupa \textbf{energi spesifik}:
+    \begin{equation}
+        p_t = \frac{\partial\mathcal{L}}{\partial\dot{t}} = g_{tt}\,\dot{t} + g_{t\phi}\,\dot{\phi} \equiv \frac{E}{c}.
+        \label{eq:const-E}
+    \end{equation}
+    Secara fisis, $E$ mewakili energi total per satuan massa yang terkonservasi sepanjang orbit, mencakup energi kinetik, energi potensial gravitasi, dan koreksi relativistik. Pada metrik Kerr, suku $g_{t\phi}\,\dot{\phi}$ menunjukkan bahwa energi partikel tidak hanya bergantung pada laju waktu $\dot{t}$ tetapi juga terkopling dengan kecepatan sudut $\dot{\phi}$---konsekuensi langsung dari \textit{frame-dragging}.
+
+    \item \textbf{Simetri aksial} ($\partial_\phi g_{\mu\nu} = 0$): Metrik tidak bergantung pada sudut azimut $\phi$, mencerminkan invariansi rotasional terhadap sumbu rotasi massa sumber. Vektor Killing aksial $\xi^\mu_{(\phi)} = (0, 0, 0, 1)$ menghasilkan konstanta gerak berupa \textbf{momentum sudut spesifik terhadap sumbu-$z$}:
+    \begin{equation}
+        p_\phi = \frac{\partial\mathcal{L}}{\partial\dot{\phi}} = g_{\phi t}\,\dot{t} + g_{\phi\phi}\,\dot{\phi} \equiv -L_z.
+        \label{eq:const-Lz}
+    \end{equation}
+    Secara fisis, $L_z$ mewakili komponen momentum sudut orbital yang terproyeksi pada sumbu rotasi massa pusat. Tanda negatif pada konvensi di atas dipilih agar $L_z > 0$ untuk orbit ko-rotasi (searah putaran massa sumber). Suku $g_{\phi t}\,\dot{t}$ kembali menunjukkan kopling waktu-rotasi akibat penyeretan kerangka.
+\end{enumerate}
+
+Selain kedua konstanta gerak dari simetri Killing di atas, normalisasi empat-kecepatan memberikan constraint tambahan:
+\begin{equation}
+    g_{\mu\nu}\,\dot{x}^\mu\,\dot{x}^\nu = c^2,
+    \label{eq:normalisasi}
+\end{equation}
+untuk partikel bermassa (\textit{timelike geodesic}), yang secara fisis menyatakan bahwa ``kelajuan'' partikel melalui ruang-waktu selalu sama dengan kecepatan cahaya $c$---sebuah partikel yang diam dalam ruang masih bergerak melalui waktu dengan kecepatan $c$ \parencite{Carroll2004SpacetimeGeometry, Schutz2009FirstCourse}.
+
+Ketiga besaran konservatif ini ($E$, $L_z$, dan constraint normalisasi) mereduksi sistem empat persamaan geodesik orde dua menjadi sistem yang lebih mudah ditangani secara numerik, sebagaimana dibahas pada Bab~\ref{chap:metode}.
+
+
+% ============================================================
+\section{Transportasi Paralel Tensor Spin}
+\label{sec:transportasi-paralel}
+
+\subsection{Hukum Transportasi Paralel dan Presesi Giroskop}
+\label{subsec:transport-paralel-hukum}
+
+Orientasi giroskop yang bergerak bebas dalam ruang-waktu melengkung berubah menurut hukum transportasi paralel (\textit{parallel transport}). Vektor spin $S^\mu$ yang diangkut secara paralel sepanjang worldline $x^\mu(\tau)$ memenuhi:
+\begin{equation}
+    \frac{DS^\mu}{D\tau} = \frac{dS^\mu}{d\tau}
+    + \Gamma^\mu_{\nu\rho}\, S^\nu\, \frac{dx^\rho}{d\tau} = 0.
+    \label{eq:spin-transport}
+\end{equation}
+
+Secara fisis, Persamaan~\eqref{eq:spin-transport} memiliki interpretasi yang sangat mendalam dan elegan:
+
+\begin{enumerate}[label=(\alph*), wide=0pt, leftmargin=*]
+    \item \textbf{``Konstan'' dalam pengertian geometri intrinsik}\\
+    Operator $D/D\tau$ adalah \textit{turunan kovarian sepanjang kurva}, yang merupakan generalisasi dari turunan biasa $d/d\tau$ untuk memperhitungkan kelengkungan ruang-waktu. Persamaan $DS^\mu/D\tau = 0$ secara harfiah menyatakan bahwa vektor spin ``tidak berubah sama sekali'' menurut geometri intrinsik ruang-waktu. Dalam bahasa intuitif: giroskop jatuh bebas mempertahankan orientasinya terhadap ruang-waktu lokal dengan kesetiaan sempurna. Namun, karena ruang-waktu itu sendiri melengkung, orientasi yang ``konstan secara intrinsik'' ini tampak berubah ketika diekspresikan dalam sistem koordinat pengamat jauh. Inilah esensi presesi relativistik.
+
+    \item \textbf{Analogi dengan permukaan melengkung}\\
+    Sebagai analogi, bayangkan sebuah vektor panah yang diletakkan di kutub utara Bumi menunjuk ke arah selatan. Jika vektor ini ``ditransportasikan secara paralel'' sepanjang garis bujur ke ekuator, kemudian ke sepanjang ekuator sejauh $90°$, lalu kembali ke kutub melalui garis bujur lain, vektor tersebut tidak akan kembali ke orientasi semula---ia akan berputar sebesar $90°$. Rotasi ini bukan karena vektor ``diputar secara aktif'', melainkan karena kelengkungan permukaan Bumi sendiri. Fenomena analogis inilah yang terjadi pada vektor spin giroskop GP-B saat mengorbit Bumi: kelengkungan ruang-waktu akibat massa dan rotasi Bumi mengakibatkan spin berputar relatif terhadap bintang-bintang jauh, meskipun secara lokal giroskop merasa ``tidak berputar sama sekali.''
+
+    \item \textbf{Peran simbol Christoffel sebagai operator rotasi lokal}\\
+    Suku koreksi $\Gamma^\mu_{\nu\rho}\, S^\nu\, u^\rho$ dalam Persamaan~\eqref{eq:spin-transport} secara eksplisit menggambarkan bagaimana kelengkungan lokal (dikodekan dalam $\Gamma^\mu_{\nu\rho}$) berinteraksi dengan orientasi spin saat ini ($S^\nu$) dan kecepatan gerak partikel ($u^\rho = dx^\rho/d\tau$) untuk menghasilkan laju perubahan komponen spin dalam koordinat. Persamaan ini menyatakan bahwa laju presesi bergantung pada tiga faktor: (i) kekuatan medan gravitasi lokal (melalui $\Gamma$), (ii) orientasi spin saat itu ($S^\nu$), dan (iii) kecepatan orbit ($u^\rho$).
+\end{enumerate}
+
+\subsection{Formulasi Sistem ODE dan Struktur Matriks}
+\label{subsec:spin-ode-system}
+
+Persamaan~\eqref{eq:spin-transport} dapat ditulis ulang dalam bentuk eksplisit sebagai sistem persamaan diferensial biasa (ODE) orde satu:
+\begin{equation}
+    \frac{dS^\mu}{d\tau} = -\Gamma^\mu_{\nu\rho}\, S^\nu\, u^\rho,
+    \label{eq:spin-ode}
+\end{equation}
+dengan $u^\rho = dx^\rho/d\tau$ adalah empat-kecepatan yang diperoleh dari penyelesaian geodesik. Dalam notasi matriks, sistem ini menjadi:
+\begin{equation}
+    \frac{d}{d\tau}
+    \begin{pmatrix} S^t \\ S^r \\ S^\theta \\ S^\phi \end{pmatrix}
+    = -\mathbf{A}(\tau)
+    \begin{pmatrix} S^t \\ S^r \\ S^\theta \\ S^\phi \end{pmatrix},
+    \label{eq:spin-matrix}
+\end{equation}
+di mana elemen matriks $\mathbf{A}$ adalah:
+\begin{equation}
+    A^\mu_{\ \nu}(\tau) = \Gamma^\mu_{\nu\rho}\, u^\rho(\tau).
+    \label{eq:matrix-A}
+\end{equation}
+Secara fisis, matriks $\mathbf{A}(\tau)$ berperan sebagai \textbf{generator rotasi infinitesimal} bagi vektor spin pada setiap momen waktu proper $\tau$. Matriks ini bergantung pada waktu melalui dua mekanisme: (i) posisi orbital yang berubah sepanjang geodesik ($\Gamma$ bergantung pada posisi), dan (ii) kecepatan orbital yang berubah ($u^\rho$ bergantung pada $\tau$). Persamaan~\eqref{eq:spin-matrix} bersama dengan empat persamaan geodesik orde dua (delapan persamaan orde satu) membentuk sistem 12 ODE terkopel yang diselesaikan secara simultan menggunakan metode numerik.
+
+\subsection{Constraint Ortogonalitas dan Konsistensi Fisika}
+\label{subsec:constraint-ortogonalitas}
+
+Selain persamaan evolusi, vektor spin harus memenuhi constraint ortogonalitas terhadap empat-kecepatan:
+\begin{equation}
+    g_{\mu\nu}\, S^\mu\, u^\nu = 0,
+    \label{eq:spin-constraint}
+\end{equation}
+yang menjamin bahwa spin bersifat ``ruang murni'' (\textit{spacelike}) dalam kerangka acuan diam partikel (\textit{rest frame}). Secara fisis, constraint ini menyatakan bahwa spin giroskop tidak memiliki komponen temporal dalam kerangka diam giroskop---sesuai dengan fakta bahwa orientasi giroskop merupakan besaran spasial tiga-dimensi, bukan besaran empat-dimensi penuh.
+
+Constraint ini terpenuhi secara otomatis jika kondisi awal $S^\mu(0)$ dipilih ortogonal terhadap $u^\mu(0)$, karena transportasi paralel melestarikan produk dalam $g_{\mu\nu} S^\mu u^\nu$ sepanjang geodesik (yang dapat dibuktikan dari $D(g_{\mu\nu} S^\mu u^\nu)/D\tau = 0$ menggunakan kompatibilitas metrik $\nabla_\rho g_{\mu\nu} = 0$ bersama $DS^\mu/D\tau = 0$ dan $Du^\mu/D\tau = 0$ pada geodesik). Dalam implementasi numerik, pemantauan besaran $g_{\mu\nu} S^\mu u^\nu$ berfungsi sebagai indikator kualitas integrasi: deviasi dari nol menandakan akumulasi galat numerik \parencite{Carroll2004SpacetimeGeometry, Misner1973Gravitation}.
+
+
+% ============================================================
+\section{Efek Relativistik di Sekitar Bumi}
+\label{sec:efek-relativistik}
+
+Giroskop yang mengorbit Bumi mengalami dua efek presesi relativistik yang berbeda secara fundamental dalam asal-usul fisisnya. Kedua efek ini memberikan kontribusi yang saling tegak lurus pada laju presesi total, sehingga dapat dipisahkan secara eksperimental melalui pemilihan konfigurasi orbit yang tepat.
+
+\subsection{Efek Geodesik (Presesi de Sitter): Presesi Akibat Kelengkungan Ruang-Waktu}
+\label{subsec:efek-geodesik}
+
+Efek geodesik (disebut juga presesi de Sitter) adalah presesi orientasi giroskop yang bergerak dalam medan gravitasi akibat kelengkungan ruang-waktu, bahkan tanpa rotasi sumber. Efek ini muncul dari transportasi paralel vektor spin sepanjang geodesik pada metrik Schwarzschild---artinya, efek ini sudah hadir meskipun Bumi tidak berotasi sama sekali.
+
+Secara intuitif, efek geodesik dapat dipahami sebagai berikut: ketika giroskop mengorbit massa pusat sepanjang satu orbit penuh, vektor spinnya ditransportasikan secara paralel melalui ruang-waktu yang melengkung secara radial. Mirip dengan analogi transportasi paralel pada permukaan bola (Bagian~\ref{subsec:transport-paralel-hukum}), spin tidak kembali ke orientasi semula setelah satu putaran karena ``defisit sudut'' yang ditimbulkan oleh kelengkungan. Laju presesi ini proporsional terhadap kuadrat kelajuan orbit ($v^2/c^2$) dan kekuatan medan gravitasi ($GM/rc^2$).
+
+Dalam aproksimasi medan lemah dan orbit sirkular, laju presesi geodesik diberikan oleh \parencite{Will2014Confrontation}:
+\begin{equation}
+    \bm{\Omega}_{\text{geodetik}} = \frac{3}{2}\,\frac{GM}{c^2\,r^3}\; \mathbf{r} \times \mathbf{v},
+    \label{eq:omega-geodetic}
+\end{equation}
+dengan $\mathbf{r}$ adalah vektor posisi dan $\mathbf{v}$ adalah kecepatan orbit. Arah presesi ($\mathbf{r} \times \mathbf{v}$) tegak lurus terhadap bidang orbit, sehingga spin berpresesi \textbf{di dalam bidang orbit}. Untuk orbit sirkular dengan $v = \sqrt{GM/r}$, magnitudo laju presesi menjadi:
+\begin{equation}
+    |\bm{\Omega}_{\text{geodetik}}| = \frac{3}{2}\,\frac{(GM)^{3/2}}{c^2\, r^{5/2}}.
+    \label{eq:omega-geodetic-circular}
+\end{equation}
+Untuk orbit GP-B ($r \approx 7{,}013 \times 10^6$~m), prediksi GR menghasilkan $\Omega_{\text{geodetik}} \approx 6606$~mas/yr, yang merupakan efek dominan (sekitar 170 kali lebih besar dari efek Lense-Thirring).
+
+
+\subsection{Efek Frame-Dragging (Presesi Lense-Thirring): Presesi Akibat Rotasi Massa Sumber}
+\label{subsec:frame-dragging}
+
+Efek Lense-Thirring merupakan fenomena yang secara fundamental berbeda dari presesi geodesik. Efek ini muncul \textbf{semata-mata karena rotasi massa sumber} yang menyeret ruang-waktu di sekitarnya (\textit{frame-dragging}). Secara matematis, efek ini berasal dari komponen campuran $g_{t\phi} \neq 0$ pada metrik Kerr yang sama sekali tidak ada pada metrik Schwarzschild.
+
+Analogi yang membantu pemahaman intuitif: bayangkan sebuah bola besi yang terendam dalam madu kental dan diputar. Madu di sekitar bola akan ikut terseret berputar, dan benda-benda kecil yang terapung dalam madu akan ikut terbawa rotasi meskipun tidak ada gaya langsung yang mendorongnya. Secara analogis, massa berotasi (Bumi) ``menyeret'' ruang-waktu (berperan sebagai ``madu'') di sekitarnya, dan giroskop (benda terapung) yang berada di dalamnya mengalami presesi akibat penyeretan ini. Perbedaan kunci adalah: pada analogi madu, penyeretan terjadi melalui gesekan viskos; pada gravitasi, penyeretan terjadi melalui kelengkungan ruang-waktu itu sendiri---tanpa kontak fisis apa pun.
+
+Bentuk vektor umum laju presesi Lense-Thirring pada jarak $\mathbf{r}$ dari sumber bermomen sudut $\mathbf{J}$ diberikan oleh \parencite{Lense1918LenseThirring}:
+\begin{equation}
+    \bm{\Omega}_{\text{LT}}(\mathbf{r})
+    = \frac{G}{c^2\, r^3}\left[3\hat{\mathbf{r}}\,(\hat{\mathbf{r}} \cdot \mathbf{J}) - \mathbf{J}\right],
+    \label{eq:omega-lt-general}
+\end{equation}
+dengan $\hat{\mathbf{r}} = \mathbf{r}/r$. Struktur Persamaan~\eqref{eq:omega-lt-general} identik secara matematis dengan medan dipol magnetik dalam elektrodinamika klasik, yang secara fisis mencerminkan keserupaan antara ``gravitomagnetisme'' (efek gravitasi dari arus massa, yaitu massa berotasi) dan magnetisme (efek elektromagnetik dari arus muatan). Analogi gravitoelektromagnetik ini bukan kebetulan, melainkan konsekuensi dari linearisasi persamaan medan Einstein pada limit medan lemah \parencite{Misner1973Gravitation}.
+
+Untuk orbit polar (relevan dengan konfigurasi GP-B, di mana bidang orbit mengandung sumbu rotasi Bumi), ekspresi ini disederhanakan menjadi:
+\begin{equation}
+    |\bm{\Omega}_{\text{LT}}| \approx \frac{2G\,|\mathbf{J}|}{c^2\, r^3}.
+    \label{eq:omega-lt-approx}
+\end{equation}
+Arah presesi Lense-Thirring berada di dalam bidang yang mengandung sumbu rotasi Bumi dan vektor posisi orbital, sehingga tegak lurus terhadap arah presesi geodesik. Untuk orbit GP-B, prediksi GR memberikan $\Omega_{\text{LT}} \approx 39$~mas/yr---efek yang sangat kecil namun terukur dengan presisi tinggi. Derivasi lengkap ekspresi ini dari metrik Kerr melalui reduksi medan lemah disajikan pada Bab~\ref{chap:metode}.
+
+\subsection{Superposisi Presesi Total}
+\label{subsec:presesi-total}
+
+Laju presesi total yang dialami giroskop merupakan superposisi linear kedua kontribusi:
+\begin{equation}
+    \bm{\Omega} = \bm{\Omega}_{\text{geodetik}} + \bm{\Omega}_{\text{LT}}.
+    \label{eq:omega-total}
+\end{equation}
+Karena kedua vektor presesi berada pada bidang yang saling tegak lurus (presesi geodesik searah Utara-Selatan dalam bidang orbit, presesi Lense-Thirring searah Timur-Barat terhadap sumbu rotasi Bumi), keduanya dapat dipisahkan secara eksperimental melalui pengukuran dua komponen sudut independen dari orientasi giroskop.
+
+
+% ============================================================
+\section{Eksperimen Gravity Probe B}
+\label{sec:gravity-probe-b}
+
+\subsection{Rancangan dan Konfigurasi Eksperimen}
+\label{subsec:gpb-rancangan}
+
+Eksperimen \textit{Gravity Probe B} (GP-B) merupakan misi satelit yang dirancang oleh Stanford University dan NASA selama lebih dari empat dekade untuk menguji secara langsung dua prediksi kuantitatif Relativitas Umum: efek presesi geodesik (de Sitter) dan efek presesi \textit{frame-dragging} (Lense-Thirring) \parencite{Turneaure1986GravityProbeBApproach}. Misi ini diluncurkan pada 20 April 2004 dan mengumpulkan data sains selama $\sim$353 hari.
+
+Instrumen utama GP-B terdiri dari empat giroskop kuarsa superpresisi yang mengorbit Bumi dalam lintasan polar pada ketinggian $\sim$642~km (radius orbit $r \approx 7{,}013 \times 10^6$~m). Orbit polar dipilih secara sengaja agar bidang orbit mengandung sumbu rotasi Bumi, sehingga komponen presesi geodesik (Utara-Selatan) dan Lense-Thirring (Timur-Barat) dapat diukur secara independen sebagai dua komponen sudut yang saling tegak lurus. Orientasi referensi diarahkan ke bintang panduan IM Pegasi (HR 8703). Parameter fisik yang relevan ditampilkan pada Tabel~\ref{tab:param-gpb}.
+
+\begin{table}[ht]
+\centering
+\caption{Parameter fisik yang digunakan dalam analisis GP-B.}
+\label{tab:param-gpb}
+\begin{tabular}{lll}
+\toprule
+\textbf{Parameter} & \textbf{Simbol} & \textbf{Nilai} \\
+\midrule
+Massa Bumi             & $M$    & $5{,}972 \times 10^{24}$~kg \\
+Momentum sudut Bumi    & $J$    & $5{,}86 \times 10^{33}$~kg\,m$^2$\,s$^{-1}$ \\
+Radius orbit           & $r$    & $7{,}013 \times 10^{6}$~m \\
+Radius Schwarzschild   & $r_s$  & $8{,}87 \times 10^{-3}$~m \\
+Parameter rotasi       & $a$    & $3{,}98 \times 10^{-3}$~m \\
+Konstanta gravitasi    & $G$    & $6{,}674 \times 10^{-11}$~m$^3$\,kg$^{-1}$\,s$^{-2}$ \\
+Kecepatan cahaya       & $c$    & $2{,}998 \times 10^{8}$~m\,s$^{-1}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Hasil Pengukuran dan Konfirmasi Relativitas Umum}
+\label{subsec:gpb-hasil}
+
+Hasil akhir pengukuran GP-B yang dipublikasikan oleh \textcite{Everitt2011GravityProbeB} adalah:
+\begin{equation}
+    \Omega_{\text{geodetik}}^{\text{GP-B}} = 6602 \pm 18~\text{mas/yr}, \qquad
+    \Omega_{\text{LT}}^{\text{GP-B}} = 37{,}2 \pm 7{,}2~\text{mas/yr},
+    \label{eq:gpb-results}
+\end{equation}
+di mana 1~mas (milliarcsecond) $= 4{,}848 \times 10^{-9}$~rad. Konversi satuan dari rad/s ke mas/yr menggunakan faktor:
+\begin{equation}
+    1~\text{rad/s} = 206\,264\,806{,}247 \times 3{,}15576 \times 10^7~\text{mas/yr}
+    \approx 6{,}51 \times 10^{15}~\text{mas/yr}.
+    \label{eq:konversi-masyr}
+\end{equation}
+
+Hasil efek geodesik ($6602 \pm 18$~mas/yr) konsisten dengan prediksi GR ($\approx 6606$~mas/yr) dengan presisi 0{,}28\%, menjadikannya salah satu pengujian presisi tertinggi dari kelengkungan ruang-waktu. Hasil efek Lense-Thirring ($37{,}2 \pm 7{,}2$~mas/yr) konsisten dengan prediksi GR ($\approx 39$~mas/yr) dengan ketidakpastian $\sim$19\%, yang merupakan konfirmasi langsung pertama atas efek penyeretan kerangka oleh rotasi Bumi. Ketidakpastian yang relatif besar pada pengukuran Lense-Thirring disebabkan oleh torsi elektrostatik tak terduga (\textit{patch effect}) pada permukaan rotor giroskop yang memerlukan pemodelan pasca-misi yang kompleks.
+
+Selain GP-B, efek Lense-Thirring juga dikonfirmasi oleh analisis orbit satelit LAGEOS dengan ketidakpastian sekitar 10\% \parencite{CiufoliniPavlis2004_LAGEOS}. Berbagai pendekatan alternatif, termasuk model gravitasi vektor \parencite{BeheraBarik2020} dan teori modifikasi paritas \parencite{Mao2006, Nakamura2018}, telah diajukan namun belum menunjukkan deviasi signifikan dari GR pada tingkat presisi eksperimen saat ini.
+
+
+% ============================================================
+\section{Pustaka Komputasi Python}
+\label{sec:pustaka-python}
+
+Penyelesaian numerik persamaan geodesik dan transportasi paralel spin memerlukan implementasi komputasi yang efisien dan terverifikasi. Penelitian ini memanfaatkan pustaka Python berikut sebagai alat bantu:
+\begin{enumerate}[label=(\roman*)]
+    \item \textbf{EinsteinPy} \parencite{Bapat2020EinsteinPy}: pustaka sumber terbuka untuk komputasi tensorial GR, menyediakan kelas untuk mendefinisikan metrik, menghitung simbol Christoffel, dan mengintegrasikan geodesik. Dalam penelitian ini, EinsteinPy digunakan terutama untuk memverifikasi hasil perhitungan analitik simbol Christoffel metrik Kerr.
+    \item \textbf{FANTASY} \parencite{Christian2020FANTASY}: integrator geodesik simplektik dengan diferensiasi otomatis, menawarkan stabilitas numerik jangka panjang melalui preservasi struktur simplektik Hamiltonian.
+    \item \textbf{KerrGeoPy} \parencite{Park2024KerrGeoPy}: pustaka khusus untuk geodesik pada metrik Kerr yang menyediakan solusi analitik dan semi-analitik orbit terikat.
+    \item \textbf{SciPy} \parencite{SciPy2020}: pustaka komputasi ilmiah yang menyediakan solver ODE (\texttt{solve\_ivp}) dengan berbagai metode termasuk Runge-Kutta orde 4/5 (RK45) yang digunakan sebagai integrator utama dalam penelitian ini.
+    \item \textbf{Matplotlib} \parencite{Matplotlib2007}: pustaka visualisasi data untuk menghasilkan grafik evolusi spin, lintasan orbital, dan analisis kestabilan numerik.
+\end{enumerate}
+
+Pustaka-pustaka ini digunakan untuk memverifikasi hasil derivasi analitik dan menghasilkan solusi numerik yang disajikan pada Bab~\ref{chap:metode}.

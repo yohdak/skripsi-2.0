@@ -1,0 +1,117 @@
+% !TEX root = main.tex
+
+% =============================
+\documentclass[12pt,a4paper,fleqn]{report}
+
+
+% --- Font (Times New Roman asli) ---
+\usepackage{fontspec}
+\setmainfont{Times New Roman}[Ligatures=TeX,Renderer=Basic]
+
+\usepackage[american,indonesian]{babel}
+
+\usepackage{csquotes}
+\usepackage[style=apa,backend=biber]{biblatex}
+\addbibresource{references.bib}
+
+% --- MAP bahasa indonesian ke mapping 'american-apa' yang tersedia ---
+\DeclareLanguageMapping{indonesian}{american-apa}
+
+% --- Optional: override beberapa label bibliografi agar muncul Bahasa Indonesia ---
+\DefineBibliographyStrings{indonesian}{%
+  bibliography = {DAFTAR PUSTAKA},
+  references = {DAFTAR PUSTAKA},
+  and          = {\&},       % Mengubah "dan" menjadi "&"
+  %andothers    = {dkk\adddot} % Opsional: mengubah "et al." jadi "dkk."
+  %andothers = {dkk\adddot} % contoh: "et al." -> "dkk."
+}
+
+% Pilih bahasa tampilan dokumen jadi indonesian (tidak mengubah mapping di atas)
+\AtBeginDocument{\selectlanguage{indonesian}}
+
+% --- Margin ---
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  left=4cm,
+  right=3cm,
+  top=4cm,
+  bottom=3cm
+}
+
+% --- Spasi 1.5 ---
+\usepackage{setspace}
+\onehalfspacing
+
+% --- Paragraf (indentasi) ---
+\usepackage{indentfirst}
+\setlength{\parindent}{1cm}
+\setlength{\parskip}{0pt}
+
+% --- Matematika & fisika ---
+\usepackage{amsmath,amssymb,amsfonts,mathtools}
+\setlength{\mathindent}{\parindent}
+\usepackage{physics}
+\usepackage{braket}
+\usepackage{bm}
+\usepackage{tensor}
+\usepackage{siunitx}
+
+% --- Gambar & grafik ---
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{makecell}
+\usepackage{colortbl}
+\usepackage{tabularx}
+
+% --- Hyperlink & referensi ---
+\usepackage[hidelinks]{hyperref}
+\usepackage{cleveref}
+
+% --- Penomoran persamaan per bab ---
+\numberwithin{equation}{chapter}
+
+% --- Enumerate custom ---
+\usepackage{enumitem}
+
+
+% --- Format judul bab: "BAB I" dan JUDUL di tengah, nomor bab Romawi ---
+
+% --- Pastikan titlesec dimuat ---
+\usepackage{titlesec}
+
+% --- Tetap gunakan numbering chapter ARABIC untuk penomoran internal ---
+\renewcommand{\thechapter}{\arabic{chapter}}
+\renewcommand{\thesection}{\thechapter.\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+
+% --- Tampilakan label "BAB I" dengan ROMAWI (hanya tampilan) ---
+\titleformat{\chapter}[display]
+  {\normalfont\centering\bfseries\normalsize}   % ukuran 12pt (normalsize dalam dokclass 12pt)
+  {\MakeUppercase{BAB \Roman{chapter}}} % CETAKAN label pakai ROMAWI tanpa mengganti \thechapter
+  {0pt}
+  {\vspace{1ex}\MakeUppercase}  % membuat judul bab juga kapital seluruhnya; hapus \MakeUppercase jika tidak mau
+\titlespacing*{\chapter}{0pt}{0pt}{20pt}
+
+% --- Section / subsection tetap 12pt ---
+\titleformat{\section}
+  {\normalfont\bfseries\normalsize}
+  {\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{12pt}{6pt}
+
+\titleformat{\subsection}
+  {\normalfont\bfseries\normalsize}
+  {\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{10pt}{4pt}
+
+\usepackage[none]{hyphenat}
+\sloppy
+

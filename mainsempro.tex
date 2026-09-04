@@ -1,0 +1,45 @@
+% !TEX program = xelatex
+% !TEX root = mainsempro.tex
+
+% --- Versi Seminar Proposal (Bab 1–3 saja) ---
+
+\input{preamble2.tex}
+
+% --- Informasi skripsi ---
+\title{\textbf{Kajian Analitik dan Penyelesaian Numerik Efek Lense-Thirring pada Metrik Kerr: Studi Kasus Gravity Probe B}}
+\author{Pramudya Jesril Pratama}
+\date{\today}
+
+\begin{document}
+
+% ---------- Cover / Sampul Sempro ----------
+\input{coversempro.tex}
+
+% ---------- Penomoran HALAMAN MUKA: Roman kecil ----------
+\pagenumbering{roman}
+\setcounter{page}{2}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+% ---------- Isi utama: penomoran Arab ----------
+\cleardoublepage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% === BAB I: PENDAHULUAN ===
+\input{chapters/pendahuluan.tex}
+
+% === BAB II: TINJAUAN PUSTAKA ===
+\input{chapters/tinjauan.tex}
+
+% === BAB III: MODEL MATEMATIS DAN METODE (versi ringkas sempro) ===
+\input{chapters/metode_sempro.tex}
+
+% === LAMPIRAN ===
+\input{chapters/lampiran.tex}
+
+\printbibliography
+
+\end{document}
