@@ -175,13 +175,41 @@ dinyatakan melalui tensor Riemann, yang dibahas pada bagian berikutnya
 \section{Kelengkungan Ruang-Waktu dan Persamaan Medan Einstein}
 \label{sec:kelengkungan-efe}
 
-Kelengkungan intrinsik ruang-waktu dinyatakan oleh tensor Riemann. Salah satu cara untuk memperkenalkan tensor ini adalah melalui komutator dua turunan kovarian yang bekerja pada vektor $V^\rho$ \parencite{Schutz2009FirstCourse,Carroll2004SpacetimeGeometry}:
+Bagian sebelumnya telah menghasilkan turunan kovarian sebagai operasi yang
+membandingkan vektor pada ruang-waktu dengan basis yang dapat berubah dari
+satu titik ke titik lain. Untuk melihat apakah perubahan tersebut hanya
+berasal dari pilihan koordinat atau mengandung kelengkungan intrinsik,
+dapat dibandingkan hasil dua turunan kovarian yang dilakukan dengan urutan
+berbeda pada vektor $V^\rho$ \parencite{Schutz2009FirstCourse,Carroll2004SpacetimeGeometry}:
 \begin{equation}
-    \left(\nabla_\mu\nabla_\nu-\nabla_\nu\nabla_\mu\right)V^\rho
-    =R^\rho_{\ \sigma\mu\nu}V^\sigma.
-    \label{eq:riemann-commutator}
+    \nabla_\mu\nabla_\nu V^\rho
+    \qquad\text{dan}\qquad
+    \nabla_\nu\nabla_\mu V^\rho.
 \end{equation}
-Dengan konvensi indeks yang digunakan dalam penelitian ini, tensor Riemann dituliskan sebagai
+Selisih kedua operasi tersebut dituliskan sebagai
+\begin{equation}
+    \left(\nabla_\mu\nabla_\nu-\nabla_\nu\nabla_\mu\right)V^\rho.
+    \label{eq:covariant-commutator-start}
+\end{equation}
+Dengan mensubstitusikan definisi turunan kovarian dari
+Persamaan~\eqref{eq:covariant-derivative} ke dalam
+Persamaan~\eqref{eq:covariant-commutator-start}, kemudian mengembangkan
+kedua turunan dan mengelompokkan suku-suku yang mengalikan $V^\sigma$,
+diperoleh
+\begin{equation}
+\begin{split}
+    \left(\nabla_\mu\nabla_\nu-\nabla_\nu\nabla_\mu\right)V^\rho
+    ={}&\Big(
+    \partial_\mu\Gamma^\rho_{\nu\sigma}
+    -\partial_\nu\Gamma^\rho_{\mu\sigma} \\
+    &+\Gamma^\rho_{\mu\lambda}\Gamma^\lambda_{\nu\sigma}
+    -\Gamma^\rho_{\nu\lambda}\Gamma^\lambda_{\mu\sigma}
+    \Big)V^\sigma.
+\end{split}
+    \label{eq:riemann-expansion}
+\end{equation}
+Koefisien yang berada di dalam tanda kurung pada
+Persamaan~\eqref{eq:riemann-expansion} didefinisikan sebagai tensor Riemann,
 \begin{equation}
     R^\rho_{\ \sigma\mu\nu}
     =\partial_\mu\Gamma^\rho_{\nu\sigma}
@@ -190,77 +218,128 @@ Dengan konvensi indeks yang digunakan dalam penelitian ini, tensor Riemann ditul
     -\Gamma^\rho_{\nu\lambda}\Gamma^\lambda_{\mu\sigma}.
     \label{eq:riemann}
 \end{equation}
-Karena simbol Christoffel dibangun dari turunan pertama tensor metrik, struktur tensor Riemann secara skematis dapat dinyatakan sebagai
+Dengan demikian,
 \begin{equation}
+    \left(\nabla_\mu\nabla_\nu-\nabla_\nu\nabla_\mu\right)V^\rho
+    =R^\rho_{\ \sigma\mu\nu}V^\sigma.
+    \label{eq:riemann-commutator}
+\end{equation}
+Hasil ini menunjukkan bahwa tensor Riemann tidak diperkenalkan sebagai
+besaran yang berdiri sendiri, melainkan muncul dari ketidakkomutatifan dua
+turunan kovarian. Karena simbol Christoffel sendiri dibangun dari metrik,
+ketergantungan matematisnya dapat diringkas sebagai
+\begin{equation}
+    \Gamma\sim g^{-1}\partial g,
+    \qquad
     R^\rho_{\ \sigma\mu\nu}
     \sim \partial\Gamma+\Gamma\Gamma
-    \sim \partial^2 g+(\partial g)^2.
+    \sim g^{-1}\partial^2g+(g^{-1}\partial g)^2.
+    \label{eq:riemann-dependence}
 \end{equation}
-Dengan demikian, tensor Riemann memuat informasi mengenai perubahan koneksi dari satu titik ke titik lain dan tidak hanya nilai koneksi pada satu sistem koordinat tertentu.
+Secara fisis, tensor Riemann mengukur kelengkungan intrinsik ruang-waktu,
+sehingga nilainya tidak dapat dihilangkan hanya dengan memilih sistem
+koordinat lain.
 
-Tensor Ricci diperoleh melalui kontraksi tensor Riemann,
+Tensor Riemann memiliki empat indeks. Untuk membentuk objek dengan jumlah
+indeks lebih sedikit, dilakukan kontraksi antara indeks pertama dan ketiga,
 \begin{equation}
     R_{\mu\nu}=R^\rho_{\ \mu\rho\nu},
     \label{eq:ricci}
 \end{equation}
-sedangkan skalar kelengkungan diperoleh melalui kontraksi lebih lanjut menggunakan metrik invers,
+yang menghasilkan tensor Ricci. Kontraksi berikutnya dilakukan dengan
+metrik invers,
 \begin{equation}
-    R=g^{\mu\nu}R_{\mu\nu}.
+    R=g^{\mu\nu}R_{\mu\nu},
     \label{eq:ricci-scalar}
 \end{equation}
-Dari kedua besaran tersebut dibentuk tensor Einstein,
+sehingga diperoleh skalar kelengkungan. Rantai operasi dari metrik hingga
+objek kelengkungan yang lebih terkontraksi dapat dituliskan sebagai
 \begin{equation}
-    G_{\mu\nu}=R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}.
+    g_{\mu\nu}
+    \longrightarrow
+    \Gamma^\rho_{\mu\nu}
+    \longrightarrow
+    R^\rho_{\ \sigma\mu\nu}
+    \longrightarrow
+    R_{\mu\nu}
+    \longrightarrow
+    R.
+    \label{eq:curvature-chain}
+\end{equation}
+
+Persamaan medan gravitasi memerlukan tensor orde dua yang dibangun dari
+kelengkungan dan memiliki divergensi kovarian nol. Kombinasi yang memenuhi
+sifat tersebut adalah tensor Einstein \parencite{Misner1973Gravitation,Carroll2004SpacetimeGeometry},
+\begin{equation}
+    G_{\mu\nu}
+    =R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}.
     \label{eq:einstein-tensor}
 \end{equation}
-Tensor Einstein memenuhi identitas Bianchi terkontraksi,
+Identitas Bianchi terkontraksi memberikan
 \begin{equation}
     \nabla_\mu G^{\mu\nu}=0,
     \label{eq:contracted-bianchi}
 \end{equation}
-yang konsisten dengan konservasi lokal tensor energi-momentum,
+sedangkan konservasi lokal energi dan momentum dituliskan sebagai
 \begin{equation}
     \nabla_\mu T^{\mu\nu}=0.
     \label{eq:stress-energy-conservation}
 \end{equation}
-
-Hubungan antara geometri ruang-waktu dan distribusi massa-energi dinyatakan oleh persamaan medan Einstein \parencite{Einstein1916GR}:
+Kesamaan struktur kedua persamaan tersebut memungkinkan geometri
+ruang-waktu dihubungkan dengan distribusi energi-momentum melalui persamaan
+medan Einstein \parencite{Einstein1916GR,Schutz2009FirstCourse}:
 \begin{equation}
     G_{\mu\nu}
     =\frac{8\pi G}{c^4}T_{\mu\nu},
     \label{eq:efe}
 \end{equation}
-atau secara eksplisit,
+atau
 \begin{equation}
     R_{\mu\nu}-\frac{1}{2}Rg_{\mu\nu}
     =\frac{8\pi G}{c^4}T_{\mu\nu}.
 \end{equation}
-Karena $R_{\mu\nu}$ dan $R$ dibangun dari $g_{\mu\nu}$ beserta turunannya, persamaan medan Einstein merupakan sistem persamaan diferensial nonlinier untuk tensor metrik,
+Karena $R_{\mu\nu}$ dan $R$ dibangun dari metrik beserta turunan pertama
+dan keduanya, persamaan medan Einstein pada dasarnya merupakan sistem
+persamaan diferensial nonlinier untuk $g_{\mu\nu}$,
 \begin{equation}
-    G_{\mu\nu}=G_{\mu\nu}\!\left(g,\partial g,\partial^2 g\right).
+    G_{\mu\nu}=G_{\mu\nu}\!\left(g,\partial g,\partial^2g\right).
+    \label{eq:efe-metric-dependence}
 \end{equation}
+Secara fisis, ruas kiri menyatakan geometri ruang-waktu, sedangkan ruas
+kanan menyatakan distribusi energi dan momentum yang menjadi sumbernya.
 
-Pada daerah vakum berlaku $T_{\mu\nu}=0$, sehingga
+Untuk daerah di luar sumber materi berlaku kondisi vakum,
+\begin{equation}
+    T_{\mu\nu}=0.
+\end{equation}
+Persamaan~\eqref{eq:efe} kemudian mereduksi menjadi
 \begin{equation}
     G_{\mu\nu}=0.
 \end{equation}
-Mengambil trace terhadap persamaan tersebut memberikan
+Dengan mengambil trace,
 \begin{equation}
     g^{\mu\nu}G_{\mu\nu}
     =R-\frac{1}{2}R\,g^{\mu\nu}g_{\mu\nu}=0.
 \end{equation}
-Dalam empat dimensi $g^{\mu\nu}g_{\mu\nu}=4$, sehingga
+Dalam empat dimensi berlaku $g^{\mu\nu}g_{\mu\nu}=4$, sehingga
 \begin{equation}
     R-2R=0
     \quad\Longrightarrow\quad
     R=0.
 \end{equation}
-Substitusi kembali ke $G_{\mu\nu}=0$ menghasilkan persamaan medan vakum
+Substitusi kembali ke $G_{\mu\nu}=0$ memberikan
 \begin{equation}
     R_{\mu\nu}=0.
     \label{eq:vacuum-efe}
 \end{equation}
-Persamaan~\eqref{eq:vacuum-efe} menjadi titik awal untuk mencari metrik ruang-waktu di luar sumber materi. Dengan asumsi statis dan simetri sferis diperoleh solusi Schwarzschild, sedangkan asumsi stasioner dan simetri aksial untuk sumber berotasi menghasilkan solusi Kerr \parencite{Schwarzschild1916Field,Kerr1963KerrMetric}. Walaupun $R_{\mu\nu}=0$ pada daerah vakum, tensor Riemann secara umum tetap dapat tidak nol, sehingga ruang-waktu vakum tidak harus datar.
+Persamaan~\eqref{eq:vacuum-efe} merupakan bentuk persamaan medan yang
+digunakan untuk mencari geometri ruang-waktu di luar sumber. Dengan
+simetri statis dan sferis diperoleh solusi Schwarzschild, sedangkan
+sumber berotasi dengan simetri stasioner dan aksial menghasilkan solusi
+Kerr \parencite{Schwarzschild1916Field,Kerr1963KerrMetric}. Perlu
+ditekankan bahwa $R_{\mu\nu}=0$ tidak mengharuskan
+$R^\rho_{\ \sigma\mu\nu}=0$; ruang-waktu vakum tetap dapat memiliki
+kelengkungan intrinsik.
 
 
 % ============================================================
