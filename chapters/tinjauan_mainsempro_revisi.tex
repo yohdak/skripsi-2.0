@@ -5,53 +5,173 @@
 \label{chap:tinjauan}
 
 % ============================================================
-\section{Relativitas Umum Einstein}
-\label{sec:relativitas-umum}
+\section{Geometri Ruang-Waktu dan Tensor Metrik}
+\label{sec:geometri-metrik}
 
-Relativitas Umum (GR) mendeskripsikan gravitasi sebagai kelengkungan ruang-waktu empat dimensi yang ditentukan oleh distribusi massa dan energi. Hubungan antara geometri ruang-waktu dan sumber gravitasi dinyatakan oleh persamaan medan Einstein \parencite{Einstein1916GR}:
+Dalam relativitas umum, gravitasi direpresentasikan melalui geometri
+ruang-waktu empat dimensi. Struktur geometris tersebut dinyatakan oleh
+tensor metrik $g_{\mu\nu}$, yang menentukan interval antara dua peristiwa
+yang berdekatan \parencite{Schutz2009FirstCourse,Carroll2004SpacetimeGeometry}:
 \begin{equation}
-    R_{\mu\nu} - \frac{1}{2}\, R\, g_{\mu\nu} = \frac{8\pi G}{c^4}\, T_{\mu\nu},
-    \label{eq:efe}
+    ds^2 = g_{\mu\nu}\,dx^\mu dx^\nu.
+    \label{eq:interval-umum}
 \end{equation}
-di mana $R_{\mu\nu}$ adalah tensor Ricci, $R = g^{\mu\nu}R_{\mu\nu}$ adalah skalar kelengkungan, $g_{\mu\nu}$ adalah tensor metrik, dan $T_{\mu\nu}$ adalah tensor energi-momentum. Tensor Ricci diperoleh dari kontraksi tensor Riemann:
+
+Dalam penelitian ini digunakan konvensi tanda $(-,+,+,+)$. Pada
+ruang-waktu datar, tensor metrik direduksi menjadi metrik Minkowski,
 \begin{equation}
-    R^\rho_{\ \sigma\mu\nu} = \partial_\mu \Gamma^\rho_{\nu\sigma}
-    - \partial_\nu \Gamma^\rho_{\mu\sigma}
-    + \Gamma^\rho_{\mu\lambda}\Gamma^\lambda_{\nu\sigma}
-    - \Gamma^\rho_{\nu\lambda}\Gamma^\lambda_{\mu\sigma},
-    \label{eq:riemann}
+    \eta_{\mu\nu}
+    =
+    \operatorname{diag}(-1,1,1,1),
+    \label{eq:minkowski-metric}
 \end{equation}
-dengan $R_{\mu\nu} = R^\rho_{\ \mu\rho\nu}$ \parencite{Carroll2004SpacetimeGeometry, Misner1973Gravitation}.
-
-Gerak partikel bebas dalam ruang-waktu melengkung mengikuti lintasan geodesik, yaitu kurva yang memenuhi:
+sehingga interval ruang-waktu dapat dituliskan sebagai
 \begin{equation}
-    \frac{d^2 x^\mu}{d\tau^2}
-    + \Gamma^\mu_{\nu\rho}\,\frac{dx^\nu}{d\tau}\,\frac{dx^\rho}{d\tau} = 0,
-    \label{eq:geodesic}
+    ds^2
+    =
+    -c^2dt^2
+    +dx^2+dy^2+dz^2.
+    \label{eq:minkowski-interval}
 \end{equation}
-di mana $\tau$ adalah waktu proper dan $\Gamma^\mu_{\nu\rho}$ adalah simbol Christoffel yang didefinisikan pada Persamaan~\eqref{eq:christoffel-def} \parencite{Schutz2009FirstCourse}.
 
-
-% ============================================================
-\section{Tensor Metrik dan Simbol Christoffel}
-\label{sec:metrik-christoffel}
-
-\subsection{Simbol Christoffel}
-\label{subsec:christoffel-umum}
-
-Simbol Christoffel jenis kedua $\Gamma^\mu_{\nu\rho}$ menggambarkan koneksi Levi-Civita pada manifold pseudo-Riemannian dan didefinisikan sebagai:
+Berbeda dengan ruang-waktu datar, pada ruang-waktu melengkung komponen
+metrik secara umum bergantung pada koordinat,
 \begin{equation}
-    \Gamma^\mu_{\nu\rho} = \frac{1}{2}\, g^{\mu\sigma}
+    g_{\mu\nu}=g_{\mu\nu}(x^\alpha).
+\end{equation}
+Ketergantungan tersebut menyebabkan bentuk geometri berubah dari satu
+titik ke titik lainnya.
+
+Selain menentukan interval, tensor metrik digunakan untuk menghubungkan
+komponen kontravarian dan kovarian suatu vektor. Untuk vektor
+$V^\mu$, penurunan indeks dilakukan melalui
+\begin{equation}
+    V_\mu = g_{\mu\nu}V^\nu,
+    \label{eq:lowering-index}
+\end{equation}
+sedangkan operasi sebaliknya menggunakan metrik invers $g^{\mu\nu}$,
+\begin{equation}
+    V^\mu = g^{\mu\nu}V_\nu.
+    \label{eq:raising-index}
+\end{equation}
+Metrik invers didefinisikan melalui
+\begin{equation}
+    g^{\mu\alpha}g_{\alpha\nu}
+    =
+    \delta^\mu_{\ \nu},
+    \label{eq:inverse-metric-def}
+\end{equation}
+sehingga secara matriks berlaku
+\begin{equation}
+    [g^{\mu\nu}]
+    =
+    [g_{\mu\nu}]^{-1}.
+\end{equation}
+
+Karena komponen metrik pada umumnya bergantung pada posisi, turunan
+$\partial_\lambda g_{\mu\nu}$ tidak selalu bernilai nol. Akibatnya,
+turunan biasa terhadap komponen vektor belum cukup untuk
+mendeskripsikan perubahan suatu vektor di sepanjang ruang-waktu.
+
+Suatu vektor dapat dituliskan sebagai
+\begin{equation}
+    \mathbf{V}=V^\mu\mathbf{e}_\mu,
+\end{equation}
+dengan $\mathbf{e}_\mu$ menyatakan vektor basis. Turunan terhadap
+koordinat $x^\nu$ menghasilkan
+\begin{equation}
+    \partial_\nu\mathbf{V}
+    =
+    (\partial_\nu V^\mu)\mathbf{e}_\mu
+    +
+    V^\mu(\partial_\nu\mathbf{e}_\mu).
+    \label{eq:vector-derivative-basis}
+\end{equation}
+Persamaan~\eqref{eq:vector-derivative-basis} menunjukkan bahwa perubahan
+vektor terdiri atas dua bagian, yaitu perubahan komponen $V^\mu$ dan
+perubahan vektor basis $\mathbf{e}_\mu$.
+
+Perubahan basis dapat dinyatakan menggunakan koefisien koneksi,
+\begin{equation}
+    \partial_\nu\mathbf{e}_\mu
+    =
+    \Gamma^\lambda_{\mu\nu}\mathbf{e}_\lambda,
+    \label{eq:basis-connection}
+\end{equation}
+sehingga turunan vektor menjadi
+\begin{equation}
+    \partial_\nu\mathbf{V}
+    =
     \left(
-        \frac{\partial g_{\sigma\nu}}{\partial x^\rho}
-      + \frac{\partial g_{\sigma\rho}}{\partial x^\nu}
-      - \frac{\partial g_{\nu\rho}}{\partial x^\sigma}
+        \partial_\nu V^\lambda
+        +
+        \Gamma^\lambda_{\mu\nu}V^\mu
+    \right)\mathbf{e}_\lambda.
+\end{equation}
+Kombinasi di dalam tanda kurung didefinisikan sebagai turunan
+kovarian vektor kontravarian,
+\begin{equation}
+    \nabla_\nu V^\lambda
+    =
+    \partial_\nu V^\lambda
+    +
+    \Gamma^\lambda_{\mu\nu}V^\mu.
+    \label{eq:covariant-derivative}
+\end{equation}
+
+Dalam relativitas umum digunakan koneksi Levi-Civita, yaitu koneksi
+yang kompatibel dengan metrik,
+\begin{equation}
+    \nabla_\lambda g_{\mu\nu}=0,
+    \label{eq:metric-compatibility}
+\end{equation}
+dan bebas torsi,
+\begin{equation}
+    \Gamma^\rho_{\mu\nu}
+    =
+    \Gamma^\rho_{\nu\mu}.
+    \label{eq:torsion-free}
+\end{equation}
+Dari kedua kondisi tersebut diperoleh simbol Christoffel jenis kedua
+\parencite{Schutz2009FirstCourse,Carroll2004SpacetimeGeometry}:
+\begin{equation}
+    \Gamma^\rho_{\mu\nu}
+    =
+    \frac{1}{2}g^{\rho\sigma}
+    \left(
+        \partial_\mu g_{\sigma\nu}
+        +
+        \partial_\nu g_{\sigma\mu}
+        -
+        \partial_\sigma g_{\mu\nu}
     \right).
     \label{eq:christoffel-def}
 \end{equation}
-Simbol ini bersifat simetris terhadap dua indeks bawah, $\Gamma^\mu_{\nu\rho} = \Gamma^\mu_{\rho\nu}$, dan berjumlah paling banyak 40 komponen independen dalam ruang-waktu empat dimensi. Untuk metrik diagonal, banyak komponen bernilai nol, namun metrik Kerr memiliki suku campuran $g_{t\phi} \neq 0$ yang menghasilkan komponen Christoffel tambahan yang tidak trivial \parencite{Carroll2004SpacetimeGeometry}.
+
+Persamaan~\eqref{eq:christoffel-def} menunjukkan bahwa simbol
+Christoffel ditentukan oleh tensor metrik, metrik invers, dan turunan
+pertama komponen metrik. Dengan demikian, hubungan matematis antara
+metrik dan koneksi dapat diringkas sebagai
+\begin{equation}
+    g_{\mu\nu}
+    \longrightarrow
+    g^{\mu\nu}
+    \longrightarrow
+    \partial_\alpha g_{\mu\nu}
+    \longrightarrow
+    \Gamma^\rho_{\mu\nu}.
+\end{equation}
+
+Secara fisis, tensor metrik menentukan struktur pengukuran ruang dan
+waktu, sedangkan simbol Christoffel digunakan untuk membandingkan
+vektor pada titik-titik yang berbeda. Namun, simbol Christoffel bukan
+ukuran intrinsik kelengkungan karena nilainya dapat tidak nol akibat
+pemilihan sistem koordinat. Kelengkungan intrinsik ruang-waktu baru
+dinyatakan melalui tensor Riemann, yang dibahas pada bagian berikutnya
+\parencite{Schutz2009FirstCourse,Carroll2004SpacetimeGeometry}.
 
 
+% ============================================================
 \subsection{Metrik Schwarzschild}
 \label{subsec:metrik-schwarzschild}
 
