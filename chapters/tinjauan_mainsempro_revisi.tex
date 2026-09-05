@@ -527,7 +527,8 @@ sumber diasumsikan statis dan bersimetri sferis
 \parencite{Schwarzschild1916Field,Schutz2009FirstCourse,Carroll2004SpacetimeGeometry}.
 Kedua asumsi tersebut menghilangkan ketergantungan terhadap $t$, serta
 menyisakan hanya ketergantungan radial pada komponen waktu dan radial.
-Elemen garis paling umum yang diperlukan dapat ditulis sebagai
+Pada bagian ini digunakan koordinat $x^\mu=(ct,r,\theta,\phi)$. Elemen garis
+paling umum yang diperlukan dapat ditulis sebagai
 \begin{equation}
     ds^2
     =-e^{2\Phi(r)}c^2dt^2
@@ -587,18 +588,18 @@ Integrasinya menghasilkan
     =C_0\left(1-\frac{C}{r}\right).
     \label{eq:schwarzschild-phi-solution}
 \end{equation}
-Syarat asimtotik datar menuntut $g_{tt}\rightarrow-1$ ketika
+Syarat asimtotik datar menuntut $g_{00}\rightarrow-1$ ketika
 $r\rightarrow\infty$, sehingga $C_0=1$. Konstanta $C$ kemudian ditentukan
 dengan mencocokkan limit medan lemah,
 \begin{equation}
-    g_{tt}
+    g_{00}
     \simeq
     -\left(1+\frac{2\Phi_N}{c^2}\right),
     \qquad
     \Phi_N=-\frac{GM}{r}.
 \end{equation}
 Perbandingan dengan
-$g_{tt}=-(1-C/r)$ memberikan
+$g_{00}=-(1-C/r)$ memberikan
 \begin{equation}
     C=\frac{2GM}{c^2}
     \equiv r_s,
@@ -616,7 +617,7 @@ Dengan memasukkan hasil tersebut kembali ke ansatz, diperoleh
     \label{eq:schwarzschild}
 \end{equation}
 yang merupakan metrik Schwarzschild dalam konvensi tanda $(-,+,+,+)$.
-Dengan koordinat $x^\mu=(ct,r,\theta,\phi)$, tensor metriknya adalah
+Dalam koordinat tersebut, tensor metriknya adalah
 \begin{equation}
     g_{\mu\nu}^{\mathrm{Schw}}
     =\operatorname{diag}\!\left(
@@ -658,7 +659,7 @@ Karena solusi Schwarzschild mengasumsikan momentum sudut sumber nol,
 \end{equation}
 tidak terdapat komponen campuran waktu--azimut,
 \begin{equation}
-    g_{t\phi}=0.
+    g_{0\phi}=0.
 \end{equation}
 Dengan demikian tidak ada suku $dt\,d\phi$ pada elemen garis. Struktur ini
 menjadi baseline matematis untuk membedakan efek yang berasal dari massa
@@ -682,16 +683,16 @@ dan aksial,
 \end{equation}
 tetapi komponen metrik secara umum dapat bergantung pada $r$ dan $\theta$.
 Perubahan simetri ini juga memungkinkan munculnya komponen campuran antara
-koordinat waktu dan azimut. Secara umum, sektor waktu--azimut dapat ditulis
-sebagai
+koordinat waktu dan azimut. Dengan konvensi $x^0=ct$, sektor waktu--azimut
+dapat ditulis sebagai
 \begin{equation}
-    ds^2_{(t,\phi)}
-    =g_{tt}\,c^2dt^2
-    +2g_{t\phi}\,c\,dt\,d\phi
+    ds^2_{(0,\phi)}
+    =g_{00}\,c^2dt^2
+    +2g_{0\phi}\,c\,dt\,d\phi
     +g_{\phi\phi}\,d\phi^2,
     \label{eq:stationary-axisymmetric-sector}
 \end{equation}
-yang mereduksi ke bentuk diagonal Schwarzschild ketika $g_{t\phi}=0$.
+yang mereduksi ke bentuk diagonal Schwarzschild ketika $g_{0\phi}=0$.
 
 Rotasi sumber dinyatakan melalui parameter Kerr
 \begin{equation}
@@ -751,7 +752,7 @@ sebagai
 \end{equation}
 Komponen campuran yang baru muncul adalah
 \begin{equation}
-    g_{t\phi}
+    g_{0\phi}
     =-\frac{r_sra\sin^2\!\theta}{\Sigma}.
     \label{eq:kerr-gtphi}
 \end{equation}
@@ -762,13 +763,13 @@ menghilang. Secara matematis,
     \quad\Longrightarrow\quad
     a\rightarrow0
     \quad\Longrightarrow\quad
-    g_{t\phi}\rightarrow0.
+    g_{0\phi}\rightarrow0.
     \label{eq:kerr-rotation-chain}
 \end{equation}
-Komponen $g_{t\phi}$ inilah yang membawa informasi rotasi sumber ke dalam
-koneksi dan selanjutnya ke geodesik serta transportasi spin. Dalam limit
-medan lemah, struktur ini menghasilkan kontribusi gravitomagnetik yang
-berkaitan dengan efek \textit{frame-dragging}.
+Komponen $g_{0\phi}$ membawa informasi rotasi sumber ke dalam koneksi dan
+selanjutnya ke geodesik serta transportasi spin. Dalam limit medan lemah,
+struktur ini menghasilkan kontribusi gravitomagnetik yang berkaitan dengan
+efek \textit{frame-dragging}.
 
 Sebelum digunakan lebih lanjut, konsistensi solusi dapat diperiksa dengan
 mengambil limit $a\rightarrow0$. Pada limit ini,
@@ -780,7 +781,7 @@ mengambil limit $a\rightarrow0$. Pada limit ini,
 \end{equation}
 Akibatnya,
 \begin{equation}
-    g_{tt}
+    g_{00}
     \rightarrow
     -\left(1-\frac{r_s}{r}\right),
 \end{equation}
@@ -795,7 +796,7 @@ Akibatnya,
     \qquad
     g_{\phi\phi}\rightarrow r^2\sin^2\!\theta,
     \qquad
-    g_{t\phi}\rightarrow0.
+    g_{0\phi}\rightarrow0.
 \end{equation}
 Dengan demikian,
 \begin{equation}
@@ -808,26 +809,26 @@ yang menunjukkan bahwa solusi Schwarzschild merupakan limit tak berotasi
 dari solusi Kerr.
 
 Untuk perhitungan simbol Christoffel diperlukan metrik invers. Karena hanya
-sektor $t$--$\phi$ yang tidak diagonal, invers dapat diperoleh dengan
+sektor waktu--azimut yang tidak diagonal, invers dapat diperoleh dengan
 menginvers blok
 \begin{equation}
     \begin{pmatrix}
-        g_{tt} & g_{t\phi}\\
-        g_{t\phi} & g_{\phi\phi}
+        g_{00} & g_{0\phi}\\
+        g_{0\phi} & g_{\phi\phi}
     \end{pmatrix},
 \end{equation}
 sementara komponen radial dan polar diinvers secara langsung. Hasilnya
 adalah
 \begin{equation}
 \begin{aligned}
-    g^{tt}
+    g^{00}
     &=-\frac{1}{\Delta}
     \left(
         r^2+a^2+
         \frac{r_sra^2\sin^2\!\theta}{\Sigma}
     \right),
     &\qquad
-    g^{t\phi}
+    g^{0\phi}
     &=-\frac{r_sra}{\Sigma\Delta},
     \\[6pt]
     g^{rr}
@@ -851,7 +852,7 @@ sebagai
     \longrightarrow
     a
     \longrightarrow
-    g_{t\phi}
+    g_{0\phi}
     \longrightarrow
     \Gamma^\mu_{\alpha\beta}
     \longrightarrow
