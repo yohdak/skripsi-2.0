@@ -1566,13 +1566,93 @@ berkaitan dengan persamaan transportasi spin yang digunakan.
 \section{Pustaka Komputasi Python}
 \label{sec:pustaka-python}
 
-Penyelesaian numerik persamaan geodesik dan transportasi paralel spin memerlukan implementasi komputasi yang efisien. Penelitian ini memanfaatkan pustaka Python berikut sebagai alat bantu:
+Rangkaian persamaan pada Bab ini berakhir pada dua sistem yang perlu
+dievaluasi secara numerik: persamaan geodesik untuk $x^\mu(\tau)$ dan
+$u^\mu(\tau)$, serta persamaan transportasi spin untuk $S^\mu(\tau)$.
+Jika variabel posisi, empat-kecepatan, dan spin disusun dalam satu vektor
+keadaan, sistem tersebut terdiri atas 12 persamaan diferensial biasa orde
+satu. Oleh karena itu, perangkat komputasi digunakan untuk menerjemahkan
+rantai matematis
+\begin{equation}
+    g_{\mu\nu}
+    \longrightarrow
+    \Gamma^\rho_{\mu\nu}
+    \longrightarrow
+    \frac{d}{d\tau}
+    \begin{pmatrix}
+        x^\mu\\
+        u^\mu\\
+        S^\mu
+    \end{pmatrix}
+    \longrightarrow
+    \text{solusi numerik}
+    \longrightarrow
+    \text{laju presesi}.
+    \label{eq:computational-chain}
+\end{equation}
+Perangkat lunak tidak menggantikan derivasi analitik, tetapi digunakan
+setelah struktur persamaan ditetapkan untuk melakukan evaluasi tensor,
+integrasi ODE, pemeriksaan konsistensi, dan visualisasi hasil.
+
+Pustaka utama yang digunakan dalam alur tersebut adalah sebagai berikut:
 \begin{enumerate}[label=(\roman*)]
-    \item \textbf{EinsteinPy} \parencite{Bapat2020EinsteinPy}: pustaka sumber terbuka untuk komputasi tensorial GR, menyediakan kelas untuk mendefinisikan metrik, menghitung simbol Christoffel, dan mengintegrasikan geodesik.
-    \item \textbf{FANTASY} \parencite{Christian2020FANTASY}: integrator geodesik simplektik dengan diferensiasi otomatis, menawarkan stabilitas numerik jangka panjang.
-    \item \textbf{KerrGeoPy} \parencite{Park2024KerrGeoPy}: pustaka khusus untuk geodesik pada metrik Kerr.
-    \item \textbf{SciPy} \parencite{SciPy2020}: pustaka komputasi ilmiah yang menyediakan solver ODE (\texttt{solve\_ivp}) dengan berbagai metode termasuk Runge-Kutta orde 4/5 (RK45).
-    \item \textbf{Matplotlib} \parencite{Matplotlib2007}: pustaka visualisasi data untuk menghasilkan grafik evolusi spin dan analisis kestabilan numerik.
+    \item \textbf{EinsteinPy} \parencite{Bapat2020EinsteinPy} digunakan
+    sebagai alat bantu komputasi tensorial dan verifikasi, terutama untuk
+    mengevaluasi metrik, metrik invers, serta simbol Christoffel yang
+    diperoleh dari metrik Kerr. Penggunaannya memberikan pemeriksaan
+    independen terhadap ekspresi analitik sebelum komponen koneksi masuk ke
+    sistem persamaan gerak.
+
+    \item \textbf{SciPy} \parencite{SciPy2020} menyediakan
+    \texttt{scipy.integrate.solve\_ivp} sebagai integrator utama untuk
+    sistem ODE. Metode adaptif RK45 dapat digunakan untuk mengintegrasikan
+    secara simultan variabel $x^\mu$, $u^\mu$, dan $S^\mu$ sambil
+    mengendalikan galat lokal melalui toleransi relatif dan absolut.
+
+    \item \textbf{Matplotlib} \parencite{Matplotlib2007} digunakan untuk
+    memvisualisasikan lintasan orbit, evolusi komponen spin, akumulasi
+    sudut presesi, serta besaran diagnostik yang dipantau selama integrasi.
+
+    \item \textbf{KerrGeoPy} \parencite{Park2024KerrGeoPy} dan
+    \textbf{FANTASY} \parencite{Christian2020FANTASY} ditempatkan sebagai
+    perangkat pembanding atau validasi sekunder untuk geodesik Kerr, bukan
+    sebagai integrator utama dalam alur komputasi penelitian ini.
 \end{enumerate}
 
-Pustaka-pustaka ini digunakan untuk memverifikasi hasil derivasi analitik dan menghasilkan solusi numerik yang disajikan pada Bab~\ref{chap:hasil}. Penjelasan detail mengenai penggunaan metode numerik disajikan pada Bab~\ref{chap:metode}.
+Setelah integrasi dilakukan, kualitas solusi tidak dinilai hanya dari
+keberhasilan solver menyelesaikan interval waktu. Tiga relasi yang telah
+diperoleh sebelumnya digunakan kembali sebagai diagnostik numerik,
+\begin{equation}
+    g_{\mu\nu}u^\mu u^\nu=-c^2,
+    \qquad
+    g_{\mu\nu}S^\mu u^\nu=0,
+    \qquad
+    g_{\mu\nu}S^\mu S^\nu=\text{konstan}.
+    \label{eq:numerical-diagnostics}
+\end{equation}
+Deviasi dari ketiga relasi tersebut memberikan ukuran langsung terhadap
+akumulasi galat numerik. Evolusi spin yang telah lolos pemeriksaan ini
+kemudian digunakan untuk mengekstraksi drift sekuler, mengonversinya ke
+satuan mas/yr, dan membandingkannya dengan benchmark GP-B.
+
+Dengan demikian, hubungan antara teori dan komputasi dapat diringkas
+sebagai
+\begin{equation}
+    \text{metrik Kerr}
+    \longrightarrow
+    \Gamma^\rho_{\mu\nu}
+    \longrightarrow
+    \text{12 ODE}
+    \longrightarrow
+    \text{RK45}
+    \longrightarrow
+    \text{diagnostik numerik}
+    \longrightarrow
+    \text{presesi}
+    \longrightarrow
+    \text{GP-B}.
+    \label{eq:computational-validation-chain}
+\end{equation}
+Rincian penetapan kondisi awal, integrasi numerik, pemisahan kontribusi
+Schwarzschild dan Kerr, serta prosedur validasi dibahas pada
+Bab~\ref{chap:metode}.
