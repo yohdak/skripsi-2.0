@@ -1426,13 +1426,25 @@ secara eksperimen.
 \section{Eksperimen Gravity Probe B}
 \label{sec:gravity-probe-b}
 
-Eksperimen \textit{Gravity Probe B} (GP-B) merupakan misi satelit yang dirancang oleh Stanford University dan NASA untuk menguji dua prediksi Relativitas Umum: efek geodesik dan efek \textit{frame-dragging} \parencite{Turneaure1986GravityProbeBApproach}. Misi ini diluncurkan pada 20 April 2004 dan mengumpulkan data selama lebih dari satu tahun.
+Setelah bentuk presesi geodesik dan Lense--Thirring diperoleh, eksperimen
+\textit{Gravity Probe B} (GP-B) menyediakan kasus uji langsung untuk
+menghubungkan persamaan tersebut dengan observasi. Misi ini menggunakan
+empat giroskop kuarsa superpresisi pada satelit yang mengorbit Bumi dalam
+lintasan hampir sirkular dan hampir polar, dengan sumbu referensi diarahkan
+ke bintang IM Pegasi \parencite{Turneaure1986GravityProbeBApproach,Everitt2011GravityProbeB}.
+Dengan konfigurasi ini, perubahan orientasi spin dapat dipisahkan menjadi
+dua drift utama, yaitu drift geodesik yang terutama ditentukan oleh massa
+Bumi dan gerak orbital, serta drift \textit{frame-dragging} yang bergantung
+pada momentum sudut Bumi.
 
-Instrumen utama GP-B terdiri dari empat giroskop kuarsa superpresisi yang mengorbit Bumi dalam lintasan polar pada ketinggian $\sim$642~km (radius orbit $r \approx 7{,}013 \times 10^6$~m). Orientasi referensi diarahkan ke bintang panduan IM Pegasi. Parameter fisik yang relevan ditampilkan pada Tabel~\ref{tab:param-gpb}.
+Dalam model yang digunakan pada Bab ini, besaran utama yang masuk ke
+persamaan adalah $M$, $J$, dan radius orbit $r$. Parameter fisik yang
+digunakan sebagai skala kasus GP-B ditampilkan pada
+Tabel~\ref{tab:param-gpb}.
 
 \begin{table}[ht]
 \centering
-\caption{Parameter fisik yang digunakan dalam analisis GP-B.}
+\caption{Parameter fisik yang digunakan untuk skala kasus GP-B.}
 \label{tab:param-gpb}
 \begin{tabular}{lll}
 \toprule
@@ -1442,27 +1454,112 @@ Massa Bumi             & $M$    & $5{,}972 \times 10^{24}$~kg \\
 Momentum sudut Bumi    & $J$    & $5{,}86 \times 10^{33}$~kg\,m$^2$\,s$^{-1}$ \\
 Radius orbit           & $r$    & $7{,}013 \times 10^{6}$~m \\
 Radius Schwarzschild   & $r_s$  & $8{,}87 \times 10^{-3}$~m \\
-Parameter rotasi       & $a$    & $3{,}98 \times 10^{-3}$~m \\
+Parameter rotasi Kerr  & $a$    & $3{,}27$~m \\
 Konstanta gravitasi    & $G$    & $6{,}674 \times 10^{-11}$~m$^3$\,kg$^{-1}$\,s$^{-2}$ \\
 Kecepatan cahaya       & $c$    & $2{,}998 \times 10^{8}$~m\,s$^{-1}$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Hasil akhir pengukuran GP-B yang dipublikasikan oleh \textcite{Everitt2011GravityProbeB} adalah:
+Nilai $a$ pada tabel tidak diperlakukan sebagai parameter bebas, tetapi
+dihitung dari definisi Kerr,
 \begin{equation}
-    \Omega_{\text{geodetik}}^{\text{GP-B}} = 6602 \pm 18~\text{mas/yr}, \qquad
-    \Omega_{\text{LT}}^{\text{GP-B}} = 37{,}2 \pm 7{,}2~\text{mas/yr},
-    \label{eq:gpb-results}
+    a=\frac{J}{Mc}.
+    \label{eq:gpb-a-definition}
 \end{equation}
-di mana 1~mas (milliarcsecond) $= 4{,}848 \times 10^{-9}$~rad. Kedua hasil ini konsisten dengan prediksi Relativitas Umum. Konversi satuan dari rad/s ke mas/yr menggunakan faktor:
+Dengan nilai $M$, $J$, dan $c$ pada tabel diperoleh
 \begin{equation}
-    1~\text{rad/s} = 206\,264\,806{,}247 \times 3{,}15576 \times 10^7~\text{mas/yr}
-    \approx 6{,}51 \times 10^{15}~\text{mas/yr}.
+    a\simeq3{,}27~\text{m}.
+    \label{eq:gpb-a-value}
+\end{equation}
+Hasil ini juga memberikan dua rasio tak berdimensi yang digunakan untuk
+memeriksa konsistensi aproksimasi medan lemah dan rotasi lambat,
+\begin{equation}
+    \frac{GM}{c^2r}
+    \simeq6{,}3\times10^{-10},
+    \qquad
+    \frac{a}{r}
+    \simeq4{,}7\times10^{-7}.
+    \label{eq:gpb-small-parameters}
+\end{equation}
+Kedua nilai tersebut jauh lebih kecil dari satu. Dengan demikian,
+parameter orbit GP-B berada pada domain di mana ekspansi medan lemah yang
+digunakan pada bagian sebelumnya merupakan pendekatan yang sesuai.
+
+Hubungan parameter eksperimen dengan dua laju presesi dapat dilihat dengan
+mensubstitusikan $M$ dan $r$ ke Persamaan~\eqref{eq:omega-geodetic-circular},
+serta $J$ dan $r$ ke Persamaan~\eqref{eq:omega-lt-polar-magnitude}. Pada
+aproksimasi massa titik dan orbit sirkular ideal diperoleh skala
+\begin{equation}
+    \Omega_{\mathrm{geodetik}}
+    \sim10^{-12}~\text{rad/s},
+    \qquad
+    \left|\left\langle\Omega_{\mathrm{LT}}\right\rangle\right|
+    \sim10^{-15}~\text{rad/s}.
+    \label{eq:gpb-precession-scales}
+\end{equation}
+Perbedaan sekitar tiga orde magnitudo ini menjelaskan mengapa sinyal
+\textit{frame-dragging} jauh lebih kecil daripada presesi geodesik dan
+memerlukan instrumen serta analisis yang lebih sensitif.
+
+Agar hasil perhitungan dapat dibandingkan dengan pelaporan GP-B, laju
+sudut dikonversi dari radian per sekon ke milliarcsecond per tahun. Karena
+\begin{equation}
+    1~\text{rad}
+    =206\,264\,806{,}247~\text{mas},
+\end{equation}
+dan satu tahun memiliki sekitar $3{,}15576\times10^7$ sekon, maka
+\begin{equation}
+    1~\text{rad/s}
+    \simeq6{,}51\times10^{15}~\text{mas/yr}.
     \label{eq:konversi-masyr}
 \end{equation}
+Dengan faktor ini, prediksi model dapat dinyatakan dalam satuan yang sama
+dengan drift yang diukur oleh GP-B.
 
-Selain GP-B, efek Lense-Thirring juga dikonfirmasi oleh analisis orbit satelit LAGEOS dengan ketidakpastian sekitar 10\% \parencite{CiufoliniPavlis2004_LAGEOS}. Berbagai pendekatan alternatif, termasuk model gravitasi vektor \parencite{BeheraBarik2020} dan teori modifikasi paritas \parencite{Mao2006,Nakamura2018}, telah diajukan namun belum menunjukkan deviasi signifikan dari GR pada tingkat presisi eksperimen saat ini.
+Hasil akhir pengukuran GP-B yang dipublikasikan oleh
+\textcite{Everitt2011GravityProbeB} adalah
+\begin{equation}
+    \Omega_{\mathrm{geodetik}}^{\mathrm{GP-B}}
+    =6602\pm18~\text{mas/yr},
+    \qquad
+    \Omega_{\mathrm{LT}}^{\mathrm{GP-B}}
+    =37{,}2\pm7{,}2~\text{mas/yr}.
+    \label{eq:gpb-results}
+\end{equation}
+Kedua besaran tersebut berfungsi sebagai benchmark eksperimental pada
+penelitian ini. Hasil numerik yang diperoleh dari integrasi geodesik dan
+transportasi paralel spin tidak hanya diperiksa dari kestabilan numeriknya,
+tetapi juga dibandingkan terhadap orde magnitudo dan drift sekuler yang
+dilaporkan GP-B.
+
+Dengan demikian, posisi GP-B dalam alur penelitian dapat diringkas sebagai
+\begin{equation}
+    M,J,r
+    \longrightarrow
+    g_{\mu\nu}^{\mathrm{Kerr}}
+    \longrightarrow
+    \Gamma^\rho_{\mu\nu}
+    \longrightarrow
+    x^\mu(\tau),S^\mu(\tau)
+    \longrightarrow
+    \bm{\Omega}_{\mathrm{geodetik}},
+    \left\langle\bm{\Omega}_{\mathrm{LT}}\right\rangle
+    \longrightarrow
+    \text{benchmark GP-B}.
+    \label{eq:gpb-validation-chain}
+\end{equation}
+Secara fisis, eksperimen GP-B mengubah besaran geometris yang dibangun dari
+metrik dan koneksi menjadi observabel berupa drift orientasi giroskop.
+Karena itu, GP-B bukan sekadar latar eksperimen dalam penelitian ini,
+melainkan titik validasi yang menghubungkan solusi Kerr, transportasi spin,
+dan hasil komputasi numerik dengan pengukuran nyata.
+
+Selain GP-B, efek Lense--Thirring juga telah dianalisis menggunakan orbit
+satelit LAGEOS \parencite{CiufoliniPavlis2004_LAGEOS}. Namun, dalam
+penelitian ini GP-B dipilih sebagai benchmark utama karena observabel yang
+diukur berupa perubahan orientasi giroskop, sehingga paling langsung
+berkaitan dengan persamaan transportasi spin yang digunakan.
 
 
 % ============================================================
