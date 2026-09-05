@@ -863,33 +863,113 @@ sebagai
 \subsection{Contoh Perhitungan Simbol Christoffel Metrik Kerr}
 \label{subsec:christoffel-kerr-contoh}
 
-Perhitungan simbol Christoffel untuk metrik Kerr menghasilkan sejumlah besar komponen yang tidak bernilai nol. Pada bagian ini disajikan derivasi eksplisit untuk tiga komponen representatif yang relevan dengan efek \textit{frame-dragging}.
+Komponen campuran $g_{0\phi}$ pada Persamaan~\eqref{eq:kerr-gtphi}
+merupakan komponen yang secara langsung membawa parameter rotasi $a$ ke
+dalam koneksi. Dengan konvensi $x^0=ct$, komponen tersebut ditulis sebagai
+\begin{equation}
+    g_{0\phi}
+    =-\frac{r_sra\sin^2\!\theta}{\Sigma}.
+    \label{eq:kerr-g0phi}
+\end{equation}
+Untuk melihat bagaimana informasi rotasi tersebut masuk ke simbol
+Christoffel, dipilih komponen $\Gamma^r_{\ 0\phi}$. Dari definisi umum
+Persamaan~\eqref{eq:christoffel-def},
+\begin{equation}
+    \Gamma^r_{\ 0\phi}
+    =\frac{1}{2}g^{r\sigma}
+    \left(
+        \partial_0 g_{\sigma\phi}
+        +\partial_\phi g_{\sigma0}
+        -\partial_\sigma g_{0\phi}
+    \right).
+    \label{eq:gamma-r0phi-start}
+\end{equation}
+Metrik Kerr bersifat stasioner dan aksial, sehingga
+\begin{equation}
+    \partial_0 g_{\mu\nu}=0,
+    \qquad
+    \partial_\phi g_{\mu\nu}=0.
+\end{equation}
+Selain itu, metrik invers pada sektor radial hanya memiliki komponen
+$g^{rr}$, sehingga penjumlahan terhadap $\sigma$ menyisakan
+$\sigma=r$. Persamaan~\eqref{eq:gamma-r0phi-start} kemudian mereduksi
+menjadi
+\begin{equation}
+    \Gamma^r_{\ 0\phi}
+    =-\frac{1}{2}g^{rr}\partial_r g_{0\phi}.
+    \label{eq:gamma-r0phi-reduced}
+\end{equation}
 
-\paragraph{Contoh 1: $\Gamma^t_{tr}$.}
-Menggunakan Persamaan~\eqref{eq:christoffel-def} dengan $\mu = t$, $\nu = t$, $\rho = r$:
+Turunan radial komponen campuran dihitung dari
 \begin{equation}
-    \Gamma^t_{tr} = \frac{1}{2}\,g^{t\sigma}
-    \left(\partial_r g_{\sigma t} + \partial_t g_{\sigma r} - \partial_\sigma g_{tr}\right).
+    g_{0\phi}
+    =-r_sa\sin^2\!\theta\,\frac{r}{\Sigma}.
 \end{equation}
-Karena metrik tidak bergantung pada $t$ (stasioner), suku $\partial_t g_{\sigma r} = 0$. Kontribusi non-nol berasal dari $\sigma = t$ dan $\sigma = \phi$:
+Karena
 \begin{equation}
-    \Gamma^t_{tr} = \frac{1}{2}\,g^{tt}\,\partial_r g_{tt}
-                  + \frac{1}{2}\,g^{t\phi}\,\partial_r g_{\phi t}.
-    \label{eq:christoffel-ttr}
+    \partial_r\Sigma=2r,
 \end{equation}
-Turunan parsial $\partial_r g_{tt}$ dan $\partial_r g_{t\phi}$ dapat dihitung dari Persamaan~\eqref{eq:kerr-matrix}. Sebagai contoh:
+maka
 \begin{equation}
-    \frac{\partial g_{tt}}{\partial r}
-    = \frac{\partial}{\partial r}\left[-\left(1 - \frac{r_s\, r}{\Sigma}\right)\right]
-    = -\frac{r_s(r^2 - a^2\cos^2\!\theta)}{\Sigma^2},
-    \label{eq:dgtt-dr}
+\begin{split}
+    \partial_r\left(\frac{r}{\Sigma}\right)
+    &=\frac{\Sigma-r\,\partial_r\Sigma}{\Sigma^2}\\
+    &=\frac{a^2\cos^2\!\theta-r^2}{\Sigma^2}\\
+    &=-\frac{r^2-a^2\cos^2\!\theta}{\Sigma^2}.
+\end{split}
+    \label{eq:dr-r-over-sigma}
 \end{equation}
-mengingat $\partial_r \Sigma = 2r$. Substitusi ke Persamaan~\eqref{eq:christoffel-ttr} bersama dengan ekspresi $g^{tt}$ dan $g^{t\phi}$ dari Persamaan~\eqref{eq:kerr-inverse} menghasilkan:
+Dengan demikian,
 \begin{equation}
-    \Gamma^t_{tr} = \frac{r_s(r^2 - a^2\cos^2\!\theta)(r^2 + a^2)}{2\,\Sigma^2\,\Delta}
-    + \frac{r_s^2\, r\, a^2\sin^2\!\theta\,(r^2 - a^2\cos^2\!\theta)}{2\,\Sigma^3\,\Delta}.
-    \label{eq:gamma-ttr-result}
+    \partial_r g_{0\phi}
+    =\frac{r_sa\sin^2\!\theta
+    \left(r^2-a^2\cos^2\!\theta\right)}{\Sigma^2}.
+    \label{eq:dg0phi-dr}
 \end{equation}
+Substitusi Persamaan~\eqref{eq:dg0phi-dr} dan
+$g^{rr}=\Delta/\Sigma$ ke
+Persamaan~\eqref{eq:gamma-r0phi-reduced} menghasilkan
+\begin{equation}
+    \Gamma^r_{\ 0\phi}
+    =-\frac{r_sa\Delta\sin^2\!\theta
+    \left(r^2-a^2\cos^2\!\theta\right)}
+    {2\Sigma^3}.
+    \label{eq:gamma-r0phi-result}
+\end{equation}
+
+Bentuk ini menunjukkan secara eksplisit bahwa komponen koneksi tersebut
+sebanding dengan parameter rotasi $a$. Ketika sumber tidak berotasi,
+\begin{equation}
+    a\rightarrow0,
+\end{equation}
+maka
+\begin{equation}
+    g_{0\phi}\rightarrow0,
+    \qquad
+    \partial_r g_{0\phi}\rightarrow0,
+    \qquad
+    \Gamma^r_{\ 0\phi}\rightarrow0.
+    \label{eq:gamma-r0phi-limit}
+\end{equation}
+Rantai ini memperlihatkan bagaimana rotasi sumber diteruskan secara
+matematis dari komponen off-diagonal metrik menuju koneksi,
+\begin{equation}
+    J
+    \longrightarrow
+    a
+    \longrightarrow
+    g_{0\phi}
+    \longrightarrow
+    \partial_r g_{0\phi}
+    \longrightarrow
+    \Gamma^r_{\ 0\phi}.
+    \label{eq:rotation-connection-chain}
+\end{equation}
+Secara fisis, komponen koneksi yang bergantung pada $a$ ini merupakan
+bagian dari struktur geometris yang membedakan gerak dan transportasi spin
+di ruang-waktu Kerr dari kasus Schwarzschild. Hubungannya dengan evolusi
+geodesik dan spin dibahas melalui komponen koneksi lain pada bagian
+berikutnya.
 
 \paragraph{Contoh 2: $\Gamma^\phi_{tr}$.}
 Komponen ini menggambarkan hubungan antara gerak radial dan gerak azimut akibat rotasi sumber:
