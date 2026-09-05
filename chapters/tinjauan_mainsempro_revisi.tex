@@ -1320,8 +1320,106 @@ Rantai matematis sampai tahap ini dapat diringkas sebagai
 \end{equation}
 Secara fisis, komponen off-diagonal yang berasal dari rotasi tidak hanya
 mengubah bentuk metrik, tetapi menghasilkan bagian koneksi yang memutar
-orientasi spin relatif terhadap kerangka acuan jauh. Rata-rata orbit untuk
-geometri polar GP-B dibahas pada langkah berikutnya.
+orientasi spin relatif terhadap kerangka acuan jauh.
+
+\paragraph{Rata-rata orbit sirkular.}
+Untuk menghubungkan laju presesi sesaat dengan drift sekuler, diperkenalkan
+vektor satuan $\hat{\mathbf{l}}$ yang sejajar dengan momentum sudut orbit.
+Pada orbit sirkular, $\hat{\mathbf{r}}$ berputar seragam pada bidang yang
+tegak lurus terhadap $\hat{\mathbf{l}}$. Rata-rata dyadik posisi sepanjang
+satu periode adalah
+\begin{equation}
+    \left\langle
+        \hat{r}_i\hat{r}_j
+    \right\rangle
+    =\frac{1}{2}
+    \left(
+        \delta_{ij}
+        -\hat{l}_i\hat{l}_j
+    \right).
+    \label{eq:orbital-average-rhat-dyad}
+\end{equation}
+Dari identitas ini diperoleh
+\begin{equation}
+    \left\langle
+        \hat{\mathbf{r}}
+        \left(\hat{\mathbf{r}}\cdot\mathbf{J}\right)
+    \right\rangle
+    =\frac{1}{2}
+    \left[
+        \mathbf{J}
+        -\hat{\mathbf{l}}
+        \left(\hat{\mathbf{l}}\cdot\mathbf{J}\right)
+    \right].
+    \label{eq:orbital-average-rhatJ}
+\end{equation}
+Substitusi hasil tersebut ke Persamaan~\eqref{eq:omega-lt-general}
+memberikan laju presesi Lense--Thirring sekuler untuk orbit sirkular,
+\begin{equation}
+    \left\langle\bm{\Omega}_{\mathrm{LT}}\right\rangle
+    =\frac{G}{2c^2r^3}
+    \left[
+        \mathbf{J}
+        -3\hat{\mathbf{l}}
+        \left(\hat{\mathbf{l}}\cdot\mathbf{J}\right)
+    \right].
+    \label{eq:omega-lt-orbit-averaged}
+\end{equation}
+Persamaan ini menunjukkan bahwa hasil rata-rata tidak hanya bergantung pada
+magnitudo $J$, tetapi juga pada orientasi bidang orbit terhadap sumbu rotasi
+sumber.
+
+Untuk orbit polar ideal, bidang orbit memuat sumbu rotasi Bumi. Karena
+vektor $\hat{\mathbf{l}}$ tegak lurus bidang orbit, berlaku
+\begin{equation}
+    \hat{\mathbf{l}}\cdot\mathbf{J}=0.
+    \label{eq:polar-orbit-condition}
+\end{equation}
+Persamaan~\eqref{eq:omega-lt-orbit-averaged} kemudian mereduksi menjadi
+\begin{equation}
+    \left\langle\bm{\Omega}_{\mathrm{LT}}\right\rangle_{\mathrm{polar}}
+    =\frac{G}{2c^2r^3}\,\mathbf{J},
+    \label{eq:omega-lt-polar-average}
+\end{equation}
+atau untuk magnitudonya,
+\begin{equation}
+    \left|\left\langle\bm{\Omega}_{\mathrm{LT}}\right\rangle_{\mathrm{polar}}\right|
+    =\frac{GJ}{2c^2r^3}.
+    \label{eq:omega-lt-polar-magnitude}
+\end{equation}
+Dengan parameter Bumi dan radius orbit GP-B yang dibulatkan pada
+Tabel~\ref{tab:param-gpb}, skala ini berada pada orde beberapa puluh
+milliarcsecond per tahun. Nilai presisi yang dibandingkan dengan data GP-B
+bergantung pada geometri orbit aktual, parameter Bumi yang digunakan, dan
+prosedur reduksi data; prediksi relativistik misi berada di sekitar
+$39$~mas/yr \parencite{Everitt2011GravityProbeB}.
+
+Dengan demikian, dua efek utama yang relevan bagi giroskop GP-B dapat
+dipisahkan secara matematis sebagai
+\begin{equation}
+    \bm{\Omega}_{\mathrm{total}}
+    =\bm{\Omega}_{\mathrm{geodetik}}
+    +\left\langle\bm{\Omega}_{\mathrm{LT}}\right\rangle,
+    \label{eq:omega-total}
+\end{equation}
+dengan kontribusi pertama tetap ada untuk $J=0$, sedangkan kontribusi kedua
+lenyap ketika rotasi Bumi dihilangkan. Rantai lengkap efek rotasi sampai
+besaran sekuler yang diamati dapat diringkas sebagai
+\begin{equation}
+    J
+    \longrightarrow
+    g_{0i}^{(J)}
+    \longrightarrow
+    \Gamma^i_{\ 0j}\big|_J
+    \longrightarrow
+    \bm{\Omega}_{\mathrm{LT}}(\mathbf{r})
+    \longrightarrow
+    \left\langle\bm{\Omega}_{\mathrm{LT}}\right\rangle_{\mathrm{orbit}}.
+    \label{eq:lt-secular-chain}
+\end{equation}
+Secara fisis, rata-rata orbit memisahkan osilasi perubahan orientasi yang
+bergantung pada posisi sesaat dari drift jangka panjang yang dapat diukur
+secara eksperimen.
 
 
 % ============================================================
