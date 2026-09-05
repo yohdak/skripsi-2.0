@@ -967,45 +967,112 @@ matematis dari komponen off-diagonal metrik menuju koneksi,
 \end{equation}
 Secara fisis, komponen koneksi yang bergantung pada $a$ ini merupakan
 bagian dari struktur geometris yang membedakan gerak dan transportasi spin
-di ruang-waktu Kerr dari kasus Schwarzschild. Hubungannya dengan evolusi
-geodesik dan spin dibahas melalui komponen koneksi lain pada bagian
-berikutnya.
+di ruang-waktu Kerr dari kasus Schwarzschild.
 
-\paragraph{Contoh 2: $\Gamma^\phi_{tr}$.}
-Komponen ini menggambarkan hubungan antara gerak radial dan gerak azimut akibat rotasi sumber:
+\paragraph{Komponen polar $\Gamma^\theta_{\ 0\phi}$.}
+Ketergantungan $g_{0\phi}$ terhadap sudut polar juga menghasilkan komponen
+koneksi lain. Dari definisi Christoffel,
 \begin{equation}
-    \Gamma^\phi_{tr} = \frac{1}{2}\,g^{\phi\sigma}
-    \left(\partial_r g_{\sigma t} + \partial_t g_{\sigma r} - \partial_\sigma g_{tr}\right).
+    \Gamma^\theta_{\ 0\phi}
+    =\frac{1}{2}g^{\theta\sigma}
+    \left(
+        \partial_0 g_{\sigma\phi}
+        +\partial_\phi g_{\sigma0}
+        -\partial_\sigma g_{0\phi}
+    \right).
 \end{equation}
-Dengan $\partial_t = 0$ dan kontribusi dari $\sigma = t$ serta $\sigma = \phi$:
+Dengan menggunakan sifat stasioner dan aksial, serta fakta bahwa sektor
+polar metrik invers hanya memiliki $g^{\theta\theta}=1/\Sigma$, persamaan
+tersebut mereduksi menjadi
 \begin{equation}
-    \Gamma^\phi_{tr} = \frac{1}{2}\,g^{\phi t}\,\partial_r g_{tt}
-                     + \frac{1}{2}\,g^{\phi\phi}\,\partial_r g_{\phi t}.
-    \label{eq:christoffel-phitr}
+    \Gamma^\theta_{\ 0\phi}
+    =-\frac{1}{2\Sigma}\partial_\theta g_{0\phi}.
+    \label{eq:gamma-theta0phi-reduced}
 \end{equation}
-Perhatikan bahwa $g^{\phi t} = g^{t\phi}$. Substitusi komponen metrik invers dan turunan yang sesuai memberikan ekspresi dalam $r$, $\theta$, $\Sigma$, dan $\Delta$. Komponen ini bernilai nol pada limit $a \to 0$, yang menegaskan bahwa hubungan $r$--$\phi$ tersebut berasal dari rotasi massa.
+Turunan sudut dari komponen campuran adalah
+\begin{equation}
+\begin{split}
+    \partial_\theta g_{0\phi}
+    &=-r_sra\,\partial_\theta
+    \left(\frac{\sin^2\!\theta}{\Sigma}\right)\\
+    &=-\frac{2r_sra\left(r^2+a^2\right)
+    \sin\theta\cos\theta}{\Sigma^2},
+\end{split}
+    \label{eq:dg0phi-dtheta}
+\end{equation}
+karena
+\begin{equation}
+    \partial_\theta\Sigma
+    =-2a^2\sin\theta\cos\theta.
+\end{equation}
+Substitusi ke Persamaan~\eqref{eq:gamma-theta0phi-reduced} memberikan
+\begin{equation}
+    \Gamma^\theta_{\ 0\phi}
+    =\frac{r_sra\left(r^2+a^2\right)
+    \sin\theta\cos\theta}{\Sigma^3}.
+    \label{eq:gamma-theta0phi-result}
+\end{equation}
+Komponen ini juga hilang pada limit tak berotasi,
+\begin{equation}
+    a\rightarrow0
+    \quad\Longrightarrow\quad
+    \Gamma^\theta_{\ 0\phi}\rightarrow0.
+\end{equation}
+Dengan demikian, turunan radial dan polar dari komponen yang sama,
+$g_{0\phi}$, menghasilkan bagian-bagian koneksi yang membawa informasi
+rotasi ke arah radial dan polar.
 
-\paragraph{Contoh 3: $\Gamma^t_{\theta\phi}$.}
-Komponen ini menunjukkan hubungan antara gerak polar dan azimut melalui koordinat waktu:
+Hubungan dengan dinamika dapat dilihat langsung dengan mengembalikan
+komponen koneksi tersebut ke persamaan geodesik. Untuk komponen radial,
 \begin{equation}
-    \Gamma^t_{\theta\phi} = \frac{1}{2}\,g^{t\sigma}
-    \left(\partial_\phi g_{\sigma\theta} + \partial_\theta g_{\sigma\phi} - \partial_\sigma g_{\theta\phi}\right).
+    \frac{du^r}{d\tau}
+    +\Gamma^r_{\mu\nu}u^\mu u^\nu=0.
 \end{equation}
-Karena metrik tidak bergantung pada $\phi$ dan $g_{r\theta} = g_{r\phi} = 0$, maka
+Karena koneksi Levi--Civita simetris pada dua indeks bawah, kontribusi yang
+melibatkan pasangan $(0,\phi)$ muncul sebagai
 \begin{equation}
-    \Gamma^t_{\theta\phi} = \frac{1}{2}\,g^{tt}\,\partial_\theta g_{t\phi}
-                          + \frac{1}{2}\,g^{t\phi}\,\partial_\theta g_{\phi\phi}.
-    \label{eq:christoffel-tthetaphi}
+    2\Gamma^r_{\ 0\phi}u^0u^\phi.
+    \label{eq:geodesic-rotation-term}
 \end{equation}
-Turunan $\partial_\theta g_{t\phi}$ diberikan oleh
-\begin{equation}
-    \frac{\partial g_{t\phi}}{\partial\theta}
-    = -\frac{r_s\, r\, a}{\Sigma^2}
-    \left(2\Sigma\sin\theta\cos\theta + 2a^2\sin^3\!\theta\cos\theta\right),
-\end{equation}
-yang menunjukkan ketergantungan eksplisit pada sudut polar $\theta$. Komponen ini juga lenyap pada limit $a \to 0$.
+Suku ini lenyap ketika $a\rightarrow0$, sehingga merupakan salah satu
+kontribusi gerak yang secara langsung berasal dari rotasi sumber.
 
-Perhitungan lengkap seluruh komponen Christoffel metrik Kerr menghasilkan puluhan suku yang kompleks. Dalam praktik, perhitungan ini dapat diverifikasi dan dilakukan secara efisien menggunakan pustaka komputasi simbolik seperti \texttt{EinsteinPy} \parencite{Bapat2020EinsteinPy}.
+Rantai yang sama muncul pada transportasi spin. Dari
+Persamaan~\eqref{eq:spin-ode}, komponen radial memenuhi
+\begin{equation}
+    \frac{dS^r}{d\tau}
+    =-\Gamma^r_{\nu\rho}S^\nu u^\rho.
+\end{equation}
+Bagian yang mengandung $\Gamma^r_{\ 0\phi}$ adalah
+\begin{equation}
+    -\Gamma^r_{\ 0\phi}
+    \left(S^0u^\phi+S^\phi u^0\right).
+    \label{eq:spin-rotation-term}
+\end{equation}
+Dengan demikian, komponen campuran metrik tidak berhenti pada bentuk elemen
+garis, tetapi masuk secara berurutan ke koneksi, kemudian ke persamaan
+gerak dan transportasi spin,
+\begin{equation}
+    g_{0\phi}
+    \longrightarrow
+    \partial_i g_{0\phi}
+    \longrightarrow
+    \Gamma^i_{\ 0\phi}
+    \longrightarrow
+    \text{geodesik dan transportasi spin},
+    \qquad i\in\{r,\theta\}.
+    \label{eq:gtphi-dynamics-chain}
+\end{equation}
+Secara fisis, struktur inilah yang menjadi jembatan matematis dari rotasi
+massa pusat menuju perubahan gerak dan orientasi giroskop. Pada medan lemah
+dan rotasi lambat, kontribusi rotasi tersebut dapat direduksi menjadi
+bentuk presesi Lense--Thirring yang dibahas pada bagian berikutnya
+\parencite{Carroll2004SpacetimeGeometry,Schutz2009FirstCourse}.
+
+Perhitungan seluruh komponen Christoffel Kerr secara eksak menghasilkan
+banyak suku. Dalam implementasi numerik, seluruh komponen yang diperlukan
+dihitung secara sistematis dan dapat diverifikasi menggunakan perangkat
+komputasi simbolik seperti \texttt{EinsteinPy} \parencite{Bapat2020EinsteinPy}.
 
 
 % ============================================================
