@@ -1202,27 +1202,126 @@ tersebut tetap berlaku pada $J=0$, presesi geodesik harus dibedakan dari
 presesi Lense--Thirring yang hanya muncul ketika sumber berotasi.
 
 
-\subsection{Efek Frame-Dragging (Presesi Lense-Thirring)}
+\subsection{Efek Frame-Dragging (Presesi Lense--Thirring)}
 \label{subsec:frame-dragging}
 
-Efek Lense-Thirring muncul karena rotasi massa sumber yang menyeret ruang-waktu di sekitarnya. Secara matematis, efek ini berasal dari komponen campuran $g_{t\phi} \neq 0$ pada metrik Kerr yang tidak ada pada metrik Schwarzschild. Bentuk vektor umum laju presesi Lense-Thirring pada jarak $\mathbf{r}$ dari sumber bermomen sudut $\mathbf{J}$ diberikan oleh \parencite{Lense1918LenseThirring}:
+Berbeda dengan presesi geodesik yang tetap ada ketika $J=0$, kontribusi
+Lense--Thirring diisolasi dengan mempertahankan suku yang linear terhadap
+rotasi sumber. Untuk medan Bumi berlaku dua parameter kecil,
 \begin{equation}
-    \bm{\Omega}_{\text{LT}}(\mathbf{r})
-    = \frac{G}{c^2\, r^3}\left[3\hat{\mathbf{r}}\,(\hat{\mathbf{r}} \cdot \mathbf{J}) - \mathbf{J}\right],
+    \frac{GM}{c^2r}\ll1,
+    \qquad
+    \frac{a}{r}\ll1,
+    \label{eq:lt-weak-parameters}
+\end{equation}
+sehingga metrik Kerr dapat diekspansi dalam limit medan lemah dan rotasi
+lambat. Sampai orde pertama dalam $a$, berlaku
+\begin{equation}
+    \Sigma
+    =r^2+a^2\cos^2\!\theta
+    \simeq r^2,
+\end{equation}
+karena koreksi pada $\Sigma$ berorde $a^2$. Komponen campuran Kerr pada
+Persamaan~\eqref{eq:kerr-g0phi} kemudian menjadi
+\begin{equation}
+\begin{split}
+    g_{0\phi}
+    &=-\frac{r_sra\sin^2\!\theta}{\Sigma}\\
+    &\simeq-\frac{r_sa}{r}\sin^2\!\theta\\
+    &=-\frac{2GJ}{c^3r}\sin^2\!\theta,
+\end{split}
+    \label{eq:kerr-g0phi-weak}
+\end{equation}
+dengan menggunakan $r_s=2GM/c^2$ dan $a=J/(Mc)$. Suku campuran pada
+elemen garis dengan demikian mereduksi menjadi
+\begin{equation}
+    2g_{0\phi}\,c\,dt\,d\phi
+    \simeq
+    -\frac{4GJ}{c^2r}\sin^2\!\theta\,dt\,d\phi.
+    \label{eq:kerr-cross-weak}
+\end{equation}
+Persamaan ini menunjukkan secara eksplisit bahwa bagian off-diagonal medan
+lemah bersifat linear terhadap $J$ dan lenyap ketika sumber tidak
+berotasi.
+
+Dalam koordinat Kartesian asimtotik, struktur rotasi yang sama dapat
+dituliskan dalam bentuk vektor sebagai
+\begin{equation}
+    g_{0i}^{(J)}
+    =-\frac{2G}{c^3}
+    \frac{\left(\mathbf{J}\times\mathbf{r}\right)_i}{r^3},
+    \label{eq:weak-kerr-g0i}
+\end{equation}
+dengan superskrip $(J)$ menandai bagian yang berasal dari momentum sudut
+sumber. Bentuk ini ekuivalen dengan
+Persamaan~\eqref{eq:kerr-g0phi-weak} setelah sumbu $z$ dipilih sejajar
+dengan $\mathbf{J}$.
+
+Pada aproksimasi linear dan medan stasioner, bagian antisimetri koneksi
+spasial yang dibangun dari $g_{0i}^{(J)}$ adalah
+\begin{equation}
+    \Gamma^i_{\ 0j}\big|_{J}
+    \simeq
+    \frac{1}{2}
+    \left(
+        \partial_j g_{0i}^{(J)}
+        -\partial_i g_{0j}^{(J)}
+    \right).
+    \label{eq:lt-connection-weak}
+\end{equation}
+Ketika bagian ini dimasukkan ke persamaan transportasi spin dan hanya
+kontribusi linear dalam $J$ yang dipertahankan, evolusi vektor spin tiga
+dimensi dapat ditulis sebagai persamaan presesi
+\begin{equation}
+    \frac{d\mathbf{S}}{dt}
+    =\bm{\Omega}_{\mathrm{LT}}\times\mathbf{S}.
+    \label{eq:lt-spin-precession-form}
+\end{equation}
+Dari Persamaan~\eqref{eq:lt-connection-weak}, vektor presesi berhubungan
+dengan curl komponen waktu--ruang melalui
+\begin{equation}
+    \bm{\Omega}_{\mathrm{LT}}
+    =-\frac{c}{2}\bm{\nabla}\times\mathbf{g}_0^{(J)},
+    \label{eq:lt-curl-relation}
+\end{equation}
+dengan $\mathbf{g}_0^{(J)}$ menyatakan vektor yang komponennya adalah
+$g_{0i}^{(J)}$. Menggunakan identitas medan dipol untuk
+Persamaan~\eqref{eq:weak-kerr-g0i}, diperoleh
+\parencite{Lense1918LenseThirring,Will2014Confrontation}
+\begin{equation}
+    \bm{\Omega}_{\mathrm{LT}}(\mathbf{r})
+    =\frac{G}{c^2r^3}
+    \left[
+        3\hat{\mathbf{r}}
+        \left(\hat{\mathbf{r}}\cdot\mathbf{J}\right)
+        -\mathbf{J}
+    \right],
     \label{eq:omega-lt-general}
 \end{equation}
-dengan $\hat{\mathbf{r}} = \mathbf{r}/r$. Untuk orbit polar (relevan dengan konfigurasi GP-B), ekspresi ini dapat disederhanakan menjadi:
-\begin{equation}
-    |\bm{\Omega}_{\text{LT}}| \approx \frac{2G\,|\mathbf{J}|}{c^2\, r^3}.
-    \label{eq:omega-lt-approx}
-\end{equation}
-Derivasi lengkap ekspresi ini dari metrik Kerr melalui reduksi medan lemah disajikan pada Bab~\ref{chap:metode}.
+dengan $\hat{\mathbf{r}}=\mathbf{r}/r$. Bentuk ini adalah laju presesi
+Lense--Thirring sesaat pada suatu posisi sepanjang orbit. Karena arah
+$\hat{\mathbf{r}}$ berubah selama satelit mengorbit, besaran yang dibandingkan
+dengan drift sekuler GP-B bukan sekadar magnitudo Persamaan~\eqref{eq:omega-lt-general}
+pada satu titik, melainkan hasil rata-rata sepanjang orbit.
 
-Laju presesi total yang dialami giroskop merupakan superposisi kedua kontribusi:
+Rantai matematis sampai tahap ini dapat diringkas sebagai
 \begin{equation}
-    \bm{\Omega} = \bm{\Omega}_{\text{geodetik}} + \bm{\Omega}_{\text{LT}}.
-    \label{eq:omega-total}
+    g_{\mu\nu}^{\mathrm{Kerr}}
+    \longrightarrow
+    \text{limit medan lemah dan rotasi lambat}
+    \longrightarrow
+    g_{0i}^{(J)}
+    \longrightarrow
+    \Gamma^i_{\ 0j}\big|_J
+    \longrightarrow
+    \frac{d\mathbf{S}}{dt}
+    =\bm{\Omega}_{\mathrm{LT}}\times\mathbf{S}.
+    \label{eq:lt-weak-chain}
 \end{equation}
+Secara fisis, komponen off-diagonal yang berasal dari rotasi tidak hanya
+mengubah bentuk metrik, tetapi menghasilkan bagian koneksi yang memutar
+orientasi spin relatif terhadap kerangka acuan jauh. Rata-rata orbit untuk
+geometri polar GP-B dibahas pada langkah berikutnya.
 
 
 % ============================================================
