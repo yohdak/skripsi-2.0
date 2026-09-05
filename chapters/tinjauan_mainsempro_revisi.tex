@@ -411,7 +411,7 @@ Christoffel pada Persamaan~\eqref{eq:christoffel-def}. Dengan demikian,
 persamaan gerak tersebut mereduksi menjadi persamaan geodesik
 \parencite{Schutz2009FirstCourse,Carroll2004SpacetimeGeometry},
 \begin{equation}
-    \frac{d^2x^\rho}{d\tau^2}
+    \frac{d^2x^\rho}{d\tau^2
     +\Gamma^\rho_{\mu\nu}
     \frac{dx^\mu}{d\tau}
     \frac{dx^\nu}{d\tau}=0.
@@ -1082,16 +1082,124 @@ komputasi simbolik seperti \texttt{EinsteinPy} \parencite{Bapat2020EinsteinPy}.
 \subsection{Efek Geodesik (Presesi de Sitter)}
 \label{subsec:efek-geodesik}
 
-Efek geodesik adalah presesi orientasi giroskop yang bergerak dalam medan gravitasi akibat kelengkungan ruang-waktu, bahkan tanpa rotasi sumber. Efek ini muncul dari transportasi paralel vektor spin sepanjang geodesik pada metrik Schwarzschild. Dalam aproksimasi medan lemah dan orbit sirkular, laju presesi geodesik diberikan oleh \parencite{Will2014Confrontation}:
+Presesi geodesik dapat dipisahkan dari efek rotasi dengan mengambil limit
+$a\rightarrow0$. Pada limit ini metrik Kerr kembali menjadi metrik
+Schwarzschild dan $g_{0\phi}=0$, tetapi koneksi tetap tidak nol karena
+komponen metrik masih bergantung pada $r$. Oleh karena itu, giroskop yang
+bergerak bebas di sekitar massa pusat tetap mengalami perubahan orientasi
+relatif terhadap kerangka acuan jauh meskipun sumber tidak berotasi
+\parencite{Schutz2009FirstCourse,Will2014Confrontation}.
+
+Untuk melihat asal matematis efek tersebut, dipertimbangkan orbit sirkular
+pada bidang ekuatorial,
 \begin{equation}
-    \bm{\Omega}_{\text{geodetik}} = \frac{3}{2}\,\frac{GM}{c^2\,r^3}\; \mathbf{r} \times \mathbf{v},
-    \label{eq:omega-geodetic}
+    r=\text{konstan},
+    \qquad
+    \theta=\frac{\pi}{2},
+    \qquad
+    u^r=u^\theta=0.
+    \label{eq:schw-circular-orbit}
 \end{equation}
-dengan $\mathbf{r}$ adalah vektor posisi dan $\mathbf{v}$ adalah kecepatan orbit. Untuk orbit sirkular dengan $v = \sqrt{GM/r}$, magnitudo laju presesi menjadi:
+Substitusi kondisi ini ke persamaan geodesik Schwarzschild memberikan
+frekuensi sudut orbit terhadap waktu koordinat
 \begin{equation}
-    |\bm{\Omega}_{\text{geodetik}}| = \frac{3}{2}\,\frac{(GM)^{3/2}}{c^2\, r^{5/2}}.
+    \Omega_{\mathrm{orb}}
+    \equiv\frac{d\phi}{dt}
+    =\sqrt{\frac{GM}{r^3}}.
+    \label{eq:omega-orbit-schwarzschild}
+\end{equation}
+Bentuk ini sama dengan hasil Kepler untuk orbit sirkular, sedangkan efek
+relativistik pada orientasi giroskop muncul ketika vektor spin ikut
+ditransportasikan secara paralel sepanjang worldline tersebut.
+
+Vektor spin tetap memenuhi
+\begin{equation}
+    \frac{DS^\mu}{D\tau}=0,
+\end{equation}
+bersama kendala ortogonalitas $S^\mu u_\mu=0$. Ketika kondisi orbit
+Persamaan~\eqref{eq:schw-circular-orbit} dimasukkan ke sistem transportasi
+spin dan komponen waktunya dieliminasi menggunakan kendala ortogonalitas,
+komponen spin pada bidang orbit membentuk sistem berosilasi. Setelah satu
+putaran orbital, arah spin tidak kembali tepat ke orientasi awal relatif
+terhadap basis radial--azimut. Untuk orbit sirkular Schwarzschild,
+selisih sudut tersebut dapat dituliskan sebagai
+\parencite{Schutz2009FirstCourse,Carroll2004SpacetimeGeometry}
+\begin{equation}
+    \Delta\Psi_{\mathrm{geodetik}}
+    =2\pi\left(
+        1-\sqrt{1-\frac{3GM}{c^2r}}
+    \right).
+    \label{eq:geodetic-exact-angle}
+\end{equation}
+Persamaan ini memperlihatkan bahwa presesi muncul dari kombinasi geodesik
+orbit dan transportasi paralel spin pada geometri Schwarzschild, bukan dari
+komponen rotasi $g_{0\phi}$.
+
+Untuk orbit di sekitar Bumi berlaku limit medan lemah,
+\begin{equation}
+    \epsilon
+    \equiv\frac{GM}{c^2r}
+    \ll1.
+    \label{eq:geodetic-weak-parameter}
+\end{equation}
+Dengan ekspansi binomial orde pertama,
+\begin{equation}
+    \sqrt{1-3\epsilon}
+    =1-\frac{3}{2}\epsilon+\mathcal{O}(\epsilon^2),
+\end{equation}
+sehingga Persamaan~\eqref{eq:geodetic-exact-angle} mereduksi menjadi
+\begin{equation}
+    \Delta\Psi_{\mathrm{geodetik}}
+    \simeq
+    \frac{3\pi GM}{c^2r}.
+    \label{eq:geodetic-angle-weak}
+\end{equation}
+Satu putaran memerlukan periode
+\begin{equation}
+    T=\frac{2\pi}{\Omega_{\mathrm{orb}}}.
+\end{equation}
+Dengan membagi sudut presesi per orbit terhadap periode tersebut,
+diperoleh laju presesi medan lemah
+\begin{equation}
+\begin{split}
+    \Omega_{\mathrm{geodetik}}
+    &=\frac{\Delta\Psi_{\mathrm{geodetik}}}{T}\\
+    &=\frac{3}{2}\frac{GM}{c^2r}\,\Omega_{\mathrm{orb}}\\
+    &=\frac{3}{2}\frac{(GM)^{3/2}}{c^2r^{5/2}}.
+\end{split}
     \label{eq:omega-geodetic-circular}
 \end{equation}
+Untuk orbit umum dalam aproksimasi medan lemah, bentuk vektornya dapat
+dituliskan sebagai \parencite{Will2014Confrontation}
+\begin{equation}
+    \bm{\Omega}_{\mathrm{geodetik}}
+    =\frac{3}{2}\frac{GM}{c^2r^3}
+    \left(\mathbf{r}\times\mathbf{v}\right).
+    \label{eq:omega-geodetic}
+\end{equation}
+Pada orbit sirkular, $|\mathbf{r}\times\mathbf{v}|=rv$ dan
+$v=\sqrt{GM/r}$, sehingga Persamaan~\eqref{eq:omega-geodetic} kembali
+menghasilkan Persamaan~\eqref{eq:omega-geodetic-circular}.
+
+Rantai matematis efek geodesik dapat diringkas sebagai
+\begin{equation}
+    g_{\mu\nu}^{\mathrm{Schw}}
+    \longrightarrow
+    \Gamma^\rho_{\mu\nu}
+    \longrightarrow
+    \text{orbit sirkular}
+    \longrightarrow
+    \frac{DS^\mu}{D\tau}=0
+    \longrightarrow
+    \Delta\Psi_{\mathrm{geodetik}}
+    \longrightarrow
+    \bm{\Omega}_{\mathrm{geodetik}}.
+    \label{eq:geodetic-chain}
+\end{equation}
+Secara fisis, efek ini berasal dari kelengkungan ruang-waktu akibat massa
+pusat yang dikombinasikan dengan gerak orbital giroskop. Karena derivasi
+tersebut tetap berlaku pada $J=0$, presesi geodesik harus dibedakan dari
+presesi Lense--Thirring yang hanya muncul ketika sumber berotasi.
 
 
 \subsection{Efek Frame-Dragging (Presesi Lense-Thirring)}
