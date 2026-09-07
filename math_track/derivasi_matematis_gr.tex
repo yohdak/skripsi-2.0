@@ -17,14 +17,18 @@
 \newcommand{\Riem}{R^{\rho}{}_{\sigma\mu\nu}}
 \newcommand{\order}{\mathcal{O}}
 \newcommand{\e}{\mathbf{e}}
-\newcommand{\dual}{\bm{\vartheta}}
+% Schutz, Bab 3: basis one-form ditulis \widetilde{\omega}^{\alpha}.
+\newcommand{\dual}{\widetilde{\omega}}
+\newcommand{\oneformp}{\widetilde{p}}
+\newcommand{\ddtilde}{\widetilde{\mathrm d}}
 \newcommand{\Lie}{\mathcal{L}}
 \newcommand{\Tr}{\operatorname{Tr}}
 
 \title{Jalur Derivasi Matematis Relativitas Umum\\
-\large Dari Kovektor hingga Presesi Lense--Thirring}
+\large Dari One-Form hingga Presesi Lense--Thirring\\
+\normalsize Notasi Utama Mengikuti Schutz}
 \author{Catatan latihan matematis untuk skripsi Gravity Probe B}
-\date{Versi 0.1}
+\date{Draft 0.2}
 
 \begin{document}
 \maketitle
@@ -43,6 +47,34 @@ Signature metrik yang digunakan di seluruh dokumen adalah
  (-,+,+,+),\qquad u^\mu u_\mu=-c^2.
 \]
 Indeks Yunani mencakup ruang-waktu, indeks Latin $i,j,k$ hanya mencakup ruang.
+Notasi dasar mengikuti Schutz: indeks koma menyatakan turunan parsial dan indeks
+titik-koma menyatakan turunan kovarian,
+\[
+ V^\alpha{}_{,\beta}\equiv\pd_\beta V^\alpha,
+ \qquad
+ V^\alpha{}_{;\beta}\equiv\nabla_\beta V^\alpha.
+\]
+Schutz biasanya menggunakan satuan geometris $G=c=1$. Dokumen ini memulihkan
+$G$ dan $c$ agar dimensi besaran Bumi dan GP-B dapat diperiksa secara langsung.
+Pemulihan satuan ini tidak mengubah konvensi tensor Schutz.
+
+\section*{Kamus notasi Schutz dan notasi umum}
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Objek & Schutz/dokumen ini & Notasi lain yang umum\\
+\hline
+vektor basis & $\e_\alpha$ & $\pd_\alpha$ pada basis koordinat\\
+basis one-form & $\dual^\alpha$ & $\vartheta^\alpha$ atau $\dd x^\alpha$\\
+one-form & $\oneformp=p_\alpha\dual^\alpha$ & $\omega=\omega_\alpha\dd x^\alpha$\\
+turunan parsial & $V^\alpha{}_{,\beta}$ & $\pd_\beta V^\alpha$\\
+turunan kovarian & $V^\alpha{}_{;\beta}$ & $\nabla_\beta V^\alpha$\\
+koneksi & $\Gamma^\alpha{}_{\mu\nu}$ & simbol Christoffel\\
+\hline
+\end{tabular}
+\end{center}
+
 Konvensi kelengkungan ditetapkan oleh
 \[
  (\nabla_\mu\nabla_\nu-\nabla_\nu\nabla_\mu)V^\rho
@@ -79,7 +111,7 @@ g_{\mu\nu}
 \to\bm\Omega_{\rm geo},\bm\Omega_{\rm LT}}.
 \]
 
-\chapter{Vektor, Kovektor, dan Tensor}
+\chapter{Vektor, One-Form, dan Tensor}
 
 \section{Ruang vektor dan basis}
 
@@ -107,48 +139,94 @@ Ketika bekerja pada fungsi skalar $f$,
  V[f]=V^\mu\pd_\mu f.
 \]
 
-\section{Ruang dual dan kovektor}
+\section{Ruang dual dan one-form}
 
+Mengikuti Schutz Bab 3, istilah utama yang digunakan adalah \emph{one-form}.
+Istilah \emph{kovektor} atau \emph{dual vector} merujuk pada objek yang sama.
 Ruang dual $T_p^*\mathcal{M}$ adalah ruang semua pemetaan linear
-$\omega:T_p\mathcal{M}\to\mathbb{R}$. Basis dual $\{\dual^\mu\}$ didefinisikan oleh
 \[
- \dual^\mu(\e_\nu)=\delta^\mu{}_\nu.
+ \oneformp:T_p\mathcal{M}\longrightarrow\mathbb{R}.
 \]
-Dalam basis koordinat, $\dual^\mu=\dd x^\mu$. Kovektor diekspansi sebagai
+Linearitas berarti
 \[
- \omega=\omega_\mu\dd x^\mu.
+ \oneformp(aA+bB)=a\oneformp(A)+b\oneformp(B).
 \]
-Pasangan alami kovektor dan vektor menghasilkan skalar:
+Jika $A=A^\beta\e_\beta$, komponen one-form didefinisikan melalui nilainya pada
+vektor basis,
 \[
- \omega(V)=\omega_\mu V^\nu\dd x^\mu(\pd_\nu)
- =\omega_\mu V^\nu\delta^\mu{}_\nu
- =\omega_\mu V^\mu.
-\]
-Karena hasilnya skalar, komponen kovektor harus bertransformasi sebagai
-\[
- \omega_{\mu'}=\frac{\pd x^\mu}{\pd x^{\mu'}}\omega_\mu.
+ p_\alpha\equiv\oneformp(\e_\alpha),
+ \qquad
+ \oneformp(A)=p_\alpha A^\alpha.
 \]
 
-Gradien fungsi skalar secara alami merupakan kovektor:
+Karena semua one-form juga membentuk ruang vektor, pilih basis one-form
+$\{\dual^\alpha\}$. Kita menghendaki ekspansi Schutz (3.11),
 \[
- \dd f=\pd_\mu f\,\dd x^\mu,
- \qquad (\dd f)(V)=V^\mu\pd_\mu f.
+ \oneformp=p_\alpha\dual^\alpha.
 \]
-Jadi $\pd_\mu f$ membawa indeks bawah bukan karena konvensi visual, tetapi karena
+Terapkan kedua ruas pada $A=A^\beta\e_\beta$:
+\begin{align}
+ \oneformp(A)
+ &=p_\alpha\dual^\alpha(A)\\
+ &=p_\alpha\dual^\alpha(A^\beta\e_\beta)\\
+ &=p_\alpha A^\beta\dual^\alpha(\e_\beta).
+\end{align}
+Agar hasil ini identik dengan $p_\alpha A^\alpha$ untuk setiap $p_\alpha$ dan
+$A^\beta$, basis dual harus didefinisikan oleh Schutz (3.12),
+\[
+ \boxed{\dual^\alpha(\e_\beta)=\delta^\alpha{}_\beta.}
+\]
+Ini bukan asumsi tambahan: persamaan tersebut merupakan syarat yang membuat
+koefisien $p_\alpha$ dalam ekspansi one-form sama dengan komponen yang diperoleh
+dari $p_\alpha=\oneformp(\e_\alpha)$.
+
+Untuk basis koordinat, $\e_\alpha=\pd/\pd x^\alpha$. Karena
+\[
+ x^\alpha{}_{,\beta}
+ =\frac{\pd x^\alpha}{\pd x^\beta}
+ =\delta^\alpha{}_\beta,
+\]
+perbandingan dengan definisi basis dual memberikan Schutz (3.20),
+\[
+ \boxed{\dual^\alpha=\ddtilde x^\alpha.}
+\]
+Tilde pada $\ddtilde x^\alpha$ menegaskan bahwa objek tersebut adalah one-form,
+bukan perubahan kecil koordinat. Dalam notasi modern, tilde biasanya dihilangkan:
+$\ddtilde x^\alpha\equiv\dd x^\alpha$.
+
+Basis dual mengekstrak satu komponen vektor:
+\[
+ \dual^\alpha(A)
+ =A^\beta\dual^\alpha(\e_\beta)
+ =A^\beta\delta^\alpha{}_\beta
+ =A^\alpha.
+\]
+Karena $\oneformp(A)=p_\alpha A^\alpha$ adalah skalar, komponen one-form
+bertransformasi sebagai
+\[
+ p_{\alpha'}=\frac{\pd x^\alpha}{\pd x^{\alpha'}}p_\alpha.
+\]
+
+Gradien fungsi skalar secara alami merupakan one-form:
+\[
+ \ddtilde f=f_{,\alpha}\ddtilde x^\alpha,
+ \qquad (\ddtilde f)(A)=A^\alpha f_{,\alpha}.
+\]
+Jadi $f_{,\alpha}=\pd_\alpha f$ membawa indeks bawah bukan karena konvensi visual, tetapi karena
 ia menerima sebuah vektor dan menghasilkan skalar.
 
 \section{Produk tensor dan tipe tensor}
 
-Produk tensor vektor $V$ dan kovektor $\omega$ ditentukan oleh bilinearitas:
+Produk tensor vektor $V$ dan one-form $\oneformp$ ditentukan oleh bilinearitas:
 \[
- V\otimes\omega
- =V^\mu\omega_\nu\,\e_\mu\otimes\dd x^\nu.
+ V\otimes\oneformp
+ =V^\alpha p_\beta\,\e_\alpha\otimes\dual^\beta.
 \]
 Tensor bertipe $(r,s)$ memiliki $r$ indeks atas dan $s$ indeks bawah:
 \[
  T=T^{\mu_1\cdots\mu_r}{}_{\nu_1\cdots\nu_s}
  \e_{\mu_1}\otimes\cdots\otimes\e_{\mu_r}
- \otimes\dd x^{\nu_1}\otimes\cdots\otimes\dd x^{\nu_s}.
+ \otimes\dual^{\nu_1}\otimes\cdots\otimes\dual^{\nu_s}.
 \]
 Kontraksi satu indeks atas dan satu indeks bawah menurunkan orde tensor. Contoh:
 \[
@@ -160,7 +238,7 @@ Kontraksi satu indeks atas dan satu indeks bawah menurunkan orde tensor. Contoh:
 
 Metrik adalah tensor simetris nondegenerat bertipe $(0,2)$:
 \[
- g=g_{\mu\nu}\dd x^\mu\otimes\dd x^\nu,
+ g=g_{\mu\nu}\dual^\mu\otimes\dual^\nu,
  \qquad g_{\mu\nu}=g_{\nu\mu}.
 \]
 Elemen garis adalah
@@ -171,7 +249,7 @@ Matriks invers $g^{\mu\nu}$ didefinisikan oleh
 \[
  g^{\mu\alpha}g_{\alpha\nu}=\delta^\mu{}_\nu.
 \]
-Metrik membentuk isomorfisme antara vektor dan kovektor:
+Metrik membentuk isomorfisme antara vektor dan one-form (kovektor):
 \begin{align}
  V_\mu&=g_{\mu\nu}V^\nu,\\
  V^\mu&=g^{\mu\nu}V_\nu.
@@ -222,27 +300,32 @@ Basis dapat berubah dari titik ke titik. Definisikan koefisien koneksi melalui
 \[
  \nabla_\mu\e_\nu=\Gamma^\rho{}_{\mu\nu}\e_\rho.
 \]
-Turunan kovarian komponen vektor kemudian menjadi
+Turunan kovarian komponen vektor kemudian menjadi, dalam notasi titik-koma Schutz,
 \[
- \boxed{\nabla_\mu V^\nu=\pd_\mu V^\nu+\Gamma^\nu{}_{\mu\lambda}V^\lambda.}
+ \boxed{V^\nu{}_{;\mu}
+ =V^\nu{}_{,\mu}+\Gamma^\nu{}_{\lambda\mu}V^\lambda}
+ \quad\Longleftrightarrow\quad
+ \nabla_\mu V^\nu=\pd_\mu V^\nu+\Gamma^\nu{}_{\lambda\mu}V^\lambda.
 \]
-Untuk menjaga aturan Leibniz pada skalar $\omega_\nu V^\nu$,
+Untuk menjaga aturan Leibniz pada skalar $p_\nu V^\nu$,
 \begin{align}
- \pd_\mu(\omega_\nu V^\nu)
- &=(\nabla_\mu\omega_\nu)V^\nu+\omega_\nu\nabla_\mu V^\nu,
+ (p_\nu V^\nu)_{,\mu}
+ &=p_{\nu;\mu}V^\nu+p_\nu V^\nu{}_{;\mu},
 \end{align}
 sehingga
 \[
- \boxed{\nabla_\mu\omega_\nu
- =\pd_\mu\omega_\nu-\Gamma^\lambda{}_{\mu\nu}\omega_\lambda.}
+ \boxed{p_{\nu;\mu}
+ =p_{\nu,\mu}-\Gamma^\lambda{}_{\nu\mu}p_\lambda}
+ \quad\Longleftrightarrow\quad
+ \nabla_\mu p_\nu=\pd_\mu p_\nu-\Gamma^\lambda{}_{\nu\mu}p_\lambda.
 \]
 Setiap indeks atas memberi suku $+\Gamma$ dan setiap indeks bawah memberi suku
 $-\Gamma$. Sebagai contoh,
 \[
- \nabla_\lambda T^\mu{}_\nu
- =\pd_\lambda T^\mu{}_\nu
- +\Gamma^\mu{}_{\lambda\rho}T^\rho{}_\nu
- -\Gamma^\rho{}_{\lambda\nu}T^\mu{}_\rho.
+ T^\mu{}_{\nu;\lambda}
+ =T^\mu{}_{\nu,\lambda}
+ +\Gamma^\mu{}_{\rho\lambda}T^\rho{}_\nu
+ -\Gamma^\rho{}_{\nu\lambda}T^\mu{}_\rho.
 \]
 
 \section{Derivasi simbol Christoffel}
@@ -277,8 +360,9 @@ Kalikan dengan $\tfrac12g^{\rho\sigma}$:
  \boxed{
  \Gamma^\rho{}_{\mu\nu}
  =\frac12g^{\rho\sigma}
- (\pd_\mu g_{\sigma\nu}+\pd_\nu g_{\sigma\mu}-\pd_\sigma g_{\mu\nu})}.
+ (g_{\sigma\mu,\nu}+g_{\sigma\nu,\mu}-g_{\mu\nu,\sigma})}.
 \]
+Ini adalah bentuk yang digunakan Schutz pada Persamaan (6.32).
 
 Simbol Christoffel bukan tensor. Di satu titik ia dapat dibuat nol dengan memilih
 koordinat inersial lokal, sedangkan kelengkungan yang dibentuk darinya tidak dapat
@@ -408,7 +492,7 @@ dari kelengkungan pada vektor yang ditransportasikan.
 
 \section{Riemann dari komutator turunan kovarian}
 
-Untuk vektor $V^\rho$,
+Untuk vektor $V^\alpha$,
 \begin{align}
  \nabla_\mu\nabla_\nu V^\rho
  &=\pd_\mu(\pd_\nu V^\rho+\Gamma^\rho{}_{\nu\sigma}V^\sigma)
@@ -420,17 +504,17 @@ Untuk vektor $V^\rho$,
 Kurangkan ekspresi dengan $\mu\leftrightarrow\nu$. Suku yang memuat turunan
 $V^\rho$ saling hapus untuk koneksi tanpa torsi, sehingga
 \[
- (\nabla_\mu\nabla_\nu-\nabla_\nu\nabla_\mu)V^\rho
- =R^\rho{}_{\sigma\mu\nu}V^\sigma,
+ (\nabla_\mu\nabla_\nu-\nabla_\nu\nabla_\mu)V^\alpha
+ =R^\alpha{}_{\beta\mu\nu}V^\beta,
 \]
-dengan
+dengan bentuk Schutz (6.63)
 \[
  \boxed{
- R^\rho{}_{\sigma\mu\nu}
- =\pd_\mu\Gamma^\rho{}_{\nu\sigma}
- -\pd_\nu\Gamma^\rho{}_{\mu\sigma}
- +\Gamma^\rho{}_{\mu\lambda}\Gamma^\lambda{}_{\nu\sigma}
- -\Gamma^\rho{}_{\nu\lambda}\Gamma^\lambda{}_{\mu\sigma}}.
+ R^\alpha{}_{\beta\mu\nu}
+ =\Gamma^\alpha{}_{\beta\nu,\mu}
+ -\Gamma^\alpha{}_{\beta\mu,\nu}
+ +\Gamma^\alpha{}_{\sigma\mu}\Gamma^\sigma{}_{\beta\nu}
+ -\Gamma^\alpha{}_{\sigma\nu}\Gamma^\sigma{}_{\beta\mu}}.
 \]
 
 Turunkan indeks pertama dengan metrik:
@@ -447,9 +531,10 @@ Simetri-simetrinya adalah
 
 \section{Kontraksi Ricci, skalar Ricci, dan Einstein}
 
-Tensor Ricci diperoleh dengan mengontraksi indeks pertama dan ketiga:
+Tensor Ricci diperoleh dengan mengontraksi indeks pertama dan ketiga, sesuai
+Schutz (6.91):
 \[
- \boxed{R_{\sigma\nu}=R^\rho{}_{\sigma\rho\nu}}.
+ \boxed{R_{\alpha\beta}=R^\mu{}_{\alpha\mu\beta}}.
 \]
 Dalam simbol Christoffel,
 \[
@@ -736,26 +821,29 @@ Definisikan parameter panjang
 \]
 serta
 \[
- \Sigma=r^2+a^2\cos^2\theta,
+ \rho^2=r^2+a^2\cos^2\theta,
  \qquad
  \Delta=r^2-2mr+a^2.
 \]
+Schutz menulis parameter massa geometris ini sebagai $M$ dan mendefinisikan
+$a=J/M$ karena menggunakan $G=c=1$. Dengan satuan dipulihkan, $M_{\rm Schutz}=m$
+dan $a=J/(Mc)$. Simbol $\rho^2$ dan $\Delta$ mengikuti Schutz (11.72).
 Dalam koordinat Boyer--Lindquist $x^0=ct$, metrik Kerr dengan signature
 $(-,+,+,+)$ adalah
 \begin{align}
- \dd s^2={}&-\left(1-\frac{2mr}{\Sigma}\right)(\dd x^0)^2
- -\frac{4mar\sin^2\theta}{\Sigma}\,\dd x^0\dd\phi
- +\frac{\Sigma}{\Delta}\dd r^2+\Sigma\dd\theta^2\\
- &+\left(r^2+a^2+\frac{2ma^2r\sin^2\theta}{\Sigma}\right)
+ \dd s^2={}&-\left(1-\frac{2mr}{\rho^2}\right)(\dd x^0)^2
+ -\frac{4mar\sin^2\theta}{\rho^2}\,\dd x^0\dd\phi
+ +\frac{\rho^2}{\Delta}\dd r^2+\rho^2\dd\theta^2\\
+ &+\left(r^2+a^2+\frac{2ma^2r\sin^2\theta}{\rho^2}\right)
  \sin^2\theta\,\dd\phi^2.
 \end{align}
 Karena suku silang dalam elemen garis adalah $2g_{0\phi}\dd x^0\dd\phi$,
 \[
- g_{0\phi}=-\frac{2mar\sin^2\theta}{\Sigma}.
+ g_{0\phi}=-\frac{2mar\sin^2\theta}{\rho^2}.
 \]
 Matriks blok $(0,\phi)$ tidak diagonal. Determinan keseluruhan adalah
 \[
- g=-\Sigma^2\sin^2\theta.
+ g=-\rho^4\sin^2\theta.
 \]
 
 \section{Invers metrik}
@@ -767,12 +855,12 @@ Untuk blok
 invers diperoleh dengan rumus invers matriks $2\times2$. Hasilnya
 \begin{align}
  g^{00}&=-\frac{(r^2+a^2)^2-a^2\Delta\sin^2\theta}
- {\Sigma\Delta},\\
- g^{0\phi}&=-\frac{2mar}{\Sigma\Delta},\\
+ {\rho^2\Delta},\\
+ g^{0\phi}&=-\frac{2mar}{\rho^2\Delta},\\
  g^{\phi\phi}&=\frac{\Delta-a^2\sin^2\theta}
- {\Sigma\Delta\sin^2\theta},\\
- g^{rr}&=\frac{\Delta}{\Sigma},
- &g^{\theta\theta}&=\frac1\Sigma.
+ {\rho^2\Delta\sin^2\theta},\\
+ g^{rr}&=\frac{\Delta}{\rho^2},
+ &g^{\theta\theta}&=\frac1{\rho^2}.
 \end{align}
 Pemeriksaan wajib adalah
 \[
@@ -783,7 +871,7 @@ Pemeriksaan wajib adalah
 
 Untuk $a\to0$,
 \[
- \Sigma\to r^2,\qquad\Delta\to r(r-2m),\qquad g_{0\phi}\to0,
+ \rho^2\to r^2,\qquad\Delta\to r(r-2m),\qquad g_{0\phi}\to0,
 \]
 dan metrik mereduksi tepat ke Schwarzschild. Untuk $r\to\infty$,
 \[
@@ -841,10 +929,10 @@ dapat dipisahkan dengan ansatz
 \]
 Konstanta pemisahan menghasilkan konstanta Carter $Q$. Geodesik timelike memenuhi
 \begin{align}
- \Sigma^2\dot r^2
+ \rho^4\dot r^2
  &=\left[E(r^2+a^2)-aL_z\right]^2
  -\Delta\left[r^2+(L_z-aE)^2+Q\right],\\
- \Sigma^2\dot\theta^2
+ \rho^4\dot\theta^2
  &=Q-\cos^2\theta\left[a^2(1-E^2)
  +\frac{L_z^2}{\sin^2\theta}\right].
 \end{align}
@@ -920,7 +1008,7 @@ bergantung pada penamaan medan antara tersebut.
 
 Untuk $r\gg m$ dan $r\gg a$,
 \[
- \Sigma=r^2+\order(a^2),
+ \rho^2=r^2+\order(a^2),
 \]
 sehingga
 \begin{align}
@@ -1094,7 +1182,7 @@ Kerjakan tanpa melihat hasil akhir. Tujuan latihan adalah membangun kepekaan ind
 tanda, dimensi, limit, dan dependensi antarpersamaan.
 
 \begin{enumerate}[label=\arabic*.]
- \item Buktikan bahwa $\omega_\mu V^\mu$ invarian di bawah perubahan koordinat.
+ \item Buktikan bahwa $\oneformp(V)=p_\mu V^\mu$ invarian di bawah perubahan koordinat.
  \item Turunkan aturan transformasi tensor $(1,1)$ dari transformasi basis dan basis dual.
  \item Dari $g^{\mu\alpha}g_{\alpha\nu}=\delta^\mu{}_\nu$, buktikan
  $\pd_\lambda g^{\mu\nu}=-g^{\mu\alpha}g^{\nu\beta}\pd_\lambda g_{\alpha\beta}$.
@@ -1134,7 +1222,8 @@ tanda, dimensi, limit, dan dependensi antarpersamaan.
 \addcontentsline{toc}{chapter}{Ringkasan Rantai yang Harus Dikuasai}
 
 \begin{align*}
- \text{kovektor}&:\quad \omega(V)=\omega_\mu V^\mu,\\
+ \text{one-form}&:\quad \oneformp(V)=p_\mu V^\mu,
+ \qquad \dual^\alpha(\e_\beta)=\delta^\alpha{}_\beta,\\
  \text{metrik}&:\quad V_\mu=g_{\mu\nu}V^\nu,\\
  \text{koneksi}&:\quad
  \Gamma^\rho{}_{\mu\nu}=\tfrac12g^{\rho\sigma}
