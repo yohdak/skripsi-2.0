@@ -1,0 +1,1159 @@
+% !TEX program = xelatex
+% Dokumen latihan matematis mandiri. Tidak di-input ke main.tex skripsi.
+\documentclass[12pt,a4paper]{report}
+
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage[provide=*,indonesian]{babel}
+\geometry{left=3cm,right=3cm,top=3cm,bottom=3cm}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+\allowdisplaybreaks
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\pd}{\partial}
+\newcommand{\Lag}{\mathcal{L}}
+\newcommand{\Riem}{R^{\rho}{}_{\sigma\mu\nu}}
+\newcommand{\order}{\mathcal{O}}
+\newcommand{\e}{\mathbf{e}}
+\newcommand{\dual}{\bm{\vartheta}}
+\newcommand{\Lie}{\mathcal{L}}
+\newcommand{\Tr}{\operatorname{Tr}}
+
+\title{Jalur Derivasi Matematis Relativitas Umum\\
+\large Dari Kovektor hingga Presesi Lense--Thirring}
+\author{Catatan latihan matematis untuk skripsi Gravity Probe B}
+\date{Versi 0.1}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\chapter*{Konvensi dan Peta Dependensi}
+\addcontentsline{toc}{chapter}{Konvensi dan Peta Dependensi}
+
+Koordinat ruang-waktu ditulis
+\[
+ x^\mu=(x^0,x^1,x^2,x^3)=(ct,r,\theta,\phi),
+ \qquad \mu,\nu,\ldots\in\{0,1,2,3\}.
+\]
+Signature metrik yang digunakan di seluruh dokumen adalah
+\[
+ (-,+,+,+),\qquad u^\mu u_\mu=-c^2.
+\]
+Indeks Yunani mencakup ruang-waktu, indeks Latin $i,j,k$ hanya mencakup ruang.
+Konvensi kelengkungan ditetapkan oleh
+\[
+ (\nabla_\mu\nabla_\nu-\nabla_\nu\nabla_\mu)V^\rho
+ =R^\rho{}_{\sigma\mu\nu}V^\sigma.
+\]
+Dengan konvensi ini,
+\[
+ R^\rho{}_{\sigma\mu\nu}
+ =\pd_\mu\Gamma^\rho{}_{\nu\sigma}
+ -\pd_\nu\Gamma^\rho{}_{\mu\sigma}
+ +\Gamma^\rho{}_{\mu\lambda}\Gamma^\lambda{}_{\nu\sigma}
+ -\Gamma^\rho{}_{\nu\lambda}\Gamma^\lambda{}_{\mu\sigma}.
+\]
+
+Urutan dependensi matematis utama adalah
+\[
+\boxed{
+\text{ruang vektor}
+\to\text{ruang dual}
+\to g_{\mu\nu}
+\to g^{\mu\nu}
+\to\Gamma^\rho{}_{\mu\nu}
+\to R^\rho{}_{\sigma\mu\nu}
+\to R_{\mu\nu},R
+\to G_{\mu\nu}
+\to\text{EFE}}
+\]
+dan untuk giroskop
+\[
+\boxed{
+g_{\mu\nu}
+\to x^\mu(\tau),u^\mu
+\to S^\mu(\tau)
+\to\bm\Omega_{\rm geo},\bm\Omega_{\rm LT}}.
+\]
+
+\chapter{Vektor, Kovektor, dan Tensor}
+
+\section{Ruang vektor dan basis}
+
+Pada suatu titik $p$, vektor tangen $V\in T_p\mathcal{M}$ diekspansi terhadap basis
+$\{\e_\mu\}$ sebagai
+\[
+ V=V^\mu\e_\mu.
+\]
+Jika koordinat berubah dari $x^\mu$ ke $x^{\mu'}$, basis dan komponen berubah
+berlawanan:
+\begin{align}
+ \e_{\mu'}&=\frac{\pd x^\mu}{\pd x^{\mu'}}\e_\mu,\\
+ V^{\mu'}&=\frac{\pd x^{\mu'}}{\pd x^\mu}V^\mu.
+\end{align}
+Akibatnya $V=V^{\mu'}\e_{\mu'}=V^\mu\e_\mu$ tetap merupakan objek geometris
+yang sama.
+
+Vektor basis koordinat dapat dipandang sebagai operator turunan:
+\[
+ \e_\mu=\pd_\mu\equiv\frac{\pd}{\pd x^\mu},
+ \qquad V=V^\mu\pd_\mu.
+\]
+Ketika bekerja pada fungsi skalar $f$,
+\[
+ V[f]=V^\mu\pd_\mu f.
+\]
+
+\section{Ruang dual dan kovektor}
+
+Ruang dual $T_p^*\mathcal{M}$ adalah ruang semua pemetaan linear
+$\omega:T_p\mathcal{M}\to\mathbb{R}$. Basis dual $\{\dual^\mu\}$ didefinisikan oleh
+\[
+ \dual^\mu(\e_\nu)=\delta^\mu{}_\nu.
+\]
+Dalam basis koordinat, $\dual^\mu=\dd x^\mu$. Kovektor diekspansi sebagai
+\[
+ \omega=\omega_\mu\dd x^\mu.
+\]
+Pasangan alami kovektor dan vektor menghasilkan skalar:
+\[
+ \omega(V)=\omega_\mu V^\nu\dd x^\mu(\pd_\nu)
+ =\omega_\mu V^\nu\delta^\mu{}_\nu
+ =\omega_\mu V^\mu.
+\]
+Karena hasilnya skalar, komponen kovektor harus bertransformasi sebagai
+\[
+ \omega_{\mu'}=\frac{\pd x^\mu}{\pd x^{\mu'}}\omega_\mu.
+\]
+
+Gradien fungsi skalar secara alami merupakan kovektor:
+\[
+ \dd f=\pd_\mu f\,\dd x^\mu,
+ \qquad (\dd f)(V)=V^\mu\pd_\mu f.
+\]
+Jadi $\pd_\mu f$ membawa indeks bawah bukan karena konvensi visual, tetapi karena
+ia menerima sebuah vektor dan menghasilkan skalar.
+
+\section{Produk tensor dan tipe tensor}
+
+Produk tensor vektor $V$ dan kovektor $\omega$ ditentukan oleh bilinearitas:
+\[
+ V\otimes\omega
+ =V^\mu\omega_\nu\,\e_\mu\otimes\dd x^\nu.
+\]
+Tensor bertipe $(r,s)$ memiliki $r$ indeks atas dan $s$ indeks bawah:
+\[
+ T=T^{\mu_1\cdots\mu_r}{}_{\nu_1\cdots\nu_s}
+ \e_{\mu_1}\otimes\cdots\otimes\e_{\mu_r}
+ \otimes\dd x^{\nu_1}\otimes\cdots\otimes\dd x^{\nu_s}.
+\]
+Kontraksi satu indeks atas dan satu indeks bawah menurunkan orde tensor. Contoh:
+\[
+ T^\mu{}_\mu=\Tr(T),
+ \qquad A^\mu{}_{\nu\mu}=B_\nu.
+\]
+
+\section{Metrik, panjang, dan operasi indeks}
+
+Metrik adalah tensor simetris nondegenerat bertipe $(0,2)$:
+\[
+ g=g_{\mu\nu}\dd x^\mu\otimes\dd x^\nu,
+ \qquad g_{\mu\nu}=g_{\nu\mu}.
+\]
+Elemen garis adalah
+\[
+ \dd s^2=g_{\mu\nu}\dd x^\mu\dd x^\nu.
+\]
+Matriks invers $g^{\mu\nu}$ didefinisikan oleh
+\[
+ g^{\mu\alpha}g_{\alpha\nu}=\delta^\mu{}_\nu.
+\]
+Metrik membentuk isomorfisme antara vektor dan kovektor:
+\begin{align}
+ V_\mu&=g_{\mu\nu}V^\nu,\\
+ V^\mu&=g^{\mu\nu}V_\nu.
+\end{align}
+Contoh pada ruang-waktu Minkowski dalam koordinat Kartesian,
+\[
+ \eta_{\mu\nu}=\operatorname{diag}(-1,1,1,1),
+ \]
+maka
+\[
+ V_0=-V^0,\qquad V_i=V^i.
+\]
+Untuk tensor orde dua,
+\[
+ T^\mu{}_\nu=g^{\mu\alpha}T_{\alpha\nu},
+ \qquad
+ T^{\mu\nu}=g^{\mu\alpha}g^{\nu\beta}T_{\alpha\beta}.
+\]
+
+Determinan metrik ditulis $g=\det(g_{\mu\nu})$. Elemen volume invarian adalah
+\[
+ \dd^4V=\sqrt{-g}\,\dd^4x
+\]
+untuk signature $(-,+,+,+)$.
+
+\section{Contoh: koordinat polar datar}
+
+Bidang Euklides mempunyai
+\[
+ \dd \ell^2=\dd r^2+r^2\dd\phi^2,
+ \qquad
+ (g_{ij})=\begin{pmatrix}1&0\\0&r^2\end{pmatrix},
+ \qquad
+ (g^{ij})=\begin{pmatrix}1&0\\0&r^{-2}\end{pmatrix}.
+\]
+Walaupun ruangnya datar, komponen metrik bergantung pada $r$. Ini akan menghasilkan
+simbol Christoffel tak nol, tetapi tensor Riemann tetap nol.
+
+\chapter{Turunan Kovarian dan Koneksi Levi--Civita}
+
+\section{Mengapa turunan parsial vektor tidak tensorial}
+
+Untuk $V=V^\nu\e_\nu$,
+\[
+ \pd_\mu V=(\pd_\mu V^\nu)\e_\nu+V^\nu\pd_\mu\e_\nu.
+\]
+Basis dapat berubah dari titik ke titik. Definisikan koefisien koneksi melalui
+\[
+ \nabla_\mu\e_\nu=\Gamma^\rho{}_{\mu\nu}\e_\rho.
+\]
+Turunan kovarian komponen vektor kemudian menjadi
+\[
+ \boxed{\nabla_\mu V^\nu=\pd_\mu V^\nu+\Gamma^\nu{}_{\mu\lambda}V^\lambda.}
+\]
+Untuk menjaga aturan Leibniz pada skalar $\omega_\nu V^\nu$,
+\begin{align}
+ \pd_\mu(\omega_\nu V^\nu)
+ &=(\nabla_\mu\omega_\nu)V^\nu+\omega_\nu\nabla_\mu V^\nu,
+\end{align}
+sehingga
+\[
+ \boxed{\nabla_\mu\omega_\nu
+ =\pd_\mu\omega_\nu-\Gamma^\lambda{}_{\mu\nu}\omega_\lambda.}
+\]
+Setiap indeks atas memberi suku $+\Gamma$ dan setiap indeks bawah memberi suku
+$-\Gamma$. Sebagai contoh,
+\[
+ \nabla_\lambda T^\mu{}_\nu
+ =\pd_\lambda T^\mu{}_\nu
+ +\Gamma^\mu{}_{\lambda\rho}T^\rho{}_\nu
+ -\Gamma^\rho{}_{\lambda\nu}T^\mu{}_\rho.
+\]
+
+\section{Derivasi simbol Christoffel}
+
+Koneksi Levi--Civita memenuhi dua syarat:
+\begin{align}
+ \nabla_\lambda g_{\mu\nu}&=0
+ &&\text{(kompatibilitas metrik)},\\
+ \Gamma^\rho{}_{\mu\nu}&=\Gamma^\rho{}_{\nu\mu}
+ &&\text{(tanpa torsi)}.
+\end{align}
+Ekspansi kompatibilitas metrik memberi
+\begin{align}
+ \pd_\mu g_{\nu\sigma}
+ &=\Gamma^\lambda{}_{\mu\nu}g_{\lambda\sigma}
+ +\Gamma^\lambda{}_{\mu\sigma}g_{\nu\lambda},\tag{1}\\
+ \pd_\nu g_{\mu\sigma}
+ &=\Gamma^\lambda{}_{\nu\mu}g_{\lambda\sigma}
+ +\Gamma^\lambda{}_{\nu\sigma}g_{\mu\lambda},\tag{2}\\
+ \pd_\sigma g_{\mu\nu}
+ &=\Gamma^\lambda{}_{\sigma\mu}g_{\lambda\nu}
+ +\Gamma^\lambda{}_{\sigma\nu}g_{\mu\lambda}.\tag{3}
+\end{align}
+Menjumlahkan (1) dan (2), lalu mengurangkan (3), serta menggunakan simetri indeks
+bawah koneksi,
+\[
+ \pd_\mu g_{\nu\sigma}+\pd_\nu g_{\mu\sigma}-\pd_\sigma g_{\mu\nu}
+ =2\Gamma^\lambda{}_{\mu\nu}g_{\lambda\sigma}.
+\]
+Kalikan dengan $\tfrac12g^{\rho\sigma}$:
+\[
+ \boxed{
+ \Gamma^\rho{}_{\mu\nu}
+ =\frac12g^{\rho\sigma}
+ (\pd_\mu g_{\sigma\nu}+\pd_\nu g_{\sigma\mu}-\pd_\sigma g_{\mu\nu})}.
+\]
+
+Simbol Christoffel bukan tensor. Di satu titik ia dapat dibuat nol dengan memilih
+koordinat inersial lokal, sedangkan kelengkungan yang dibentuk darinya tidak dapat
+dihilangkan jika ruang-waktu memang melengkung.
+
+\section{Divergensi dan identitas determinan}
+
+Dari identitas matriks $\pd_\mu\ln|g|=g^{\alpha\beta}\pd_\mu g_{\beta\alpha}$,
+\[
+ \Gamma^\nu{}_{\nu\mu}
+ =\frac12g^{\alpha\beta}\pd_\mu g_{\alpha\beta}
+ =\pd_\mu\ln\sqrt{-g}.
+\]
+Maka divergensi vektor dapat ditulis
+\[
+ \boxed{
+ \nabla_\mu V^\mu
+ =\frac{1}{\sqrt{-g}}\pd_\mu\left(\sqrt{-g}\,V^\mu\right)}.
+\]
+
+\section{Contoh Christoffel pada bidang polar}
+
+Karena $\pd_r g_{\phi\phi}=2r$, komponen tak nol adalah
+\begin{align}
+ \Gamma^r{}_{\phi\phi}
+ &=-\frac12\pd_r(r^2)=-r,\\
+ \Gamma^\phi{}_{r\phi}=\Gamma^\phi{}_{\phi r}
+ &=\frac12g^{\phi\phi}\pd_r g_{\phi\phi}=\frac1r.
+\end{align}
+
+\chapter{Geodesik dan Transportasi Paralel}
+
+\section{Geodesik dari variasi panjang lintasan}
+
+Gunakan Lagrangian kuadratik
+\[
+ \Lag=\frac12g_{\mu\nu}\dot x^\mu\dot x^\nu,
+ \qquad \dot x^\mu=\frac{\dd x^\mu}{\dd\lambda}.
+\]
+Persamaan Euler--Lagrange adalah
+\[
+ \frac{\dd}{\dd\lambda}\left(\frac{\pd\Lag}{\pd\dot x^\rho}\right)
+ -\frac{\pd\Lag}{\pd x^\rho}=0.
+\]
+Hitung masing-masing suku:
+\begin{align}
+ \frac{\pd\Lag}{\pd\dot x^\rho}&=g_{\rho\nu}\dot x^\nu,\\
+ \frac{\dd}{\dd\lambda}(g_{\rho\nu}\dot x^\nu)
+ &=g_{\rho\nu}\ddot x^\nu
+ +(\pd_\sigma g_{\rho\nu})\dot x^\sigma\dot x^\nu,\\
+ \frac{\pd\Lag}{\pd x^\rho}
+ &=\frac12(\pd_\rho g_{\mu\nu})\dot x^\mu\dot x^\nu.
+\end{align}
+Kalikan hasilnya dengan $g^{\alpha\rho}$ dan simetriskan pasangan
+$\dot x^\mu\dot x^\nu$:
+\[
+ \boxed{
+ \ddot x^\alpha+\Gamma^\alpha{}_{\mu\nu}dot x^\mu\dot x^\nu=0}.
+\]
+Parameter $\lambda$ yang membuat ruas kanan nol disebut parameter afin. Untuk
+partikel bermassa dapat dipilih $\lambda=\tau$. Jika memakai parameter nonafin,
+\[
+ \ddot x^\alpha+\Gamma^\alpha{}_{\mu\nu}\dot x^\mu\dot x^\nu
+ =f(\lambda)\dot x^\alpha.
+\]
+
+\section{Transportasi paralel}
+
+Sepanjang kurva $x^\mu(\lambda)$ dengan vektor singgung
+$u^\mu=\dd x^\mu/\dd\lambda$, turunan kovarian sepanjang kurva adalah
+\[
+ \frac{D}{D\lambda}=u^\mu\nabla_\mu.
+\]
+Vektor $V^\mu$ tertransportasi paralel jika
+\[
+ \boxed{
+ \frac{DV^\mu}{D\lambda}
+ =\frac{\dd V^\mu}{\dd\lambda}
+ +\Gamma^\mu{}_{\alpha\beta}u^\alpha V^\beta=0}.
+\]
+Geodesik adalah kasus khusus ketika vektor yang ditransportasikan adalah vektor
+singgung itu sendiri:
+\[
+ \frac{Du^\mu}{D\lambda}=0.
+\]
+
+Kompatibilitas metrik menjamin produk dalam dipertahankan. Jika $V$ dan $W$
+keduanya ditransportasikan paralel,
+\begin{align}
+ \frac{\dd}{\dd\lambda}(g_{\mu\nu}V^\mu W^\nu)
+ &=u^\alpha\nabla_\alpha(g_{\mu\nu}V^\mu W^\nu)=0.
+\end{align}
+
+Untuk giroskop ideal yang bergerak geodesik,
+\begin{align}
+ \frac{DS^\mu}{D\tau}&=0,\\
+ \frac{Du^\mu}{D\tau}&=0,\\
+ S_\mu u^\mu&=0.
+\end{align}
+Kekekalan ortogonalitas mengikuti langsung:
+\[
+ \frac{D}{D\tau}(S_\mu u^\mu)
+ =\frac{DS_\mu}{D\tau}u^\mu+S_\mu\frac{Du^\mu}{D\tau}=0.
+\]
+Jika lintasan memiliki empat-percepatan $a^\mu=Du^\mu/D\tau\ne0$, transportasi
+spin tanpa rotasi intrinsik diberikan oleh transportasi Fermi--Walker:
+\[
+ \frac{DS^\mu}{D\tau}
+ =\frac{1}{c^2}(u^\mu a_\nu-a^\mu u_\nu)S^\nu.
+\]
+Ruas kanan kembali nol pada lintasan geodesik.
+
+\section{Holonomi}
+
+Transportasi paralel mengelilingi kurva tertutup umumnya tidak mengembalikan vektor
+ke orientasi semula. Untuk loop infinitesimal dengan elemen luas bivector
+$\Sigma^{\mu\nu}$,
+\[
+ \delta V^\rho
+ =-\frac12R^\rho{}_{\sigma\mu\nu}V^\sigma\Sigma^{\mu\nu}
+ +\order(\Sigma^{3/2}).
+\]
+Jadi holonomi bukan objek tambahan yang terpisah: ia merupakan aksi terintegrasi
+dari kelengkungan pada vektor yang ditransportasikan.
+
+\chapter{Tensor Riemann, Ricci, dan Geodesic Deviation}
+
+\section{Riemann dari komutator turunan kovarian}
+
+Untuk vektor $V^\rho$,
+\begin{align}
+ \nabla_\mu\nabla_\nu V^\rho
+ &=\pd_\mu(\pd_\nu V^\rho+\Gamma^\rho{}_{\nu\sigma}V^\sigma)
+ +\Gamma^\rho{}_{\mu\lambda}(\pd_\nu V^\lambda
+ +\Gamma^\lambda{}_{\nu\sigma}V^\sigma)
+ -\Gamma^\lambda{}_{\mu\nu}(\pd_\lambda V^\rho
+ +\Gamma^\rho{}_{\lambda\sigma}V^\sigma).
+\end{align}
+Kurangkan ekspresi dengan $\mu\leftrightarrow\nu$. Suku yang memuat turunan
+$V^\rho$ saling hapus untuk koneksi tanpa torsi, sehingga
+\[
+ (\nabla_\mu\nabla_\nu-\nabla_\nu\nabla_\mu)V^\rho
+ =R^\rho{}_{\sigma\mu\nu}V^\sigma,
+\]
+dengan
+\[
+ \boxed{
+ R^\rho{}_{\sigma\mu\nu}
+ =\pd_\mu\Gamma^\rho{}_{\nu\sigma}
+ -\pd_\nu\Gamma^\rho{}_{\mu\sigma}
+ +\Gamma^\rho{}_{\mu\lambda}\Gamma^\lambda{}_{\nu\sigma}
+ -\Gamma^\rho{}_{\nu\lambda}\Gamma^\lambda{}_{\mu\sigma}}.
+\]
+
+Turunkan indeks pertama dengan metrik:
+\[
+ R_{\rho\sigma\mu\nu}=g_{\rho\alpha}R^\alpha{}_{\sigma\mu\nu}.
+\]
+Simetri-simetrinya adalah
+\begin{align}
+ R_{\rho\sigma\mu\nu}&=-R_{\sigma\rho\mu\nu},\\
+ R_{\rho\sigma\mu\nu}&=-R_{\rho\sigma\nu\mu},\\
+ R_{\rho\sigma\mu\nu}&=R_{\mu\nu\rho\sigma},\\
+ R_{\rho[\sigma\mu\nu]}&=0.
+\end{align}
+
+\section{Kontraksi Ricci, skalar Ricci, dan Einstein}
+
+Tensor Ricci diperoleh dengan mengontraksi indeks pertama dan ketiga:
+\[
+ \boxed{R_{\sigma\nu}=R^\rho{}_{\sigma\rho\nu}}.
+\]
+Dalam simbol Christoffel,
+\[
+ R_{\mu\nu}
+ =\pd_\rho\Gamma^\rho{}_{\nu\mu}
+ -\pd_\nu\Gamma^\rho{}_{\rho\mu}
+ +\Gamma^\rho{}_{\rho\lambda}\Gamma^\lambda{}_{\nu\mu}
+ -\Gamma^\rho{}_{\nu\lambda}\Gamma^\lambda{}_{\rho\mu}.
+\]
+Skalar Ricci dan tensor Einstein adalah
+\begin{align}
+ R&=g^{\mu\nu}R_{\mu\nu},\\
+ \boxed{G_{\mu\nu}=R_{\mu\nu}-\frac12Rg_{\mu\nu}}.
+\end{align}
+
+Identitas Bianchi diferensial
+\[
+ \nabla_{[\lambda}R_{\rho\sigma]\mu\nu}=0
+\]
+setelah kontraksi dua kali menghasilkan
+\[
+ \boxed{\nabla_\mu G^{\mu\nu}=0}.
+\]
+Inilah alasan geometris mengapa ruas materi pada persamaan Einstein harus memenuhi
+$\nabla_\mu T^{\mu\nu}=0$.
+
+\section{Geodesic deviation}
+
+Pertimbangkan keluarga geodesik $x^\mu(\tau,s)$. Definisikan
+\[
+ u^\mu=\frac{\pd x^\mu}{\pd\tau},
+ \qquad \xi^\mu=\frac{\pd x^\mu}{\pd s},
+ \qquad [u,\xi]=0.
+\]
+Karena $\nabla_u u=0$ dan $\nabla_u\xi=\nabla_\xi u$,
+\begin{align}
+ \nabla_u\nabla_u\xi
+ &=\nabla_u\nabla_\xi u\\
+ &=\nabla_\xi\nabla_u u+R(u,\xi)u\\
+ &=R(u,\xi)u.
+\end{align}
+Dalam komponen,
+\[
+ \boxed{
+ \frac{D^2\xi^\mu}{D\tau^2}
+ =R^\mu{}_{\nu\alpha\beta}u^\nu u^\alpha\xi^\beta}.
+\]
+Tanda ruas kanan mengikuti konvensi Riemann yang ditetapkan pada awal dokumen.
+Persamaan ini menghubungkan kelengkungan dengan percepatan relatif dua partikel
+jatu bebas yang berdekatan.
+
+\section{Cek: bidang polar tetap datar}
+
+Gunakan $\Gamma^r{}_{\phi\phi}=-r$ dan
+$\Gamma^\phi{}_{r\phi}=1/r$. Salah satu komponen potensial adalah
+\begin{align}
+ R^r{}_{\phi r\phi}
+ &=\pd_r\Gamma^r{}_{\phi\phi}
+ -\pd_\phi\Gamma^r{}_{r\phi}
+ +\Gamma^r{}_{r\lambda}\Gamma^\lambda{}_{\phi\phi}
+ -\Gamma^r{}_{\phi\lambda}\Gamma^\lambda{}_{r\phi}\\
+ &=-1-(-r)(1/r)=0.
+\end{align}
+Christoffel tak nol tidak cukup untuk menyimpulkan adanya kelengkungan.
+
+\chapter{Persamaan Medan Einstein}
+
+\section{Aksi Einstein--Hilbert}
+
+Aksi gravitasi dan materi adalah
+\[
+ S=S_g+S_m
+ =\frac{c^3}{16\pi G}\int(R-2\Lambda)\sqrt{-g}\,\dd^4x+S_m.
+\]
+Variasi dilakukan terhadap $g^{\mu\nu}$. Gunakan
+\begin{align}
+ \delta\sqrt{-g}&=-\frac12\sqrt{-g}\,g_{\mu\nu}\delta g^{\mu\nu},\\
+ \delta R&=R_{\mu\nu}\delta g^{\mu\nu}
+ +g^{\mu\nu}\delta R_{\mu\nu}.
+\end{align}
+Identitas Palatini,
+\[
+ \delta R_{\mu\nu}
+ =\nabla_\rho\delta\Gamma^\rho{}_{\nu\mu}
+ -\nabla_\nu\delta\Gamma^\rho{}_{\rho\mu},
+\]
+membuat $g^{\mu\nu}\delta R_{\mu\nu}$ menjadi suku batas. Setelah suku batas
+dihilangkan atau ditangani dengan suku Gibbons--Hawking--York,
+\[
+ \delta S_g
+ =\frac{c^3}{16\pi G}\int
+ (G_{\mu\nu}+\Lambda g_{\mu\nu})
+ \delta g^{\mu\nu}\sqrt{-g}\,\dd^4x.
+\]
+Definisikan tensor energi--momentum melalui
+\[
+ \delta S_m=-\frac{1}{2c}\int T_{\mu\nu}\delta g^{\mu\nu}
+ \sqrt{-g}\,\dd^4x.
+\]
+Syarat $\delta S=0$ untuk variasi bebas menghasilkan
+\[
+ \boxed{
+ G_{\mu\nu}+\Lambda g_{\mu\nu}
+ =\frac{8\pi G}{c^4}T_{\mu\nu}}.
+\]
+
+\section{Trace-reversed form dan vakum}
+
+Ambil trace dalam empat dimensi:
+\begin{align}
+ g^{\mu\nu}G_{\mu\nu}+4\Lambda
+ &=\frac{8\pi G}{c^4}T,\\
+ -R+4\Lambda&=\frac{8\pi G}{c^4}T.
+\end{align}
+Substitusi kembali memberi
+\[
+ R_{\mu\nu}
+ =\frac{8\pi G}{c^4}\left(T_{\mu\nu}-\frac12Tg_{\mu\nu}\right)
+ +\Lambda g_{\mu\nu}.
+\]
+Untuk daerah vakum tanpa konstanta kosmologis,
+\[
+ T_{\mu\nu}=0,\quad\Lambda=0
+ \quad\Longrightarrow\quad
+ \boxed{R_{\mu\nu}=0}.
+\]
+Vakum tidak mengharuskan $R^\rho{}_{\sigma\mu\nu}=0$; Schwarzschild dan Kerr
+adalah contoh $R_{\mu\nu}=0$ tetapi Riemann tidak nol.
+
+\section{Limit Newtonian}
+
+Ambil gangguan lemah dan statik
+\[
+ g_{\mu\nu}=\eta_{\mu\nu}+h_{\mu\nu},
+ \qquad |h_{\mu\nu}|\ll1,
+ \qquad \pd_0h_{\mu\nu}\approx0.
+\]
+Untuk gerak lambat, geodesik spasial didominasi oleh
+\begin{align}
+ \frac{\dd^2x^i}{\dd t^2}
+ &\simeq-c^2\Gamma^i{}_{00}
+ =\frac{c^2}{2}\pd_i h_{00}.
+\end{align}
+Bandingkan dengan $\ddot{\bm x}=-\bm\nabla\Phi$:
+\[
+ \boxed{h_{00}=-\frac{2\Phi}{c^2}},
+ \qquad
+ g_{00}=-\left(1+\frac{2\Phi}{c^2}\right).
+\]
+Untuk materi nonrelativistik, $T_{00}\simeq\rho c^2$ dan EFE linear menghasilkan
+\[
+ \nabla^2\Phi=4\pi G\rho.
+\]
+
+\chapter{Derivasi Metrik Schwarzschild}
+
+\section{Ansatz statik dan simetri bola}
+
+Elemen garis paling umum setelah memilih koordinat areal $r$ dapat ditulis
+\[
+ \dd s^2=-A(r)c^2\dd t^2+B(r)\dd r^2
+ +r^2(\dd\theta^2+\sin^2\theta\,\dd\phi^2).
+\]
+Komponen inversnya adalah
+\[
+ g^{tt}=-\frac{1}{A c^2},\quad
+ g^{rr}=\frac1B,\quad
+ g^{\theta\theta}=\frac1{r^2},\quad
+ g^{\phi\phi}=\frac1{r^2\sin^2\theta}.
+\]
+
+\section{Christoffel yang diperlukan}
+
+Tanda prima berarti $\dd/\dd r$. Komponen independen tak nol adalah
+\begin{align}
+ \Gamma^t{}_{tr}&=\Gamma^t{}_{rt}=\frac{A'}{2A},\\
+ \Gamma^r{}_{tt}&=\frac{c^2A'}{2B},
+ &\Gamma^r{}_{rr}&=\frac{B'}{2B},\\
+ \Gamma^r{}_{\theta\theta}&=-\frac rB,
+ &\Gamma^r{}_{\phi\phi}&=-\frac{r\sin^2\theta}{B},\\
+ \Gamma^\theta{}_{r\theta}&=\Gamma^\phi{}_{r\phi}=\frac1r,
+ &\Gamma^\theta{}_{\phi\phi}&=-\sin\theta\cos\theta,\\
+ \Gamma^\phi{}_{\theta\phi}&=\cot\theta.
+\end{align}
+
+Substitusi ke definisi Ricci memberi
+\begin{align}
+ R_{tt}&=\frac{c^2}{2B}\left[
+ A''-\frac{A'B'}{2B}-\frac{(A')^2}{2A}+\frac{2A'}r
+ \right],\\
+ R_{rr}&=-\frac{A''}{2A}+\frac{(A')^2}{4A^2}
+ +\frac{A'B'}{4AB}+\frac{B'}{Br},\\
+ R_{\theta\theta}&=1-\frac1B
+ +\frac{rB'}{2B^2}-\frac{rA'}{2AB},\\
+ R_{\phi\phi}&=\sin^2\theta\,R_{\theta\theta}.
+\end{align}
+
+\section{Penyelesaian persamaan vakum}
+
+Dari kombinasi $R_{tt}/(Ac^2)+R_{rr}/B=0$ diperoleh
+\[
+ \frac{A'}{A}+\frac{B'}B=0
+ \quad\Longrightarrow\quad AB=C.
+\]
+Asimtotik datar mensyaratkan $A\to1$ dan $B\to1$ saat $r\to\infty$, sehingga
+$C=1$ dan
+\[
+ B=A^{-1}.
+\]
+Masukkan ke $R_{\theta\theta}=0$:
+\begin{align}
+ 0&=1-A-rA',\\
+ \frac{\dd}{\dd r}(rA)&=1,\\
+ rA&=r+C_1,\\
+ A(r)&=1+\frac{C_1}{r}.
+\end{align}
+Limit Newtonian memakai $\Phi=-GM/r$ dan
+$g_{tt}=-A c^2\simeq-(1+2\Phi/c^2)c^2$, maka
+\[
+ C_1=-\frac{2GM}{c^2}\equiv-r_s.
+\]
+Dengan $r_s=2GM/c^2$,
+\[
+ \boxed{
+ \dd s^2=-\left(1-\frac{r_s}{r}\right)c^2\dd t^2
+ +\left(1-\frac{r_s}{r}\right)^{-1}\dd r^2
+ +r^2\dd\Omega^2}.
+\]
+
+\section{Konstanta gerak dan potensial efektif}
+
+Karena simetri bola, orbit dapat dipilih pada $\theta=\pi/2$. Lagrangian per
+satuan massa adalah
+\[
+ 2\Lag=-f c^2\dot t^2+f^{-1}\dot r^2+r^2\dot\phi^2,
+ \qquad f=1-\frac{r_s}{r}.
+\]
+Koordinat $t$ dan $\phi$ siklik, sehingga
+\begin{align}
+ E&=fc^2\dot t,\\
+ L&=r^2\dot\phi.
+\end{align}
+Normalisasi $u^\mu u_\mu=-c^2$ memberi
+\begin{align}
+ -c^2&=-fc^2\dot t^2+f^{-1}\dot r^2+r^2\dot\phi^2,\\
+ \dot r^2&=\frac{E^2}{c^2}-f\left(c^2+\frac{L^2}{r^2}\right).
+\end{align}
+Definisikan
+\[
+ V_{\rm eff}(r)=f\left(c^2+\frac{L^2}{r^2}\right).
+\]
+Orbit lingkaran memenuhi
+\[
+ \dot r=0,\qquad \frac{\dd V_{\rm eff}}{\dd r}=0,
+\]
+dan kestabilannya ditentukan oleh
+\[
+ \frac{\dd^2V_{\rm eff}}{\dd r^2}>0.
+\]
+Batas orbit lingkaran stabil terdalam adalah
+\[
+ r_{\rm ISCO}=\frac{6GM}{c^2}=3r_s.
+\]
+Untuk orbit GP-B, $r\gg r_s$, sehingga orbit berada sangat jauh dari rezim ISCO.
+
+\section{Kretschmann scalar}
+
+Karena $R_{\mu\nu}=0$ dan $R=0$ di vakum, kelengkungan Schwarzschild terdeteksi
+oleh invarian Riemann
+\[
+ K=R_{\alpha\beta\gamma\delta}R^{\alpha\beta\gamma\delta}
+ =\frac{48G^2M^2}{c^4r^6}.
+\]
+$K$ hingga pada $r=r_s$ tetapi divergen pada $r=0$, sehingga $r=r_s$ adalah
+singularitas koordinat sedangkan $r=0$ adalah singularitas kelengkungan.
+
+\chapter{Geometri Kerr dan Geodesiknya}
+
+\section{Parameter dan fungsi dasar}
+
+Definisikan parameter panjang
+\[
+ m=\frac{GM}{c^2},\qquad a=\frac{J}{Mc},
+\]
+serta
+\[
+ \Sigma=r^2+a^2\cos^2\theta,
+ \qquad
+ \Delta=r^2-2mr+a^2.
+\]
+Dalam koordinat Boyer--Lindquist $x^0=ct$, metrik Kerr dengan signature
+$(-,+,+,+)$ adalah
+\begin{align}
+ \dd s^2={}&-\left(1-\frac{2mr}{\Sigma}\right)(\dd x^0)^2
+ -\frac{4mar\sin^2\theta}{\Sigma}\,\dd x^0\dd\phi
+ +\frac{\Sigma}{\Delta}\dd r^2+\Sigma\dd\theta^2\\
+ &+\left(r^2+a^2+\frac{2ma^2r\sin^2\theta}{\Sigma}\right)
+ \sin^2\theta\,\dd\phi^2.
+\end{align}
+Karena suku silang dalam elemen garis adalah $2g_{0\phi}\dd x^0\dd\phi$,
+\[
+ g_{0\phi}=-\frac{2mar\sin^2\theta}{\Sigma}.
+\]
+Matriks blok $(0,\phi)$ tidak diagonal. Determinan keseluruhan adalah
+\[
+ g=-\Sigma^2\sin^2\theta.
+\]
+
+\section{Invers metrik}
+
+Untuk blok
+\[
+ \begin{pmatrix}g_{00}&g_{0\phi}\\g_{0\phi}&g_{\phi\phi}\end{pmatrix},
+\]
+invers diperoleh dengan rumus invers matriks $2\times2$. Hasilnya
+\begin{align}
+ g^{00}&=-\frac{(r^2+a^2)^2-a^2\Delta\sin^2\theta}
+ {\Sigma\Delta},\\
+ g^{0\phi}&=-\frac{2mar}{\Sigma\Delta},\\
+ g^{\phi\phi}&=\frac{\Delta-a^2\sin^2\theta}
+ {\Sigma\Delta\sin^2\theta},\\
+ g^{rr}&=\frac{\Delta}{\Sigma},
+ &g^{\theta\theta}&=\frac1\Sigma.
+\end{align}
+Pemeriksaan wajib adalah
+\[
+ g^{\mu\alpha}g_{\alpha\nu}=\delta^\mu{}_\nu.
+\]
+
+\section{Limit matematis}
+
+Untuk $a\to0$,
+\[
+ \Sigma\to r^2,\qquad\Delta\to r(r-2m),\qquad g_{0\phi}\to0,
+\]
+dan metrik mereduksi tepat ke Schwarzschild. Untuk $r\to\infty$,
+\[
+ g_{\mu\nu}\to\eta_{\mu\nu}
+\]
+dalam koordinat bola. Untuk $M\to0$ tetapi $a\ne0$, metrik merupakan ruang-waktu
+datar dalam koordinat sferoidal pepat.
+
+\section{Horizon dan ergosurface}
+
+Horizon koordinat Boyer--Lindquist ditentukan oleh $g^{rr}=0$:
+\[
+ \Delta=0
+ \quad\Longrightarrow\quad
+ r_\pm=m\pm\sqrt{m^2-a^2}.
+\]
+Permukaan batas statik ditentukan oleh $g_{00}=0$:
+\[
+ r_{\rm ergo}(\theta)=m+\sqrt{m^2-a^2\cos^2\theta}.
+\]
+Untuk Bumi, objek tidak berada dekat horizon; ekspresi ini dipakai sebagai
+pengecekan struktur solusi, bukan rezim simulasi GP-B.
+
+\section{Konstanta gerak}
+
+Karena metrik tidak bergantung eksplisit pada $x^0$ dan $\phi$, terdapat dua
+vektor Killing
+\[
+ \xi_{(t)}^\mu=(1,0,0,0),
+ \qquad
+ \xi_{(\phi)}^\mu=(0,0,0,1).
+\]
+Untuk geodesik dengan momentum $p_\mu$, kuantitas
+\[
+ E=-p_0c,
+ \qquad L_z=p_\phi
+\]
+kekal. Konservasi mengikuti
+\begin{align}
+ \frac{\dd}{\dd\tau}(\xi_\mu u^\mu)
+ &=u^\nu\nabla_\nu(\xi_\mu u^\mu)\\
+ &=u^\mu u^\nu\nabla_\nu\xi_\mu
+ +\xi_\mu u^\nu\nabla_\nu u^\mu\\
+ &=u^\mu u^\nu\nabla_{(\nu}\xi_{\mu)}=0.
+\end{align}
+
+Untuk pemisahan berikut saja digunakan satuan geometris $G=c=1$ dan massa uji
+dinormalisasi menjadi satu. Persamaan Hamilton--Jacobi
+\[
+ g^{\mu\nu}\pd_\mu S\,\pd_\nu S=-1
+\]
+dapat dipisahkan dengan ansatz
+\[
+ S=-Et+L_z\phi+S_r(r)+S_\theta(\theta)+\frac12\lambda.
+\]
+Konstanta pemisahan menghasilkan konstanta Carter $Q$. Geodesik timelike memenuhi
+\begin{align}
+ \Sigma^2\dot r^2
+ &=\left[E(r^2+a^2)-aL_z\right]^2
+ -\Delta\left[r^2+(L_z-aE)^2+Q\right],\\
+ \Sigma^2\dot\theta^2
+ &=Q-\cos^2\theta\left[a^2(1-E^2)
+ +\frac{L_z^2}{\sin^2\theta}\right].
+\end{align}
+Kedua persamaan ini memperlihatkan bahwa gerak Kerr terpisah menjadi fungsi radial
+dan polar, meskipun metrik memuat pencampuran koordinat waktu dan azimut.
+
+\chapter{Medan Lemah, Gravitomagnetisme, dan Lense--Thirring}
+
+\section{Linearisasi persamaan Einstein}
+
+Tuliskan
+\[
+ g_{\mu\nu}=\eta_{\mu\nu}+h_{\mu\nu},
+ \qquad |h_{\mu\nu}|\ll1.
+\]
+Naik-turunkan indeks $h_{\mu\nu}$ dengan $\eta_{\mu\nu}$ pada orde pertama.
+Definisikan trace-reverse
+\[
+ \bar h_{\mu\nu}=h_{\mu\nu}-\frac12\eta_{\mu\nu}h,
+ \qquad h=\eta^{\alpha\beta}h_{\alpha\beta}.
+\]
+Dalam gauge Lorenz
+\[
+ \pd^\mu\bar h_{\mu\nu}=0,
+\]
+EFE linear menjadi
+\[
+ \boxed{
+ \Box\bar h_{\mu\nu}=-\frac{16\pi G}{c^4}T_{\mu\nu}},
+ \qquad \Box=\eta^{\alpha\beta}\pd_\alpha\pd_\beta.
+\]
+Untuk sumber stasioner, $\Box\to\nabla^2$, sehingga
+\[
+ \bar h_{\mu\nu}(\bm x)
+ =\frac{4G}{c^4}\int
+ \frac{T_{\mu\nu}(\bm x')}{|\bm x-\bm x'|}\,\dd^3x'.
+\]
+
+\section{Suku massa dan arus massa}
+
+Untuk materi lambat,
+\[
+ T_{00}\simeq\rho c^2,
+ \qquad T_{0i}\simeq-\rho c v_i.
+\]
+Bagian $00$ menghasilkan potensial Newton $\Phi$. Bagian $0i$ menghasilkan potensial
+vektor gravitomagnetik. Definisikan konvensi
+\[
+ \bm A_g(\bm x)
+ =G\int\frac{\rho(\bm x')\bm v(\bm x')}
+ {|\bm x-\bm x'|}\,\dd^3x'.
+\]
+Jauh dari benda berotasi dengan momentum sudut
+\[
+ \bm J=\int\bm x'\times\rho(\bm x')\bm v(\bm x')\,\dd^3x',
+\]
+ekspansi multipol memberi
+\[
+ \boxed{
+ \bm A_g=\frac{G}{2}\frac{\bm J\times\bm r}{r^3}}
+\]
+dalam normalisasi yang dipakai di bagian ini. Medan dipol yang bersesuaian adalah
+\begin{align}
+ \bm B_g&=\bm\nabla\times\bm A_g\\
+ &=\frac{G}{2r^3}\left[3\hat{\bm r}
+ (\hat{\bm r}\cdot\bm J)-\bm J\right].
+\end{align}
+Faktor numerik antara $\bm A_g$, $h_{0i}$, dan $\bm B_g$ berbeda pada beberapa
+konvensi gravitomagnetisme. Kuantitas akhir $\bm\Omega_{\rm LT}$ di bawah tidak
+bergantung pada penamaan medan antara tersebut.
+
+\section{Ekspansi Kerr dan asal $g_{0\phi}$}
+
+Untuk $r\gg m$ dan $r\gg a$,
+\[
+ \Sigma=r^2+\order(a^2),
+\]
+sehingga
+\begin{align}
+ g_{00}&=-1+\frac{2GM}{c^2r}+\order(r^{-2},a^2),\\
+ g_{0\phi}&=-\frac{2GJ}{c^3r}\sin^2\theta
+ +\order(r^{-2},a^2).
+\end{align}
+Karena $x^0=ct$, elemen garis mengandung
+\[
+ 2g_{0\phi}\dd x^0\dd\phi
+ =-\frac{4GJ}{c^2r}\sin^2\theta\,\dd t\dd\phi.
+\]
+Suku ini lenyap ketika $J=0$ dan merupakan jejak matematis rotasi sumber pada
+geometri eksternal.
+
+\section{Presesi spin pada medan stasioner lemah}
+
+Ambil tetrad lokal ortonormal pengamat dan tulis komponen spasial spin sebagai
+$\bm S$. Reduksi orde pertama persamaan transportasi
+\[
+ \frac{\dd S^\mu}{\dd\tau}
+ =-\Gamma^\mu{}_{\alpha\beta}u^\alpha S^\beta
+\]
+memberi bentuk rotasi
+\[
+ \frac{\dd\bm S}{\dd t}=\bm\Omega\times\bm S.
+\]
+Kontribusi yang linear terhadap momentum sudut sumber adalah
+\[
+ \boxed{
+ \bm\Omega_{\rm LT}
+ =\frac{G}{c^2r^3}\left[
+ 3\hat{\bm r}(\hat{\bm r}\cdot\bm J)-\bm J
+ \right]}.
+\]
+Untuk titik pada bidang ekuator, $\hat{\bm r}\cdot\bm J=0$, sehingga
+\[
+ \bm\Omega_{\rm LT}=-\frac{G\bm J}{c^2r^3}.
+\]
+Pada sumbu rotasi, $\hat{\bm r}\parallel\bm J$, sehingga
+\[
+ \bm\Omega_{\rm LT}=\frac{2G\bm J}{c^2r^3}.
+\]
+
+\section{Presesi geodetik}
+
+Bagian medan lemah yang bergantung pada massa, bersama gerak orbit giroskop,
+menghasilkan
+\[
+ \boxed{
+ \bm\Omega_{\rm geo}
+ =\frac{3GM}{2c^2r^3}(\bm r\times\bm v)}.
+\]
+Untuk orbit lingkaran, $\bm r\perp\bm v$ dan $v=\sqrt{GM/r}$, maka
+\[
+ \Omega_{\rm geo}
+ =\frac{3GM}{2c^2r}n,
+ \qquad n=\sqrt{\frac{GM}{r^3}}.
+\]
+Presesi per orbit adalah
+\[
+ \Delta\psi_{\rm geo}
+ =\Omega_{\rm geo}\frac{2\pi}{n}
+ =\frac{3\pi GM}{c^2r}.
+\]
+Untuk orbit elips dengan semi-major axis $a_o$ dan eksentrisitas $e$,
+\[
+ \Delta\psi_{\rm geo}
+ =\frac{3\pi GM}{c^2a_o(1-e^2)}.
+\]
+
+\section{Rata-rata orbit polar dan observabel GP-B}
+
+Untuk orbit lingkaran polar, gunakan
+\[
+ \langle\hat r_i\hat r_j\rangle
+ =\frac12(\delta_{ij}-\hat L_i\hat L_j),
+\]
+dengan $\hat{\bm L}$ normal bidang orbit. Maka
+\begin{align}
+ \left\langle\bm\Omega_{\rm LT}\right\rangle
+ &=\frac{G}{c^2r^3}\left[
+ \frac32(\bm J-(\bm J\cdot\hat{\bm L})\hat{\bm L})-\bm J
+ \right].
+\end{align}
+Untuk orbit polar ideal, $\bm J\cdot\hat{\bm L}=0$, sehingga
+\[
+ \boxed{
+ \left\langle\bm\Omega_{\rm LT}\right\rangle
+ =\frac{G\bm J}{2c^2r^3}}.
+\]
+Prediksi yang dibandingkan dengan GP-B diperoleh dengan memproyeksikan vektor
+presesi total ke dua sumbu pengamatan:
+\[
+ \bm\Omega=\bm\Omega_{\rm geo}+\bm\Omega_{\rm LT},
+ \qquad
+ \Omega_A=\bm\Omega\cdot\hat{\bm e}_A.
+\]
+
+\chapter{Sistem ODE Orbit dan Spin}
+
+\section{Reduksi ke orde satu}
+
+Definisikan state
+\[
+ \bm y=(x^\mu,u^\mu,S^\mu)\in\mathbb{R}^{12}.
+\]
+Persamaan geodesik dan transportasi paralel menjadi
+\begin{align}
+ \frac{\dd x^\mu}{\dd\tau}&=u^\mu,\\
+ \frac{\dd u^\mu}{\dd\tau}
+ &=-\Gamma^\mu{}_{\alpha\beta}(x)u^\alpha u^\beta,\\
+ \frac{\dd S^\mu}{\dd\tau}
+ &=-\Gamma^\mu{}_{\alpha\beta}(x)u^\alpha S^\beta.
+\end{align}
+Dengan
+\[
+ \left[A(\tau)\right]^\mu{}_{\beta}
+ =\Gamma^\mu{}_{\alpha\beta}(x(\tau))u^\alpha(\tau),
+\]
+persamaan spin berbentuk sistem linear dengan koefisien berubah:
+\[
+ \dot{\bm S}=-A(\tau)\bm S.
+\]
+Solusi formalnya adalah exponential berurutan lintasan
+\[
+ \bm S(\tau)
+ =\mathcal{P}\exp\left[-\int_{\tau_0}^{\tau}A(\tau')\dd\tau'\right]
+ \bm S(\tau_0).
+\]
+
+\section{Constraint yang harus dipantau}
+
+Tiga residual numerik utama adalah
+\begin{align}
+ C_u&=g_{\mu\nu}u^\mu u^\nu+c^2,\\
+ C_S&=g_{\mu\nu}S^\mu S^\nu-S_0^2,\\
+ C_\perp&=g_{\mu\nu}S^\mu u^\nu.
+\end{align}
+Solusi kontinu ideal memenuhi
+\[
+ C_u=C_S=C_\perp=0.
+\]
+Residual tak nol pada integrasi numerik mengukur error solver, implementasi koneksi,
+atau kondisi awal yang tidak konsisten.
+
+\section{Ekstraksi sudut presesi}
+
+Komponen koordinat $S^i$ tidak langsung merupakan komponen yang diukur. Gunakan
+tetrad ortonormal $e_{\hat a}{}^\mu$ milik pengamat:
+\[
+ S^{\hat a}=e^{\hat a}{}_{\mu}S^\mu,
+ \qquad
+ g_{\mu\nu}e_{\hat a}{}^\mu e_{\hat b}{}^\nu
+ =\eta_{\hat a\hat b}.
+\]
+Setelah memperoleh vektor ruang lokal $\bm S_{\rm loc}$, sudut terhadap arah awal
+dapat dihitung secara stabil dengan
+\[
+ \Delta\psi
+ =\operatorname{atan2}\left(
+ \|\bm S_0\times\bm S\|,
+ \bm S_0\cdot\bm S
+ \right).
+\]
+Untuk sudut kecil, $\Delta\psi\simeq\|\bm S_0\times\bm S\|/S_0^2$.
+
+\chapter{Latihan Kepekaan Matematis}
+
+Kerjakan tanpa melihat hasil akhir. Tujuan latihan adalah membangun kepekaan indeks,
+tanda, dimensi, limit, dan dependensi antarpersamaan.
+
+\begin{enumerate}[label=\arabic*.]
+ \item Buktikan bahwa $\omega_\mu V^\mu$ invarian di bawah perubahan koordinat.
+ \item Turunkan aturan transformasi tensor $(1,1)$ dari transformasi basis dan basis dual.
+ \item Dari $g^{\mu\alpha}g_{\alpha\nu}=\delta^\mu{}_\nu$, buktikan
+ $\pd_\lambda g^{\mu\nu}=-g^{\mu\alpha}g^{\nu\beta}\pd_\lambda g_{\alpha\beta}$.
+ \item Turunkan simbol Christoffel seluruhnya dari $\nabla_\lambda g_{\mu\nu}=0$
+ dan kondisi tanpa torsi.
+ \item Hitung geodesik pada bidang polar datar dan tunjukkan bahwa hasilnya ekuivalen
+ dengan garis lurus Kartesian.
+ \item Buktikan bahwa $\dd(g_{\mu\nu}V^\mu W^\nu)/\dd\lambda=0$ untuk dua vektor
+ yang ditransportasikan paralel.
+ \item Ekspansi komutator $[\nabla_\mu,\nabla_\nu]V^\rho$ baris demi baris hingga
+ seluruh turunan pertama $V$ saling hapus.
+ \item Gunakan simetri Riemann untuk menghitung jumlah komponen independen di empat dimensi.
+ \item Turunkan identitas Bianchi terkontraksi $\nabla_\mu G^{\mu\nu}=0$.
+ \item Turunkan geodesic deviation dari keluarga geodesik dua-parameter.
+ \item Variasikan $\sqrt{-g}$ menggunakan formula Jacobi untuk determinan.
+ \item Turunkan EFE dari aksi Einstein--Hilbert, dengan menandai secara eksplisit
+ suku batas.
+ \item Turunkan persamaan Poisson dari komponen $00$ EFE linear.
+ \item Hitung semua Christoffel independen dari ansatz Schwarzschild.
+ \item Substitusikan Christoffel tersebut ke $R_{tt}$, $R_{rr}$, dan
+ $R_{\theta\theta}$ tanpa perangkat simbolik.
+ \item Dari persamaan vakum, peroleh $AB=1$, lalu $A=1-r_s/r$.
+ \item Dari potensial efektif Schwarzschild, turunkan $r_{\rm ISCO}=6GM/c^2$.
+ \item Inverskan blok $(0,\phi)$ metrik Kerr dan cek empat komponen identitas matriks.
+ \item Tunjukkan langsung bahwa limit $a\to0$ metrik Kerr adalah Schwarzschild.
+ \item Turunkan konservasi $\xi_\mu u^\mu$ dari persamaan Killing dan geodesik.
+ \item Pisahkan persamaan Hamilton--Jacobi Kerr dan identifikasi konstanta Carter.
+ \item Ekspansi $g_{0\phi}$ Kerr sampai orde pertama dalam $J$.
+ \item Hitung curl dari $(\bm J\times\bm r)/r^3$ dan peroleh struktur medan dipol.
+ \item Turunkan rata-rata orbit polar
+ $\langle\hat r_i\hat r_j\rangle$ dan faktor $1/2$ pada presesi LT rata-rata.
+ \item Buktikan secara analitik bahwa $C_u$, $C_S$, dan $C_\perp$ konstan sepanjang
+ solusi kontinu sistem orbit--spin.
+\end{enumerate}
+
+\chapter*{Ringkasan Rantai yang Harus Dikuasai}
+\addcontentsline{toc}{chapter}{Ringkasan Rantai yang Harus Dikuasai}
+
+\begin{align*}
+ \text{kovektor}&:\quad \omega(V)=\omega_\mu V^\mu,\\
+ \text{metrik}&:\quad V_\mu=g_{\mu\nu}V^\nu,\\
+ \text{koneksi}&:\quad
+ \Gamma^\rho{}_{\mu\nu}=\tfrac12g^{\rho\sigma}
+ (g_{\sigma\mu,\nu}+g_{\sigma\nu,\mu}-g_{\mu\nu,\sigma}),\\
+ \text{geodesik}&:\quad \ddot x^\rho+\Gamma^\rho{}_{\mu\nu}
+ \dot x^\mu\dot x^\nu=0,\\
+ \text{spin}&:\quad \dot S^\rho+\Gamma^\rho{}_{\mu\nu}u^\mu S^\nu=0,\\
+ \text{Riemann}&:\quad [\nabla_\mu,\nabla_\nu]V^\rho
+ =R^\rho{}_{\sigma\mu\nu}V^\sigma,\\
+ \text{Ricci}&:\quad R_{\mu\nu}=R^\rho{}_{\mu\rho\nu},\\
+ \text{Einstein}&:\quad G_{\mu\nu}=R_{\mu\nu}-\tfrac12Rg_{\mu\nu},\\
+ \text{EFE}&:\quad G_{\mu\nu}=\frac{8\pi G}{c^4}T_{\mu\nu},\\
+ \text{Schwarzschild}&:\quad A=1-\frac{2GM}{c^2r},\quad B=A^{-1},\\
+ \text{Kerr}&:\quad a=\frac{J}{Mc},\quad g_{0\phi}\ne0,\\
+ \text{geodetik}&:\quad
+ \bm\Omega_{\rm geo}=\frac{3GM}{2c^2r^3}(\bm r\times\bm v),\\
+ \text{Lense--Thirring}&:\quad
+ \bm\Omega_{\rm LT}=\frac{G}{c^2r^3}
+ [3\hat{\bm r}(\hat{\bm r}\cdot\bm J)-\bm J].
+\end{align*}
+
+\end{document}
